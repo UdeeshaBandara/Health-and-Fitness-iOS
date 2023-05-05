@@ -8,19 +8,21 @@
 import UIKit
 import SnapKit
 
-class LoginViewController: UIViewController {
+class RegisterViewController: UIViewController {
 
     let scrollView = UIScrollView()
     
+    let name  = UITextField()
     let email  = UITextField()
     let password  = UITextField()
+    let phone  = UITextField()
     
     let signInLabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
         lbl.numberOfLines = 0
         lbl.sizeToFit()
-        lbl.text = "Sign In"
+        lbl.text = "Sign Up"
         lbl.font = UIFont(name:"Roboto-Light",size:100)
         lbl.font = lbl.font.withSize(25)
         lbl.textAlignment = .center
@@ -43,7 +45,7 @@ class LoginViewController: UIViewController {
     let submitButton : UIButton = {
         
         let button = UIButton()
-        button.setTitle("Sign In", for: .normal)
+        button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font =  UIFont(name: "Roboto-Bold", size: 18)
         button.backgroundColor = .black
@@ -59,12 +61,11 @@ class LoginViewController: UIViewController {
         lbl.textColor = .black
         lbl.numberOfLines = 0
         lbl.sizeToFit()
-        lbl.text = "Don't have an account? Sign Up"
+        lbl.text = "Already have an account? Sign in"
         lbl.font = UIFont(name:"Roboto-Light",size:100)
         lbl.font = lbl.font.withSize(14)
-        lbl.isUserInteractionEnabled = true
         lbl.textAlignment = .center
-       
+        lbl.isUserInteractionEnabled = true
         return lbl
     }()
     
@@ -77,7 +78,9 @@ class LoginViewController: UIViewController {
 
         view.addSubview(signInLabel)
         view.addSubview(register)
+        vStack.addArrangedSubview(name)
         vStack.addArrangedSubview(email)
+        vStack.addArrangedSubview(phone)
         vStack.addArrangedSubview(password)
         vStack.addArrangedSubview(submitButton)
         scrollView.addSubview(vStack)
@@ -90,9 +93,14 @@ class LoginViewController: UIViewController {
         
         
         email.updateDesign()
+        password.updateDesign()
+        name.updateDesign()
+        phone.updateDesign()
         email.placeholder = "Email address"
         password.placeholder = "Password"
-        password.updateDesign()
+        name.placeholder = "Full Name"
+        phone.placeholder = "Phone"
+ 
         
         scrollView.snp.makeConstraints { const in
             const.centerX.equalTo(view.snp.centerX)
@@ -118,7 +126,7 @@ class LoginViewController: UIViewController {
         signInLabel.snp.makeConstraints { const in
             
             
-            const.centerY.equalTo(view.snp.centerY).offset(-130)
+            const.centerY.equalTo(view.snp.centerY).offset(-200)
             const.centerX.equalTo(view.snp.centerX)
             
         }
@@ -129,6 +137,14 @@ class LoginViewController: UIViewController {
             
         }
         submitButton.snp.makeConstraints { const in
+            
+            const.height.equalTo(45)
+        }
+         name.snp.makeConstraints { const in
+            
+            const.height.equalTo(45)
+        }
+         phone.snp.makeConstraints { const in
             
             const.height.equalTo(45)
         }
@@ -144,7 +160,8 @@ class LoginViewController: UIViewController {
     }
     @objc func openRegistration(sender : UIButton){
       
-        navigationController?.pushViewController(RegisterViewController(), animated: true)
+        navigationController?.popViewController(animated: true)
+
         
     }
 }
