@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		493B42442A04DE1C00808493 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 493B42432A04DE1C00808493 /* IQKeyboardManagerSwift */; };
+		493B42462A04ECD000808493 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493B42452A04ECD000808493 /* RegisterViewController.swift */; };
 		493F6EF82A04C61E00A721DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F6EF72A04C61E00A721DA /* AppDelegate.swift */; };
 		493F6EFA2A04C61E00A721DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F6EF92A04C61E00A721DA /* SceneDelegate.swift */; };
 		493F6EFC2A04C61E00A721DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F6EFB2A04C61E00A721DA /* ViewController.swift */; };
@@ -18,9 +20,13 @@
 		49A4A8902A04D0DF005A4DC2 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49A4A88A2A04D0BA005A4DC2 /* Roboto-Medium.ttf */; };
 		49A4A8912A04D0DF005A4DC2 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49A4A88C2A04D0BA005A4DC2 /* Roboto-MediumItalic.ttf */; };
 		49A4A8922A04D0DF005A4DC2 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49A4A88B2A04D0BA005A4DC2 /* Roboto-Regular.ttf */; };
+		49A4A8952A04D964005A4DC2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 49A4A8942A04D964005A4DC2 /* SnapKit */; };
+		49A4A8972A04D9F1005A4DC2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A4A8962A04D9F1005A4DC2 /* LoginViewController.swift */; };
+		49A4A89B2A04DADD005A4DC2 /* HealthAndFitnessBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A4A89A2A04DADD005A4DC2 /* HealthAndFitnessBase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		493B42452A04ECD000808493 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		493F6EF42A04C61E00A721DA /* healthandfitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = healthandfitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		493F6EF72A04C61E00A721DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		493F6EF92A04C61E00A721DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +40,8 @@
 		49A4A88A2A04D0BA005A4DC2 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Medium.ttf"; path = "../../../../../../../Downloads/Roboto/Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		49A4A88B2A04D0BA005A4DC2 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Regular.ttf"; path = "../../../../../../../Downloads/Roboto/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		49A4A88C2A04D0BA005A4DC2 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-MediumItalic.ttf"; path = "../../../../../../../Downloads/Roboto/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		49A4A8962A04D9F1005A4DC2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		49A4A89A2A04DADD005A4DC2 /* HealthAndFitnessBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAndFitnessBase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +49,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49A4A8952A04D964005A4DC2 /* SnapKit in Frameworks */,
+				493B42442A04DE1C00808493 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +76,8 @@
 		493F6EF62A04C61E00A721DA /* healthandfitness */ = {
 			isa = PBXGroup;
 			children = (
+				49A4A8992A04DABD005A4DC2 /* utils */,
+				49A4A8982A04D9FF005A4DC2 /* onboarding */,
 				49A4A8862A04D06C005A4DC2 /* fonts */,
 				493F6EF72A04C61E00A721DA /* AppDelegate.swift */,
 				493F6EF92A04C61E00A721DA /* SceneDelegate.swift */,
@@ -90,6 +102,23 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
+		49A4A8982A04D9FF005A4DC2 /* onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				49A4A8962A04D9F1005A4DC2 /* LoginViewController.swift */,
+				493B42452A04ECD000808493 /* RegisterViewController.swift */,
+			);
+			path = onboarding;
+			sourceTree = "<group>";
+		};
+		49A4A8992A04DABD005A4DC2 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				49A4A89A2A04DADD005A4DC2 /* HealthAndFitnessBase.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,6 +135,10 @@
 			dependencies = (
 			);
 			name = healthandfitness;
+			packageProductDependencies = (
+				49A4A8942A04D964005A4DC2 /* SnapKit */,
+				493B42432A04DE1C00808493 /* IQKeyboardManagerSwift */,
+			);
 			productName = healthandfitness;
 			productReference = 493F6EF42A04C61E00A721DA /* healthandfitness.app */;
 			productType = "com.apple.product-type.application";
@@ -134,6 +167,10 @@
 				Base,
 			);
 			mainGroup = 493F6EEB2A04C61E00A721DA;
+			packageReferences = (
+				49A4A8932A04D964005A4DC2 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				493B42422A04DE1C00808493 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+			);
 			productRefGroup = 493F6EF52A04C61E00A721DA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -166,7 +203,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49A4A89B2A04DADD005A4DC2 /* HealthAndFitnessBase.swift in Sources */,
+				49A4A8972A04D9F1005A4DC2 /* LoginViewController.swift in Sources */,
 				493F6EFC2A04C61E00A721DA /* ViewController.swift in Sources */,
+				493B42462A04ECD000808493 /* RegisterViewController.swift in Sources */,
 				493F6EF82A04C61E00A721DA /* AppDelegate.swift in Sources */,
 				493F6EFA2A04C61E00A721DA /* SceneDelegate.swift in Sources */,
 			);
@@ -380,6 +420,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		493B42422A04DE1C00808493 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
+		49A4A8932A04D964005A4DC2 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		493B42432A04DE1C00808493 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 493B42422A04DE1C00808493 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+		49A4A8942A04D964005A4DC2 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49A4A8932A04D964005A4DC2 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 493F6EEC2A04C61E00A721DA /* Project object */;
 }
