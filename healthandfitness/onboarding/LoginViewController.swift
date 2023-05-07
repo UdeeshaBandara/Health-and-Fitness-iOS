@@ -21,8 +21,7 @@ class LoginViewController: UIViewController {
         lbl.numberOfLines = 0
         lbl.sizeToFit()
         lbl.text = "Sign In"
-        lbl.font = UIFont(name:"Roboto-Light",size:100)
-        lbl.font = lbl.font.withSize(25)
+        lbl.font = UIFont(name:"Roboto-MediumItalic",size:30)
         lbl.textAlignment = .center
        
         return lbl
@@ -45,7 +44,7 @@ class LoginViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Sign In", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font =  UIFont(name: "Roboto-Bold", size: 18)
+        button.titleLabel?.font =  UIFont(name: "Roboto-MediumItalic", size: 18)
         button.backgroundColor = .black
         button.layer.cornerRadius = 5
         
@@ -84,6 +83,8 @@ class LoginViewController: UIViewController {
         setupConstraint()
         
         register.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openRegistration(sender:))))
+       
+        submitButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openWizard(sender:))))
        
     }
     func setupConstraint(){
@@ -145,6 +146,14 @@ class LoginViewController: UIViewController {
     @objc func openRegistration(sender : UIButton){
       
         navigationController?.pushViewController(RegisterViewController(), animated: true)
+        
+    }
+    @objc func openWizard(sender : UIButton){
+        
+        let layout = UICollectionViewFlowLayout()
+             layout.scrollDirection = .horizontal
+      
+        navigationController?.pushViewController(WizardController(collectionViewLayout: layout), animated: true)
         
     }
 }

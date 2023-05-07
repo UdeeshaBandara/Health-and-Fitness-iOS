@@ -23,8 +23,7 @@ class RegisterViewController: UIViewController {
         lbl.numberOfLines = 0
         lbl.sizeToFit()
         lbl.text = "Sign Up"
-        lbl.font = UIFont(name:"Roboto-Light",size:100)
-        lbl.font = lbl.font.withSize(25)
+        lbl.font = UIFont(name:"Roboto-MediumItalic",size:30)
         lbl.textAlignment = .center
        
         return lbl
@@ -47,7 +46,7 @@ class RegisterViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font =  UIFont(name: "Roboto-Bold", size: 18)
+        button.titleLabel?.font =  UIFont(name: "Roboto-MediumItalic", size: 18)
         button.backgroundColor = .black
         button.layer.cornerRadius = 5
         

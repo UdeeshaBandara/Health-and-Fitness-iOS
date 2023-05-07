@@ -4,15 +4,6 @@
 <dict>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
-		<key>Fonts provided by application</key>
-		<array>
-			<string>Roboto-Light.ttf</string>
-			<string>Roboto-Thin.ttf</string>
-			<string>Roboto-Regular.ttf</string>
-			<string>Roboto-MediumItalic.ttf</string>
-			<string>Roboto-Medium.ttf</string>
-			<string>Roboto-Bold.ttf</string>
-		</array>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 		<key>UISceneConfigurations</key>
@@ -27,6 +18,15 @@
 				</dict>
 			</array>
 		</dict>
+		<key>Fonts provided by application</key>
+		<array>
+			<string>Roboto-Light.ttf</string>
+			<string>Roboto-Thin.ttf</string>
+			<string>Roboto-Regular.ttf</string>
+			<string>Roboto-MediumItalic.ttf</string>
+			<string>Roboto-Medium.ttf</string>
+			<string>Roboto-Bold.ttf</string>
+		</array>
 	</dict>
 </dict>
 </plist>
