@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class RegisterViewController: UIViewController {
-
+    
     let scrollView = UIScrollView()
     
     let name  = UITextField()
@@ -25,7 +25,7 @@ class RegisterViewController: UIViewController {
         lbl.text = "Sign Up"
         lbl.font = UIFont(name:"Roboto-MediumItalic",size:30)
         lbl.textAlignment = .center
-       
+        
         return lbl
     }()
     
@@ -70,11 +70,11 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .white
         view.addSubview(scrollView)
-      
-
+        
+        
         view.addSubview(signInLabel)
         view.addSubview(register)
         vStack.addArrangedSubview(name)
@@ -86,7 +86,7 @@ class RegisterViewController: UIViewController {
         setupConstraint()
         
         register.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openRegistration(sender:))))
-       
+        
     }
     func setupConstraint(){
         
@@ -99,7 +99,7 @@ class RegisterViewController: UIViewController {
         password.placeholder = "Password"
         name.placeholder = "Full Name"
         phone.placeholder = "Phone"
- 
+        
         
         scrollView.snp.makeConstraints { const in
             const.centerX.equalTo(view.snp.centerX)
@@ -109,8 +109,8 @@ class RegisterViewController: UIViewController {
         }
         
         vStack.snp.makeConstraints { const in
-             
-         
+            
+            
             const.centerY.equalTo(scrollView.snp.centerY)
             const.width.equalTo(scrollView.snp.width)
             
@@ -139,11 +139,11 @@ class RegisterViewController: UIViewController {
             
             const.height.equalTo(45)
         }
-         name.snp.makeConstraints { const in
+        name.snp.makeConstraints { const in
             
             const.height.equalTo(45)
         }
-         phone.snp.makeConstraints { const in
+        phone.snp.makeConstraints { const in
             
             const.height.equalTo(45)
         }
@@ -158,9 +158,9 @@ class RegisterViewController: UIViewController {
         
     }
     @objc func openRegistration(sender : UIButton){
-      
+        
         navigationController?.popViewController(animated: true)
-
+        
         
     }
 }

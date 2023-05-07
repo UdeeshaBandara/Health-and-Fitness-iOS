@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class LoginViewController: UIViewController {
-
+    
     let scrollView = UIScrollView()
     
     let email  = UITextField()
@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
         lbl.text = "Sign In"
         lbl.font = UIFont(name:"Roboto-MediumItalic",size:30)
         lbl.textAlignment = .center
-       
+        
         return lbl
     }()
     
@@ -63,17 +63,17 @@ class LoginViewController: UIViewController {
         lbl.font = lbl.font.withSize(14)
         lbl.isUserInteractionEnabled = true
         lbl.textAlignment = .center
-       
+        
         return lbl
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .white
         view.addSubview(scrollView)
-      
-
+        
+        
         view.addSubview(signInLabel)
         view.addSubview(register)
         vStack.addArrangedSubview(email)
@@ -83,9 +83,9 @@ class LoginViewController: UIViewController {
         setupConstraint()
         
         register.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openRegistration(sender:))))
-       
+        
         submitButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openWizard(sender:))))
-       
+        
     }
     func setupConstraint(){
         
@@ -103,8 +103,8 @@ class LoginViewController: UIViewController {
         }
         
         vStack.snp.makeConstraints { const in
-             
-         
+            
+            
             const.centerY.equalTo(scrollView.snp.centerY)
             const.width.equalTo(scrollView.snp.width)
             
@@ -144,15 +144,15 @@ class LoginViewController: UIViewController {
         
     }
     @objc func openRegistration(sender : UIButton){
-      
+        
         navigationController?.pushViewController(RegisterViewController(), animated: true)
         
     }
     @objc func openWizard(sender : UIButton){
         
         let layout = UICollectionViewFlowLayout()
-             layout.scrollDirection = .horizontal
-      
+        layout.scrollDirection = .horizontal
+        
         navigationController?.pushViewController(WizardController(collectionViewLayout: layout), animated: true)
         
     }

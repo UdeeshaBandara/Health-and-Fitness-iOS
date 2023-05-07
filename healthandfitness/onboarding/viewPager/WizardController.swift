@@ -12,24 +12,28 @@ import SnapKit
 class WizardController : UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let wizardCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
-  
+    
     let pages = [
         Page(measurement: "Years", headerText: "Select age", value: 0.0),
         Page(measurement: "Centimeters", headerText: "Select height", value: 0.0),
         Page(measurement: "Kg", headerText: "Select weight", value: 0.0),
         
     ]
- 
+    
     @objc private func handlePrev() {
-        wizardCollectionView.isPagingEnabled = false
         let nextIndex = max(pageControl.currentPage - 1, 0)
+        
+        nextButton.setTitle("Next", for: .normal)
+        
+        wizardCollectionView.isPagingEnabled = false
+        
         let indexPath = IndexPath(item: nextIndex, section: 0)
         pageControl.currentPage = nextIndex
         wizardCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         wizardCollectionView.isPagingEnabled = true
     }
     
-   
+    
     let nextButton : UIButton = {
         
         let button = UIButton()
@@ -69,12 +73,20 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
     }()
     
     @objc private func handleNext() {
-        wizardCollectionView.isPagingEnabled = false
-        let nextIndex = min(pageControl.currentPage + 1, pages.count - 1)
-        let indexPath = IndexPath(item: nextIndex, section: 0)
-        pageControl.currentPage = nextIndex
-        wizardCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        wizardCollectionView.isPagingEnabled = true
+        if(nextButton.currentTitle=="Finish"){
+            navigationController?.setViewControllers([HomeViewController()], animated: true)
+        }else{
+            let nextIndex = min(pageControl.currentPage + 1, pages.count - 1)
+            if(nextIndex==2){
+                nextButton.setTitle("Finish", for: .normal)
+            }
+            wizardCollectionView.isPagingEnabled = false
+            
+            let indexPath = IndexPath(item: nextIndex, section: 0)
+            pageControl.currentPage = nextIndex
+            wizardCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            wizardCollectionView.isPagingEnabled = true
+        }
     }
     
     private lazy var pageControl: UIPageControl = {
@@ -89,49 +101,56 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
     fileprivate func setupContraints() {
         view.addSubview(wizardCollectionView)
         wizardCollectionView.snp.makeConstraints { const in
-
+            
             const.top.equalTo(view.snp.top)
             const.bottom.equalTo(view.snp.bottom)
             const.leading.equalTo(view.snp.leading)
             const.trailing.equalTo(view.snp.trailing)
-        
+            
         }
         hStack.addArrangedSubview(previousButton)
         hStack.addArrangedSubview(pageControl)
         hStack.addArrangedSubview(nextButton)
         view.addSubview(hStack)
         hStack.snp.makeConstraints { const in
- 
+            
             const.width.equalTo(view.snp.width).inset(20)
             const.centerX.equalTo(view.snp.centerX)
             const.bottom.equalTo(view.snp.bottom).inset(50)
             const.height.equalTo(50)
         }
         previousButton.snp.makeConstraints { const in
- 
+            
             const.width.equalTo(80)
-        
+            
         }
         nextButton.snp.makeConstraints { const in
- 
+            
             const.width.equalTo(80)
-        
+            
         }
     }
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         let x = targetContentOffset.pointee.x
+        if((Int(x / view.frame.width))==2){
+            nextButton.setTitle("Finish", for: .normal)
+            
+        }else{
+            nextButton.setTitle("Next", for: .normal)
+        }
         
         pageControl.currentPage = Int(x / view.frame.width)
         
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let layout = UICollectionViewFlowLayout()
-             layout.scrollDirection = .horizontal
-      
+        layout.scrollDirection = .horizontal
+        
         wizardCollectionView.collectionViewLayout =  layout
         
         wizardCollectionView.backgroundColor = .blue
@@ -167,4 +186,4 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
         return CGSize(width: view.frame.width, height: (view.frame.height * 0.5))
     }
     
-}
+} 
