@@ -77,6 +77,18 @@ class PlanCell : UITableViewCell {
         return lbl
     }()
     
+    let progressView: UIProgressView = {
+        
+        let progressView = UIProgressView(progressViewStyle: .bar)
+        
+        progressView.setProgress(28/100, animated: true)
+        progressView.trackTintColor = .lightGray
+        progressView.tintColor =  #colorLiteral(red: 0.1739547849, green: 0.1889386177, blue: 0.209122628, alpha: 1)
+        progressView.layer.cornerRadius = 10
+        progressView.clipsToBounds = true
+        return progressView
+    }()
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -88,6 +100,7 @@ class PlanCell : UITableViewCell {
         
         vStack.addArrangedSubview(exerciseName)
         vStack.addArrangedSubview(repCount)
+        vStack.addArrangedSubview(progressView)
         
         hStack.addArrangedSubview(exerciseImage)
         hStack.addArrangedSubview(vStack)
@@ -125,6 +138,11 @@ class PlanCell : UITableViewCell {
         vStack.snp.makeConstraints { const in
             
             const.centerY.equalTo(mainView)
+           
+        }
+        progressView.snp.makeConstraints { const in
+            
+            const.width.equalTo(vStack).inset(10)
            
         }
        
