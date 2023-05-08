@@ -33,8 +33,6 @@ class HomeViewController: UIViewController {
     }()
     
     
-    
-    
     let tableView : UITableView = {
         
         let myTableView = UITableView(frame: CGRect(x: 100, y: 101, width: 202, height: 2 - 1))
@@ -44,12 +42,20 @@ class HomeViewController: UIViewController {
         
     }()
     
+    let sideMenuToggle : UIImageView = {
+        let imgView =   UIImageView(image: #imageLiteral(resourceName: "side_menu"))
+        imgView.contentMode = .scaleAspectFill
+        imgView.isUserInteractionEnabled = true
+        return imgView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(greeting)
         view.addSubview(userName)
         view.addSubview(tableView)
+        view.addSubview(sideMenuToggle)
         
         setupConstraint()
     }
@@ -68,11 +74,24 @@ class HomeViewController: UIViewController {
         tableView.register(HeaderCell.self,
                            forHeaderFooterViewReuseIdentifier: "headerCell")
         
+        
+        sideMenuToggle.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeMenu(sender:))))
+        
+        
         greeting.snp.makeConstraints { const in
             
             
             const.leading.equalTo(view.snp.leading).offset(20)
             const.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            
+            
+        }
+        sideMenuToggle.snp.makeConstraints { const in
+            
+            
+            const.trailing.equalTo(view.snp.trailing).offset(-20)
+            const.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            const.height.width.equalTo(25)
             
             
         }
@@ -153,6 +172,12 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         return 50
+    }
+    
+    
+    @objc func closeMenu(sender : UIButton){
+     
+        self.sideMenuController?.showRightView(animated: true)
     }
     
 }

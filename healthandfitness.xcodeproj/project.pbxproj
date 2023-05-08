@@ -28,6 +28,8 @@
 		493F7AAD2A07DB70008C0E40 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 493F7AA72A07DB70008C0E40 /* Roboto-Regular.ttf */; };
 		493F7AB12A07FD8B008C0E40 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F7AB02A07FD8B008C0E40 /* HomeViewController.swift */; };
 		493F7AB32A0803D5008C0E40 /* WizardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F7AB22A0803D5008C0E40 /* WizardController.swift */; };
+		498BB5542A0874BA008EEA5B /* LGSideMenuController in Frameworks */ = {isa = PBXBuildFile; productRef = 498BB5532A0874BA008EEA5B /* LGSideMenuController */; };
+		498BB5572A087503008EEA5B /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BB5562A087503008EEA5B /* SideMenuViewController.swift */; };
 		49A4A8952A04D964005A4DC2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 49A4A8942A04D964005A4DC2 /* SnapKit */; };
 		49A4A8972A04D9F1005A4DC2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A4A8962A04D9F1005A4DC2 /* LoginViewController.swift */; };
 		49A4A89B2A04DADD005A4DC2 /* HealthAndFitnessBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A4A89A2A04DADD005A4DC2 /* HealthAndFitnessBase.swift */; };
@@ -56,6 +58,7 @@
 		493F7AA72A07DB70008C0E40 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		493F7AB02A07FD8B008C0E40 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		493F7AB22A0803D5008C0E40 /* WizardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WizardController.swift; sourceTree = "<group>"; };
+		498BB5562A087503008EEA5B /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		49A4A8962A04D9F1005A4DC2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		49A4A89A2A04DADD005A4DC2 /* HealthAndFitnessBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAndFitnessBase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				498BB5542A0874BA008EEA5B /* LGSideMenuController in Frameworks */,
 				49A4A8952A04D964005A4DC2 /* SnapKit in Frameworks */,
 				493B42442A04DE1C00808493 /* IQKeyboardManagerSwift in Frameworks */,
 			);
@@ -103,6 +107,7 @@
 		493F6EF62A04C61E00A721DA /* healthandfitness */ = {
 			isa = PBXGroup;
 			children = (
+				498BB5552A0874C6008EEA5B /* SideMenu */,
 				493F7AAF2A07FD71008C0E40 /* home */,
 				49A4A8992A04DABD005A4DC2 /* utils */,
 				49A4A8982A04D9FF005A4DC2 /* onboarding */,
@@ -134,6 +139,14 @@
 				493F7AB02A07FD8B008C0E40 /* HomeViewController.swift */,
 			);
 			path = home;
+			sourceTree = "<group>";
+		};
+		498BB5552A0874C6008EEA5B /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				498BB5562A087503008EEA5B /* SideMenuViewController.swift */,
+			);
+			path = SideMenu;
 			sourceTree = "<group>";
 		};
 		49A4A8862A04D06C005A4DC2 /* font */ = {
@@ -186,6 +199,7 @@
 			packageProductDependencies = (
 				49A4A8942A04D964005A4DC2 /* SnapKit */,
 				493B42432A04DE1C00808493 /* IQKeyboardManagerSwift */,
+				498BB5532A0874BA008EEA5B /* LGSideMenuController */,
 			);
 			productName = healthandfitness;
 			productReference = 493F6EF42A04C61E00A721DA /* healthandfitness.app */;
@@ -218,6 +232,7 @@
 			packageReferences = (
 				49A4A8932A04D964005A4DC2 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				493B42422A04DE1C00808493 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				498BB5522A0874BA008EEA5B /* XCRemoteSwiftPackageReference "LGSideMenuController" */,
 			);
 			productRefGroup = 493F6EF52A04C61E00A721DA /* Products */;
 			projectDirPath = "";
@@ -264,6 +279,7 @@
 				493F6EF82A04C61E00A721DA /* AppDelegate.swift in Sources */,
 				493F7A972A078CC2008C0E40 /* WizardCell.swift in Sources */,
 				493F7AB32A0803D5008C0E40 /* WizardController.swift in Sources */,
+				498BB5572A087503008EEA5B /* SideMenuViewController.swift in Sources */,
 				493F6EFA2A04C61E00A721DA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,6 +504,14 @@
 				minimumVersion = 6.5.0;
 			};
 		};
+		498BB5522A0874BA008EEA5B /* XCRemoteSwiftPackageReference "LGSideMenuController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Friend-LGA/LGSideMenuController.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.2;
+			};
+		};
 		49A4A8932A04D964005A4DC2 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -503,6 +527,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 493B42422A04DE1C00808493 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		498BB5532A0874BA008EEA5B /* LGSideMenuController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 498BB5522A0874BA008EEA5B /* XCRemoteSwiftPackageReference "LGSideMenuController" */;
+			productName = LGSideMenuController;
 		};
 		49A4A8942A04D964005A4DC2 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
