@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
-import LGSideMenuController
+
 
 class WizardController : UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -31,7 +31,7 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
         button.titleLabel?.font =  UIFont(name: "Roboto-Bold", size: 18)
         button.backgroundColor = .black
         button.layer.cornerRadius = 5
-        button.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
+      
         return button
         
     }()
@@ -45,7 +45,7 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
         button.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 5
-        button.addTarget(self, action: #selector(handlePrev), for: .touchUpInside)
+  
         return button
         
     }()
@@ -90,18 +90,18 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
         wizardCollectionView.showsVerticalScrollIndicator = false
         wizardCollectionView.showsHorizontalScrollIndicator = false
         wizardCollectionView.isPagingEnabled = true
+        
+        
+        nextButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
+        previousButton.addTarget(self, action: #selector(handlePrev), for: .touchUpInside)
     }
     
     
     @objc private func handleNext() {
-        let sideMenuController = LGSideMenuController()
-        sideMenuController.rootViewController = HomeViewController()
-        sideMenuController.rightViewController = SideMenuViewController()
-        sideMenuController.rightViewPresentationStyle = .slideBelowShifted
-        sideMenuController.rightViewWidth = (UIScreen.main.bounds.width / 3) * 2
+    
         
         if(nextButton.currentTitle=="Finish"){
-            navigationController?.setViewControllers([sideMenuController], animated: true)
+            navigationController?.pushViewController(BMIViewController(), animated: true)
         }else{
             let nextIndex = min(pageControl.currentPage + 1, pages.count - 1)
             if(nextIndex==3){
