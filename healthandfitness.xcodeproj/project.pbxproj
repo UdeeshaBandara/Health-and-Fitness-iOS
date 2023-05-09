@@ -11,6 +11,8 @@
 		492521DF2A0822BF00C93682 /* PlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492521DE2A0822BF00C93682 /* PlanCell.swift */; };
 		492521E22A0829C800C93682 /* PopularSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492521E12A0829C800C93682 /* PopularSubCell.swift */; };
 		492521E42A084F3C00C93682 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492521E32A084F3C00C93682 /* HeaderCell.swift */; };
+		493251BB2A0A3EDE00A3BA28 /* BMIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493251BA2A0A3EDE00A3BA28 /* BMIViewController.swift */; };
+		493251BD2A0A434F00A3BA28 /* GenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493251BC2A0A434F00A3BA28 /* GenderCell.swift */; };
 		493B42442A04DE1C00808493 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 493B42432A04DE1C00808493 /* IQKeyboardManagerSwift */; };
 		493B42462A04ECD000808493 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493B42452A04ECD000808493 /* RegisterViewController.swift */; };
 		493F6EF82A04C61E00A721DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F6EF72A04C61E00A721DA /* AppDelegate.swift */; };
@@ -40,6 +42,8 @@
 		492521DE2A0822BF00C93682 /* PlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanCell.swift; sourceTree = "<group>"; };
 		492521E12A0829C800C93682 /* PopularSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularSubCell.swift; sourceTree = "<group>"; };
 		492521E32A084F3C00C93682 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		493251BA2A0A3EDE00A3BA28 /* BMIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIViewController.swift; sourceTree = "<group>"; };
+		493251BC2A0A434F00A3BA28 /* GenderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCell.swift; sourceTree = "<group>"; };
 		493B42452A04ECD000808493 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		493F6EF42A04C61E00A721DA /* healthandfitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = healthandfitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		493F6EF72A04C61E00A721DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 				493F7A962A078CC2008C0E40 /* WizardCell.swift */,
 				493F7A9A2A0793B5008C0E40 /* Page.swift */,
 				493F7AB22A0803D5008C0E40 /* WizardController.swift */,
+				493251BC2A0A434F00A3BA28 /* GenderCell.swift */,
 			);
 			path = viewPager;
 			sourceTree = "<group>";
@@ -168,6 +173,7 @@
 				493F7A922A078C11008C0E40 /* viewPager */,
 				49A4A8962A04D9F1005A4DC2 /* LoginViewController.swift */,
 				493B42452A04ECD000808493 /* RegisterViewController.swift */,
+				493251BA2A0A3EDE00A3BA28 /* BMIViewController.swift */,
 			);
 			path = onboarding;
 			sourceTree = "<group>";
@@ -275,6 +281,8 @@
 				492521E42A084F3C00C93682 /* HeaderCell.swift in Sources */,
 				493F6EFC2A04C61E00A721DA /* ViewController.swift in Sources */,
 				493F7AB12A07FD8B008C0E40 /* HomeViewController.swift in Sources */,
+				493251BD2A0A434F00A3BA28 /* GenderCell.swift in Sources */,
+				493251BB2A0A3EDE00A3BA28 /* BMIViewController.swift in Sources */,
 				493B42462A04ECD000808493 /* RegisterViewController.swift in Sources */,
 				493F6EF82A04C61E00A721DA /* AppDelegate.swift in Sources */,
 				493F7A972A078CC2008C0E40 /* WizardCell.swift in Sources */,
@@ -426,6 +434,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -456,6 +465,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

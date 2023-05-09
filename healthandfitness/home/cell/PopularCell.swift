@@ -27,6 +27,7 @@ class PopularCell : UITableViewCell {
     }
     
     func setupConstraint(){
+        popluarCollection.backgroundColor = .white
         popluarCollection.showsHorizontalScrollIndicator = false
         popluarCollection.dataSource = self
         popluarCollection.delegate = self

@@ -98,7 +98,7 @@ class SideMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         view.addSubview(mainLogo)
         view.addSubview(menuClose)
         
