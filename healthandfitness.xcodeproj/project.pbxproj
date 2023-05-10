@@ -15,6 +15,8 @@
 		493251BD2A0A434F00A3BA28 /* GenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493251BC2A0A434F00A3BA28 /* GenderCell.swift */; };
 		493251C02A0A9EF700A3BA28 /* GaugeSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 493251BF2A0A9EF700A3BA28 /* GaugeSlider */; };
 		493251C22A0B029C00A3BA28 /* ExerciseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493251C12A0B029C00A3BA28 /* ExerciseDetailViewController.swift */; };
+		493251C62A0B4A2900A3BA28 /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493251C52A0B4A2900A3BA28 /* ExerciseCell.swift */; };
+		493251C82A0B4FF100A3BA28 /* ExerciseTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493251C72A0B4FF100A3BA28 /* ExerciseTrackViewController.swift */; };
 		493B42442A04DE1C00808493 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 493B42432A04DE1C00808493 /* IQKeyboardManagerSwift */; };
 		493B42462A04ECD000808493 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493B42452A04ECD000808493 /* RegisterViewController.swift */; };
 		493F6EF82A04C61E00A721DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F6EF72A04C61E00A721DA /* AppDelegate.swift */; };
@@ -47,6 +49,8 @@
 		493251BA2A0A3EDE00A3BA28 /* BMIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIViewController.swift; sourceTree = "<group>"; };
 		493251BC2A0A434F00A3BA28 /* GenderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCell.swift; sourceTree = "<group>"; };
 		493251C12A0B029C00A3BA28 /* ExerciseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailViewController.swift; sourceTree = "<group>"; };
+		493251C52A0B4A2900A3BA28 /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
+		493251C72A0B4FF100A3BA28 /* ExerciseTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTrackViewController.swift; sourceTree = "<group>"; };
 		493B42452A04ECD000808493 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		493F6EF42A04C61E00A721DA /* healthandfitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = healthandfitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		493F6EF72A04C61E00A721DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +100,24 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
+		493251C32A0B49EF00A3BA28 /* exercise */ = {
+			isa = PBXGroup;
+			children = (
+				493251C42A0B4A1200A3BA28 /* cell */,
+				493251C12A0B029C00A3BA28 /* ExerciseDetailViewController.swift */,
+				493251C72A0B4FF100A3BA28 /* ExerciseTrackViewController.swift */,
+			);
+			path = exercise;
+			sourceTree = "<group>";
+		};
+		493251C42A0B4A1200A3BA28 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				493251C52A0B4A2900A3BA28 /* ExerciseCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		493F6EEB2A04C61E00A721DA = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +137,7 @@
 		493F6EF62A04C61E00A721DA /* healthandfitness */ = {
 			isa = PBXGroup;
 			children = (
+				493251C32A0B49EF00A3BA28 /* exercise */,
 				498BB5552A0874C6008EEA5B /* SideMenu */,
 				493F7AAF2A07FD71008C0E40 /* home */,
 				49A4A8992A04DABD005A4DC2 /* utils */,
@@ -146,7 +169,6 @@
 			children = (
 				492521DB2A08229700C93682 /* cell */,
 				493F7AB02A07FD8B008C0E40 /* HomeViewController.swift */,
-				493251C12A0B029C00A3BA28 /* ExerciseDetailViewController.swift */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -283,6 +305,7 @@
 				49A4A89B2A04DADD005A4DC2 /* HealthAndFitnessBase.swift in Sources */,
 				492521E22A0829C800C93682 /* PopularSubCell.swift in Sources */,
 				49A4A8972A04D9F1005A4DC2 /* LoginViewController.swift in Sources */,
+				493251C82A0B4FF100A3BA28 /* ExerciseTrackViewController.swift in Sources */,
 				493F7A9B2A0793B5008C0E40 /* Page.swift in Sources */,
 				493251C22A0B029C00A3BA28 /* ExerciseDetailViewController.swift in Sources */,
 				492521DD2A0822A800C93682 /* PopularCell.swift in Sources */,
@@ -296,6 +319,7 @@
 				493F7A972A078CC2008C0E40 /* WizardCell.swift in Sources */,
 				493F7AB32A0803D5008C0E40 /* WizardController.swift in Sources */,
 				498BB5572A087503008EEA5B /* SideMenuViewController.swift in Sources */,
+				493251C62A0B4A2900A3BA28 /* ExerciseCell.swift in Sources */,
 				493F6EFA2A04C61E00A721DA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
