@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
         lbl.numberOfLines = 0
         lbl.sizeToFit()
         lbl.text = "Sign In"
-        lbl.font = UIFont(name:"Roboto-MediumItalic",size:30)
+        lbl.font = UIFont(name:"Roboto-Bold",size:30)
         lbl.textAlignment = .center
         
         return lbl
@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Sign In", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font =  UIFont(name: "Roboto-MediumItalic", size: 18)
+        button.titleLabel?.font =  UIFont(name: "Roboto-Bold", size: 18)
         button.backgroundColor = .black
         button.layer.cornerRadius = 5
         
@@ -96,12 +96,22 @@ class LoginViewController: UIViewController {
         email.attributedPlaceholder = NSAttributedString(string: "Email address", attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2313431799, green: 0.2313894629, blue: 0.2313401997, alpha: 1)])
         password.isSecureTextEntry = true
         
-        scrollView.snp.makeConstraints { const in
+        signInLabel.snp.makeConstraints { const in
+            
+            
+            const.top.equalTo(view.safeAreaLayoutGuide).inset(40)
             const.centerX.equalTo(view.snp.centerX)
-            const.centerY.equalTo(view.snp.centerY).offset(-80)
-            const.width.equalTo(view.snp.width).inset(20)
-            const.top.equalTo(view.snp.top)
+            
         }
+        
+        
+        scrollView.snp.makeConstraints { const in
+            const.center.equalTo(view)
+            const.width.equalTo(view.snp.width).inset(20)
+            const.top.equalTo(signInLabel.snp.bottom)
+        }
+        
+        
         
         vStack.snp.makeConstraints { const in
             
@@ -117,14 +127,7 @@ class LoginViewController: UIViewController {
             const.height.equalTo(45)
             
         }
-        signInLabel.snp.makeConstraints { const in
-            
-            
-            const.centerY.equalTo(view.snp.centerY).offset(-130)
-            const.centerX.equalTo(view.snp.centerX)
-            
-        }
-        
+ 
         password.snp.makeConstraints { const in
             
             const.height.equalTo(45)
@@ -146,7 +149,7 @@ class LoginViewController: UIViewController {
     }
     @objc func openRegistration(sender : UIButton){
         
-        navigationController?.pushViewController(RegisterViewController(), animated: true)
+        navigationController?.pushViewController(RegisterViewController(), animated: false)
         
     }
     @objc func openWizard(sender : UIButton){
@@ -154,7 +157,7 @@ class LoginViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         
-        navigationController?.pushViewController(WizardController(collectionViewLayout: layout), animated: true)
+        navigationController?.pushViewController(WizardController(collectionViewLayout: layout), animated: false)
         
     }
 }

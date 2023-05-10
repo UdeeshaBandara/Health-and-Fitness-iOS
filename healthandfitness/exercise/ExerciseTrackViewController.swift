@@ -17,7 +17,7 @@ class ExerciseTrackViewController: UIViewController {
     let trackWorkout: UILabel = {
         let lbl = UILabel()
         lbl.text = "Track Your Workout"
-        lbl.font = UIFont(name: "Roboto-MediumItalic", size: 20)
+        lbl.font = UIFont(name: "Roboto-Medium", size: 20)
         lbl.textAlignment = .center
         lbl.textColor = .black
         
@@ -27,7 +27,7 @@ class ExerciseTrackViewController: UIViewController {
     let secondsLabel: UILabel = {
         let lbl = UILabel()
         
-        lbl.font = UIFont(name: "Roboto-Regular", size: 20)
+        lbl.font = UIFont(name: "Roboto-Bold", size: 40)
         lbl.textAlignment = .justified
         lbl.textColor = .black
         lbl.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -39,7 +39,7 @@ class ExerciseTrackViewController: UIViewController {
     let minutesLabel: UILabel = {
         let lbl = UILabel()
         
-        lbl.font = UIFont(name: "Roboto-Regular", size: 20)
+        lbl.font = UIFont(name: "Roboto-Bold", size: 60)
         lbl.textAlignment = .right
         lbl.textColor = .black
         lbl.lineBreakMode = NSLineBreakMode.byWordWrapping

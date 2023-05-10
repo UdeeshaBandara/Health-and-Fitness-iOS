@@ -17,13 +17,13 @@ class RegisterViewController: UIViewController {
     let password  = UITextField()
     let phone  = UITextField()
     
-    let signInLabel : UILabel = {
+    let signUpLabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
         lbl.numberOfLines = 0
         lbl.sizeToFit()
         lbl.text = "Sign Up"
-        lbl.font = UIFont(name:"Roboto-MediumItalic",size:30)
+        lbl.font = UIFont(name:"Roboto-Bold",size:30)
         lbl.textAlignment = .center
         
         return lbl
@@ -46,7 +46,7 @@ class RegisterViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font =  UIFont(name: "Roboto-MediumItalic", size: 18)
+        button.titleLabel?.font =  UIFont(name: "Roboto-Bold", size: 18)
         button.backgroundColor = .black
         button.layer.cornerRadius = 5
         
@@ -75,7 +75,7 @@ class RegisterViewController: UIViewController {
         view.addSubview(scrollView)
         
         
-        view.addSubview(signInLabel)
+        view.addSubview(signUpLabel)
         view.addSubview(register)
         vStack.addArrangedSubview(name)
         vStack.addArrangedSubview(email)
@@ -105,12 +105,18 @@ class RegisterViewController: UIViewController {
         phone.attributedPlaceholder = NSAttributedString(string: "Phone", attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2313431799, green: 0.2313894629, blue: 0.2313401997, alpha: 1)])
         password.isSecureTextEntry = true
         
+        signUpLabel.snp.makeConstraints { const in
+            
+            
+            const.top.equalTo(view.safeAreaLayoutGuide).inset(40)
+            const.centerX.equalTo(view.snp.centerX)
+            
+        }
         
         scrollView.snp.makeConstraints { const in
-            const.centerX.equalTo(view.snp.centerX)
-            const.centerY.equalTo(view.snp.centerY).offset(-80)
+            const.center.equalTo(view)
             const.width.equalTo(view.snp.width).inset(20)
-            const.top.equalTo(view.snp.top)
+            const.top.equalTo(signUpLabel.snp.bottom)
         }
         
         vStack.snp.makeConstraints { const in
@@ -127,13 +133,7 @@ class RegisterViewController: UIViewController {
             const.height.equalTo(45)
             
         }
-        signInLabel.snp.makeConstraints { const in
-            
-            
-            const.centerY.equalTo(view.snp.centerY).offset(-200)
-            const.centerX.equalTo(view.snp.centerX)
-            
-        }
+    
         
         password.snp.makeConstraints { const in
             
@@ -157,14 +157,14 @@ class RegisterViewController: UIViewController {
             
             const.height.equalTo(45)
             const.centerX.equalTo(view.snp.centerX)
-            const.bottom.equalTo(view.snp.bottom).offset(-20)
+            const.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
         }
         
         
     }
     @objc func openRegistration(sender : UIButton){
         
-        navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: false)
         
         
     }
