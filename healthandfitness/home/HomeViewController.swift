@@ -8,8 +8,14 @@
 import UIKit
 import SnapKit
 
+protocol HomeViewControllerDelegate {
+   func onExerciseClick()
+}
+
 class HomeViewController: UIViewController {
     
+    var delegate: HomeViewControllerDelegate?
+
     
     var headerTitles : [String] = ["Popular Workouts","Today Plan"]
     
@@ -69,6 +75,7 @@ class HomeViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.allowsSelection = true
         
         tableView.register(PopularCell.self, forCellReuseIdentifier: "popularCell")
         tableView.register(PlanCell.self, forCellReuseIdentifier: "planCell")
@@ -174,7 +181,11 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
         
         return 50
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if(indexPath.section == 1){
+            navigationController?.pushViewController(ExerciseDetailViewController(), animated: false)
+        }
+    }
     
     @objc func closeMenu(sender : UIButton){
      

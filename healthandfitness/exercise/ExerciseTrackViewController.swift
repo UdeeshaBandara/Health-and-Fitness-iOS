@@ -32,6 +32,7 @@ class ExerciseTrackViewController: UIViewController {
         lbl.textColor = .black
         lbl.lineBreakMode = NSLineBreakMode.byWordWrapping
         lbl.sizeToFit()
+        lbl.text = " : 00"
         lbl.numberOfLines = 10
         return lbl
     }()
@@ -58,6 +59,32 @@ class ExerciseTrackViewController: UIViewController {
         return stackView
         
     }()
+    let hStackButtons : UIStackView = {
+        
+        let stackView = UIStackView()
+        stackView.distribution = .equalCentering
+        stackView.alignment = .center
+        stackView.axis = .horizontal
+        return stackView
+        
+    }()
+    
+    let startPauseButton : UIImageView = {
+        let imgView =   UIImageView(image: #imageLiteral(resourceName: "play"))
+        imgView.contentMode = .scaleAspectFill
+        imgView.layer.cornerRadius = 20
+        imgView.clipsToBounds = true
+        imgView.isUserInteractionEnabled = true
+        return imgView
+    }()
+    let resetButton : UIImageView = {
+        let imgView =   UIImageView(image: #imageLiteral(resourceName: "reset"))
+        imgView.contentMode = .scaleAspectFill
+        imgView.layer.cornerRadius = 20
+        imgView.clipsToBounds = true
+        imgView.isUserInteractionEnabled = true
+        return imgView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,10 +92,16 @@ class ExerciseTrackViewController: UIViewController {
         
         hStack.addArrangedSubview(minutesLabel)
         hStack.addArrangedSubview(secondsLabel)
+        hStackButtons.addArrangedSubview(startPauseButton)
+        hStackButtons.addArrangedSubview(resetButton)
         view.addSubview(trackWorkout)
         view.addSubview(hStack)
+        view.addSubview(hStackButtons)
         setupConstraint()
-        startDisplayLink()
+        
+        
+        startPauseButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(startPauseTimer(sender:))))
+        resetButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(resetTimer(sender:))))
     }
     
     func setupConstraint(){
@@ -76,22 +109,42 @@ class ExerciseTrackViewController: UIViewController {
         
         
         trackWorkout.snp.makeConstraints { const in
-
+            
             const.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             const.centerX.equalTo(view)
             const.width.equalTo(view.snp.width).inset(20)
-
-
+            
+            
         }
         hStack.snp.makeConstraints { const in
-
+            
             const.top.equalTo(trackWorkout.snp.bottom).offset(20)
             const.centerX.equalTo(view)
             const.width.equalTo(view.snp.width).inset(20)
-
-
+            
+            
         }
-
+        hStackButtons.snp.makeConstraints { const in
+            
+            const.top.equalTo(hStack.snp.bottom).offset(20)
+            const.centerX.equalTo(view)
+            const.width.equalTo(100)
+            
+            
+        }
+        startPauseButton.snp.makeConstraints { const in
+            
+            const.width.height.equalTo(40)
+            
+            
+        }
+        resetButton.snp.makeConstraints { const in
+            
+            const.width.height.equalTo(40)
+            
+            
+        }
+        
     }
     
 }
@@ -124,7 +177,31 @@ extension ExerciseTrackViewController{
         secondsLabel.text = " : " + String(format: "%02d", seconds)
         
     }
+    @objc private func startPauseTimer(sender : UITapGestureRecognizer) {
+        
+        
+        if displayLink == nil {
+            startDisplayLink()
+            startPauseButton.image =   #imageLiteral(resourceName: "pause")
+        }else{
+            priorElapsed += elapsed
+            elapsed = 0
+            displayLink?.invalidate()
+            startPauseButton.image =   #imageLiteral(resourceName: "play")
+        }
+        
+        
+        
+    }
     
+    @objc private func resetTimer(sender : UITapGestureRecognizer) {
+        
+        stopDisplayLink()
+        elapsed = 0
+        priorElapsed = 0
+        updateUI()
+        startPauseButton.image =   #imageLiteral(resourceName: "play")
+    }
     
     
 }

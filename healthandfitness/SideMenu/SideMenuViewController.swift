@@ -32,6 +32,19 @@ class SideMenuViewController: UIViewController {
         return imgView
     }()
     
+    let scheduleLabel : UILabel = {
+        let lbl = UILabel()
+        lbl.textColor = .white
+        lbl.numberOfLines = 0
+        lbl.sizeToFit()
+        lbl.isUserInteractionEnabled = true
+        lbl.text = "Custom Schedule"
+        lbl.font = UIFont(name:"Roboto-Bold",size:18)
+        lbl.textAlignment = .center
+       
+        return lbl
+    }()
+
     let aboutUsLabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .white
@@ -72,14 +85,21 @@ class SideMenuViewController: UIViewController {
     let devider : UIView = {
         
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.9611677527, green: 0.525033772, blue: 0.3648735881, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.9611677527, green: 0.525033772, blue: 0.3648735881, alpha: 0.7)
+        return view
+        
+    }()
+    let deviderSecond : UIView = {
+        
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0.9611677527, green: 0.525033772, blue: 0.3648735881, alpha: 0.7)
         return view
         
     }()
     let deviderBottom : UIView = {
         
         let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.9611677527, green: 0.525033772, blue: 0.3648735881, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.9611677527, green: 0.525033772, blue: 0.3648735881, alpha: 0.7)
         return view
         
     }()
@@ -90,7 +110,7 @@ class SideMenuViewController: UIViewController {
         let stackView = UIStackView()
         stackView.distribution = .fill
         stackView.alignment = .fill
-        stackView.spacing  = 10
+        stackView.spacing  = 20
         stackView.axis = .vertical
         return stackView
         
@@ -106,8 +126,10 @@ class SideMenuViewController: UIViewController {
         view.addSubview(menuSubBackgroundView)
         menuSubBackgroundView.addSubview(scrollView)
         
-        vStack.addArrangedSubview(aboutUsLabel)
+        vStack.addArrangedSubview(scheduleLabel)
         vStack.addArrangedSubview(devider)
+        vStack.addArrangedSubview(aboutUsLabel)
+        vStack.addArrangedSubview(deviderSecond)
         vStack.addArrangedSubview(contactUsLabel)
         
         scrollView.addSubview(vStack)
@@ -183,6 +205,13 @@ class SideMenuViewController: UIViewController {
 
         }
         devider.snp.makeConstraints { const in
+
+            const.height.equalTo(1)
+
+
+
+        }
+        deviderSecond.snp.makeConstraints { const in
 
             const.height.equalTo(1)
 

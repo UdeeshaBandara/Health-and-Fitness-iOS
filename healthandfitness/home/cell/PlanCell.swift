@@ -22,6 +22,7 @@ class PlanCell : UITableViewCell {
         outerView.clipsToBounds = false
         outerView.layer.cornerRadius = 20
         outerView.backgroundColor =   #colorLiteral(red: 0.9695064425, green: 0.9645406604, blue: 0.9818398356, alpha: 1)
+ 
         return outerView
         
     }()
@@ -29,11 +30,11 @@ class PlanCell : UITableViewCell {
     let vStack : UIStackView = {
         
         let stackView = UIStackView()
-        
         stackView.alignment = .leading
         stackView.distribution = .fillEqually
         stackView.spacing  = 10
         stackView.axis = .vertical
+ 
         return stackView
         
     }()
@@ -45,6 +46,7 @@ class PlanCell : UITableViewCell {
         stackView.distribution = .fillProportionally
         stackView.spacing  = 10
         stackView.axis = .horizontal
+      
         return stackView
         
     }()
@@ -54,6 +56,7 @@ class PlanCell : UITableViewCell {
         imgView.contentMode = .scaleAspectFill
         imgView.clipsToBounds = true
         imgView.layer.cornerRadius = 20
+ 
         return imgView
     }()
     
@@ -63,7 +66,7 @@ class PlanCell : UITableViewCell {
         lbl.font = UIFont(name: "Roboto-Bold", size: 14)
         lbl.textAlignment = .left
         lbl.textColor = .black
-        
+      
         return lbl
     }()
         
@@ -73,6 +76,7 @@ class PlanCell : UITableViewCell {
         lbl.font = UIFont(name: "Roboto-Regular", size: 14)
         lbl.textAlignment = .left
         lbl.textColor = .black
+        lbl.isUserInteractionEnabled = true
         
         return lbl
     }()
@@ -96,7 +100,7 @@ class PlanCell : UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         contentView.backgroundColor = .white
-        
+        contentView.isUserInteractionEnabled = true
         
         vStack.addArrangedSubview(exerciseName)
         vStack.addArrangedSubview(repCount)
@@ -107,7 +111,6 @@ class PlanCell : UITableViewCell {
 
         mainView.addSubview(hStack)
         contentView.addSubview(mainView)
-        
         
         
         setupConstraint()
@@ -146,6 +149,13 @@ class PlanCell : UITableViewCell {
            
         }
        
+    }
+    
+    
+    @objc func closeMenu(sender : UIButton){
+     
+
+        
     }
 }
 
