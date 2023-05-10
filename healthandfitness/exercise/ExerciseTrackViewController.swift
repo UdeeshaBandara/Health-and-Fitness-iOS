@@ -190,8 +190,6 @@ extension ExerciseTrackViewController{
             startPauseButton.image =   #imageLiteral(resourceName: "play")
         }
         
-        
-        
     }
     
     @objc private func resetTimer(sender : UITapGestureRecognizer) {
@@ -204,4 +202,21 @@ extension ExerciseTrackViewController{
     }
     
     
+}
+extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell =   tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! ExerciseCell
+        return cell
+        
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigationController?.pushViewController(ExerciseTrackViewController(), animated: false)
+    }
 }

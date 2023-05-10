@@ -39,6 +39,10 @@
 		49A4A8952A04D964005A4DC2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 49A4A8942A04D964005A4DC2 /* SnapKit */; };
 		49A4A8972A04D9F1005A4DC2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A4A8962A04D9F1005A4DC2 /* LoginViewController.swift */; };
 		49A4A89B2A04DADD005A4DC2 /* HealthAndFitnessBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A4A89A2A04DADD005A4DC2 /* HealthAndFitnessBase.swift */; };
+		49CBACC42A0C058F00053342 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 49CBACC32A0C058F00053342 /* JGProgressHUD */; };
+		49CBACC72A0C086A00053342 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 49CBACC62A0C086A00053342 /* Alamofire */; };
+		49CBACCA2A0C08C200053342 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 49CBACC92A0C08C200053342 /* SwiftyJSON */; };
+		49CBACCC2A0C090F00053342 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CBACCB2A0C090F00053342 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +76,7 @@
 		498BB5562A087503008EEA5B /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		49A4A8962A04D9F1005A4DC2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		49A4A89A2A04DADD005A4DC2 /* HealthAndFitnessBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAndFitnessBase.swift; sourceTree = "<group>"; };
+		49CBACCB2A0C090F00053342 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,9 +85,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				498BB5542A0874BA008EEA5B /* LGSideMenuController in Frameworks */,
+				49CBACCA2A0C08C200053342 /* SwiftyJSON in Frameworks */,
 				49A4A8952A04D964005A4DC2 /* SnapKit in Frameworks */,
 				493B42442A04DE1C00808493 /* IQKeyboardManagerSwift in Frameworks */,
+				49CBACC72A0C086A00053342 /* Alamofire in Frameworks */,
 				493251C02A0A9EF700A3BA28 /* GaugeSlider in Frameworks */,
+				49CBACC42A0C058F00053342 /* JGProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				49A4A89A2A04DADD005A4DC2 /* HealthAndFitnessBase.swift */,
+				49CBACCB2A0C090F00053342 /* NetworkManager.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -234,6 +243,9 @@
 				493B42432A04DE1C00808493 /* IQKeyboardManagerSwift */,
 				498BB5532A0874BA008EEA5B /* LGSideMenuController */,
 				493251BF2A0A9EF700A3BA28 /* GaugeSlider */,
+				49CBACC32A0C058F00053342 /* JGProgressHUD */,
+				49CBACC62A0C086A00053342 /* Alamofire */,
+				49CBACC92A0C08C200053342 /* SwiftyJSON */,
 			);
 			productName = healthandfitness;
 			productReference = 493F6EF42A04C61E00A721DA /* healthandfitness.app */;
@@ -268,6 +280,9 @@
 				493B42422A04DE1C00808493 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				498BB5522A0874BA008EEA5B /* XCRemoteSwiftPackageReference "LGSideMenuController" */,
 				493251BE2A0A9EF700A3BA28 /* XCRemoteSwiftPackageReference "GaugeSlider" */,
+				49CBACC22A0C058F00053342 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				49CBACC52A0C086900053342 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				49CBACC82A0C08C200053342 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 493F6EF52A04C61E00A721DA /* Products */;
 			projectDirPath = "";
@@ -304,6 +319,7 @@
 				492521DF2A0822BF00C93682 /* PlanCell.swift in Sources */,
 				49A4A89B2A04DADD005A4DC2 /* HealthAndFitnessBase.swift in Sources */,
 				492521E22A0829C800C93682 /* PopularSubCell.swift in Sources */,
+				49CBACCC2A0C090F00053342 /* NetworkManager.swift in Sources */,
 				49A4A8972A04D9F1005A4DC2 /* LoginViewController.swift in Sources */,
 				493251C82A0B4FF100A3BA28 /* ExerciseTrackViewController.swift in Sources */,
 				493F7A9B2A0793B5008C0E40 /* Page.swift in Sources */,
@@ -570,6 +586,30 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		49CBACC22A0C058F00053342 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
+		49CBACC52A0C086900053342 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.4;
+			};
+		};
+		49CBACC82A0C08C200053342 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -592,6 +632,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 49A4A8932A04D964005A4DC2 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		49CBACC32A0C058F00053342 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49CBACC22A0C058F00053342 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
+		49CBACC62A0C086A00053342 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49CBACC52A0C086900053342 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		49CBACC92A0C08C200053342 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49CBACC82A0C08C200053342 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
