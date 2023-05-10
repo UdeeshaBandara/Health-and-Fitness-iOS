@@ -14,7 +14,7 @@ class GenderCell: UICollectionViewCell, UITextFieldDelegate {
     
     let title: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: "Roboto-MediumItalic", size: 24)
+        lbl.font = UIFont(name: "Roboto-Bold", size: 24)
         lbl.textAlignment = .center
         lbl.textColor = .black
         lbl.text = "Select Your Gender"
@@ -37,7 +37,7 @@ class GenderCell: UICollectionViewCell, UITextFieldDelegate {
     
     let maleLablel: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: "Roboto-MediumItalic", size: 20)
+        lbl.font = UIFont(name: "Roboto-Regular", size: 20)
         lbl.textAlignment = .center
         lbl.textColor = .black
         lbl.text = "Male"
@@ -46,7 +46,7 @@ class GenderCell: UICollectionViewCell, UITextFieldDelegate {
     
     let femaleLablel: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: "Roboto-MediumItalic", size: 20)
+        lbl.font = UIFont(name: "Roboto-Regular", size: 20)
         lbl.textAlignment = .center
         lbl.textColor = .black
         lbl.text = "Female"
@@ -172,6 +172,8 @@ class GenderCell: UICollectionViewCell, UITextFieldDelegate {
      
         vStackMale.layer.borderColor =   #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         vStackMale.layer.borderWidth = 2
+        maleLablel .font = UIFont(name: "Roboto-Bold", size: 22)
+        femaleLablel.font = UIFont(name: "Roboto-Regular", size: 20)
         
         vStackFemale.layer.borderColor =   #colorLiteral(red: 0.9215685725, green: 0.9215685725, blue: 0.9215685725, alpha: 1)
         vStackFemale.layer.borderWidth = 1
@@ -183,6 +185,8 @@ class GenderCell: UICollectionViewCell, UITextFieldDelegate {
      
         vStackFemale.layer.borderColor =   #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         vStackFemale.layer.borderWidth = 2
+        femaleLablel .font = UIFont(name: "Roboto-Bold", size: 22)
+        maleLablel.font = UIFont(name: "Roboto-Regular", size: 20)
         
         vStackMale.layer.borderColor =   #colorLiteral(red: 0.9215685725, green: 0.9215685725, blue: 0.9215685725, alpha: 1)
         vStackMale.layer.borderWidth = 1

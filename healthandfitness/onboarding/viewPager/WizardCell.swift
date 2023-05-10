@@ -14,7 +14,7 @@ class WizardCell: UICollectionViewCell, UITextFieldDelegate {
     
     let title: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: "Roboto-MediumItalic", size: 24)
+        lbl.font = UIFont(name: "Roboto-Bold", size: 24)
         lbl.textAlignment = .center
         lbl.textColor = .black
         return lbl
@@ -22,7 +22,7 @@ class WizardCell: UICollectionViewCell, UITextFieldDelegate {
     
     let inputField  : UITextField={
         let lbl = UITextField()
-        lbl.font = UIFont.init(name: "Roboto-MediumItalic", size: 24)
+        lbl.font = UIFont.init(name: "Roboto-Regular", size: 24)
         lbl.textAlignment = .left
         lbl.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         lbl.layer.borderWidth = 1
@@ -38,7 +38,7 @@ class WizardCell: UICollectionViewCell, UITextFieldDelegate {
     let measurementUnit: UILabel = {
         let lbl = UILabel()
         lbl.textAlignment = .center
-        lbl.font = UIFont.init(name: "Roboto-MediumItalic", size: 24)
+        lbl.font = UIFont.init(name: "Roboto-Bold", size: 24)
         lbl.textColor = .black
         return lbl
     }()
