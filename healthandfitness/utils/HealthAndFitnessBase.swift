@@ -7,10 +7,47 @@
 
 import Foundation
 import UIKit
+import SwiftMessages
 
 class HealthAndFitnessBase{
     
+    static let shared = HealthAndFitnessBase()
     
+    private init(){}
+    
+    public static let BaseURL : String = "https://gym-api-ixep.onrender.com/" 
+  
+    
+    
+    
+    func showToastMessage (title : String = "", message : String = "", type : Int = 1) {
+         
+        let view = MessageView.viewFromNib(layout: .cardView)
+        
+        switch type {
+        case 0:
+            view.configureTheme(.success)
+        case 1:
+            view.configureTheme(.warning)
+        case 2:
+            view.configureTheme(.error)
+        default:
+            view.configureTheme(.warning)
+        }
+        
+        view.configureDropShadow()
+ 
+        view.configureContent(title: title, body: message)
+
+        view.layoutMarginAdditions = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+
+        view.button?.isHidden = true
+
+        (view.backgroundView as? CornerRoundingView)?.cornerRadius = 10
+        
+
+        SwiftMessages.show(view: view)
+    }
     
     
 }

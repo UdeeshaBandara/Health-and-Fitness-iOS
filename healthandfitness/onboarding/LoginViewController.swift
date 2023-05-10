@@ -7,6 +7,9 @@
 
 import UIKit
 import SnapKit
+import Alamofire
+import SwiftyJSON
+import SwiftKeychainWrapper
 
 class LoginViewController: UIViewController {
     
@@ -154,10 +157,48 @@ class LoginViewController: UIViewController {
     }
     @objc func openWizard(sender : UIButton){
         
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        loginNetworkRequest()
         
-        navigationController?.pushViewController(WizardController(collectionViewLayout: layout), animated: false)
+       
         
     }
+    
+    func loginNetworkRequest () {
+       
+           let param = [
+               "email" : email.text!,
+               "password" : password.text!
+           ]
+           
+        NetworkManager.shared.defaultNetworkRequest(url: HealthAndFitnessBase.BaseURL + "auth/login", param: param, requestMethod: .post, showIndicator: true, indicatorParent: self.view, encoder: JSONEncoding.default, success: { response in
+               
+              
+               if response["status"].boolValue {
+                   
+                   print(response["accessToken"].stringValue)
+                   
+                   KeychainWrapper.standard.set( response["accessToken"].stringValue, forKey: "accessToken")
+                   let layout = UICollectionViewFlowLayout()
+                   layout.scrollDirection = .horizontal
+                   
+                   self.navigationController?.pushViewController(WizardController(collectionViewLayout: layout), animated: false)
+                   
+               }else{
+                   
+                   HealthAndFitnessBase.shared.showToastMessage(title: "Login", message: response["data"].stringValue)
+                   
+               }
+               
+              
+
+           }){errorString in
+               
+               print(errorString)
+               HealthAndFitnessBase.shared.showToastMessage(title: "Login", message: "Oops! Something went wrong. Please try again")
+               
+           }
+           
+           
+       }
+       
 }

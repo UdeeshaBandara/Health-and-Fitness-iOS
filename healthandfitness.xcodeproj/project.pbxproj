@@ -43,6 +43,8 @@
 		49CBACC72A0C086A00053342 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 49CBACC62A0C086A00053342 /* Alamofire */; };
 		49CBACCA2A0C08C200053342 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 49CBACC92A0C08C200053342 /* SwiftyJSON */; };
 		49CBACCC2A0C090F00053342 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CBACCB2A0C090F00053342 /* NetworkManager.swift */; };
+		49CBACCF2A0C0AE200053342 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 49CBACCE2A0C0AE200053342 /* SwiftMessages */; };
+		49CBACD52A0C0EB800053342 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 49CBACD42A0C0EB800053342 /* SwiftKeychainWrapper */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,11 +88,13 @@
 			files = (
 				498BB5542A0874BA008EEA5B /* LGSideMenuController in Frameworks */,
 				49CBACCA2A0C08C200053342 /* SwiftyJSON in Frameworks */,
+				49CBACCF2A0C0AE200053342 /* SwiftMessages in Frameworks */,
 				49A4A8952A04D964005A4DC2 /* SnapKit in Frameworks */,
 				493B42442A04DE1C00808493 /* IQKeyboardManagerSwift in Frameworks */,
 				49CBACC72A0C086A00053342 /* Alamofire in Frameworks */,
 				493251C02A0A9EF700A3BA28 /* GaugeSlider in Frameworks */,
 				49CBACC42A0C058F00053342 /* JGProgressHUD in Frameworks */,
+				49CBACD52A0C0EB800053342 /* SwiftKeychainWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +250,8 @@
 				49CBACC32A0C058F00053342 /* JGProgressHUD */,
 				49CBACC62A0C086A00053342 /* Alamofire */,
 				49CBACC92A0C08C200053342 /* SwiftyJSON */,
+				49CBACCE2A0C0AE200053342 /* SwiftMessages */,
+				49CBACD42A0C0EB800053342 /* SwiftKeychainWrapper */,
 			);
 			productName = healthandfitness;
 			productReference = 493F6EF42A04C61E00A721DA /* healthandfitness.app */;
@@ -283,6 +289,8 @@
 				49CBACC22A0C058F00053342 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				49CBACC52A0C086900053342 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				49CBACC82A0C08C200053342 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				49CBACCD2A0C0AE200053342 /* XCRemoteSwiftPackageReference "SwiftMessages" */,
+				49CBACD32A0C0EB800053342 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 			);
 			productRefGroup = 493F6EF52A04C61E00A721DA /* Products */;
 			projectDirPath = "";
@@ -610,6 +618,22 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		49CBACCD2A0C0AE200053342 /* XCRemoteSwiftPackageReference "SwiftMessages" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftKickMobile/SwiftMessages";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.6;
+			};
+		};
+		49CBACD32A0C0EB800053342 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -647,6 +671,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 49CBACC82A0C08C200053342 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		49CBACCE2A0C0AE200053342 /* SwiftMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49CBACCD2A0C0AE200053342 /* XCRemoteSwiftPackageReference "SwiftMessages" */;
+			productName = SwiftMessages;
+		};
+		49CBACD42A0C0EB800053342 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49CBACD32A0C0EB800053342 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
