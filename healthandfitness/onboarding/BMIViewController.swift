@@ -15,7 +15,7 @@ class BMIViewController: UIViewController {
     
     let mainTitle: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: "Roboto-MediumItalic", size: 24)
+        lbl.font = UIFont(name: "Roboto-Bold", size: 24)
         lbl.textAlignment = .center
         lbl.textColor = .black
         lbl.text = "Your BMI value"
@@ -39,8 +39,8 @@ class BMIViewController: UIViewController {
         gaugeSliderView.progress = 22
         gaugeSliderView.maxValue = 55
         gaugeSliderView.minValue = 14
-        gaugeSliderView.placeholderFont = UIFont.systemFont(ofSize: 17, weight: .medium)
-        gaugeSliderView.unitIndicatorFont = UIFont.systemFont(ofSize: 16, weight: .medium)
+        gaugeSliderView.placeholderFont = UIFont(name: "Roboto-Regular", size: 16)!
+        gaugeSliderView.unitIndicatorFont = UIFont(name: "Roboto-Regular", size: 16)!
         gaugeSliderView.unitFont = UIFont.systemFont(ofSize: 40)
         gaugeSliderView.placeholder = "BMI"
         gaugeSliderView.delegationMode = .immediate(interval: 3)

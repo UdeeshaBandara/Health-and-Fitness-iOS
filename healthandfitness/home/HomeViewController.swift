@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
     let greeting: UILabel = {
         let lbl = UILabel()
         lbl.text = "Good morning"
-        lbl.font = UIFont(name: "Roboto-MediumItalic", size: 14)
+        lbl.font = UIFont(name: "Roboto-Regular", size: 14)
         lbl.textAlignment = .left
         lbl.textColor = .black
         
@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
     let userName: UILabel = {
         let lbl = UILabel()
         lbl.text = "Udesha Bandara"
-        lbl.font = UIFont(name: "Roboto-MediumItalic", size: 20)
+        lbl.font = UIFont(name: "Roboto-Medium", size: 20)
         lbl.textAlignment = .left
         lbl.textColor = .black
         
@@ -44,7 +44,8 @@ class HomeViewController: UIViewController {
     
     let sideMenuToggle : UIImageView = {
         let imgView =   UIImageView(image: #imageLiteral(resourceName: "side_menu"))
-        imgView.contentMode = .scaleAspectFill 
+        imgView.contentMode = .scaleAspectFill
+        imgView.isUserInteractionEnabled = true
         return imgView
     }()
     

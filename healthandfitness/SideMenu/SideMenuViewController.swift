@@ -14,6 +14,7 @@ class SideMenuViewController: UIViewController {
     let menuSubBackgroundView : UIView = {
         
         let view = UIView()
+        view.backgroundColor =  #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.65)
         return view
         
     }()
@@ -38,7 +39,7 @@ class SideMenuViewController: UIViewController {
         lbl.sizeToFit()
         lbl.isUserInteractionEnabled = true
         lbl.text = "About Us"
-        lbl.font = UIFont(name:"Roboto-MediumItalic",size:16)
+        lbl.font = UIFont(name:"Roboto-Bold",size:18)
         lbl.textAlignment = .center
        
         return lbl
@@ -51,7 +52,7 @@ class SideMenuViewController: UIViewController {
         lbl.sizeToFit()
         lbl.isUserInteractionEnabled = true
         lbl.text = "Contact Us"
-        lbl.font = UIFont(name:"Roboto-MediumItalic",size:16)
+        lbl.font = UIFont(name:"Roboto-Bold",size:18)
         lbl.textAlignment = .center
        
         return lbl
@@ -133,7 +134,7 @@ class SideMenuViewController: UIViewController {
         
         menuSubBackgroundView.snp.makeConstraints { const in
             
-            const.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(175)
+            const.top.equalTo(view.safeAreaLayoutGuide)
             const.trailing.leading.equalTo(view)
             const.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             
@@ -167,10 +168,9 @@ class SideMenuViewController: UIViewController {
         }
       
         scrollView.snp.makeConstraints { const in
-            const.top.equalTo(menuSubBackgroundView.snp.top).offset(25)
-            const.centerX.equalTo(menuSubBackgroundView.snp.centerX)
+            const.top.equalTo(menuSubBackgroundView).inset(150)
+            const.center.equalTo(menuSubBackgroundView)
             const.width.equalTo(menuSubBackgroundView.snp.width).inset(40)
-            const.bottom.equalTo(deviderBottom.snp.top).inset(-20)
 
         }
         vStack.snp.makeConstraints { const in

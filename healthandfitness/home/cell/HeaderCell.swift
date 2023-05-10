@@ -12,7 +12,7 @@ import SnapKit
 class HeaderCell: UITableViewHeaderFooterView {
     let title: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: "Roboto-MediumItalic", size: 18)
+        lbl.font = UIFont(name: "Roboto-Bold", size: 18)
         lbl.textAlignment = .left
         lbl.textColor = .black
         
