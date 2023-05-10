@@ -44,8 +44,7 @@ class HomeViewController: UIViewController {
     
     let sideMenuToggle : UIImageView = {
         let imgView =   UIImageView(image: #imageLiteral(resourceName: "side_menu"))
-        imgView.contentMode = .scaleAspectFill
-        imgView.isUserInteractionEnabled = true
+        imgView.contentMode = .scaleAspectFill 
         return imgView
     }()
     
