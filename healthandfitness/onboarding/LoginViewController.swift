@@ -175,15 +175,15 @@ class LoginViewController: UIViewController {
               
                if response["status"].boolValue {
                    
+                   let layout = UICollectionViewFlowLayout()
+                   layout.scrollDirection = .horizontal
+                 
+                   self.navigationController?.setViewControllers([WizardController(collectionViewLayout: layout)], animated: false)
                    
                    HealthAndFitnessBase.shared.showToastMessage(title: "Login", message: "Login successful", type: 0)
                    KeychainWrapper.standard.set( response["accessToken"].stringValue, forKey: "accessToken")
                    KeychainWrapper.standard.set( true, forKey: "isLoggedIn")
                    KeychainWrapper.standard.set( false, forKey: "isWizardCompleted")
-                   let layout = UICollectionViewFlowLayout()
-                   layout.scrollDirection = .horizontal
-                 
-                   self.navigationController?.pushViewController(WizardController(collectionViewLayout: layout), animated: false)
                    
                }else{
                    

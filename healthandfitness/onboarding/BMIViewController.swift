@@ -32,12 +32,10 @@ class BMIViewController: UIViewController {
         gaugeSliderView.indicatorColor = UIColor(red: 94/255, green: 187/255, blue: 169/255, alpha: 1)
         gaugeSliderView.unitColor = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 1)
         gaugeSliderView.placeholderColor = UIColor(red: 139/255, green: 154/255, blue: 158/255, alpha: 1)
-        gaugeSliderView.unitIndicatorColor = UIColor(red: 74/255, green: 74/255, blue: 74/255, alpha: 0.2)
+        gaugeSliderView.unitIndicatorColor = .white
         gaugeSliderView.customControlColor = UIColor(red: 47/255, green: 190/255, blue: 169/255, alpha: 1)
-        gaugeSliderView.customControlButtonTitle = "• BMI"
         gaugeSliderView.isUserInteractionEnabled = false
         gaugeSliderView.unit = ""
-        gaugeSliderView.progress = 22
         gaugeSliderView.maxValue = 55
         gaugeSliderView.minValue = 14
         gaugeSliderView.placeholderFont = UIFont(name: "Roboto-Regular", size: 16)!
@@ -72,8 +70,10 @@ class BMIViewController: UIViewController {
         view.addSubview(continueButton)
         
         setupConstraint()
-         
+        
         continueButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
+        
+        calculateBMI()
         
     }
     
@@ -95,10 +95,27 @@ class BMIViewController: UIViewController {
         }
         
     }
-    func calculateBMI(){
+    
+    func calculateBMI() {
         
         
+        let bmi = values[3].value / pow((values[2].value/100), 2)
         
+        
+        var interpretation = ""
+        
+        if (bmi > 25){
+            interpretation = "Overweight"
+        }
+        else if (bmi >= 18.5){
+            interpretation = "Healthy"
+        }
+        else{
+            interpretation = "Underweight"
+        }
+        
+        gaugeSliderView.customControlButtonTitle = interpretation
+        gaugeSliderView.progress = CGFloat(bmi)
         
     }
     
