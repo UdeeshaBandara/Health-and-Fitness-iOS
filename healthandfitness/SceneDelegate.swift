@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = scene as? UIWindowScene else {return}
         let myWindow = UIWindow(windowScene: scene)
-       
+        
         if KeychainWrapper.standard.bool(forKey: "isLoggedIn") != nil  {
             if KeychainWrapper.standard.bool(forKey: "isLoggedIn") ?? false {
                 if KeychainWrapper.standard.bool(forKey: "isWizardCompleted") != nil  {
@@ -52,12 +52,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
             }else{
                 
-                myWindow.rootViewController = LoginViewController()
+                myWindow.rootViewController =  UINavigationController(rootViewController: LoginViewController())
                 
             }
         }else{
             
-            myWindow.rootViewController = LoginViewController()
+            myWindow.rootViewController =  UINavigationController(rootViewController: LoginViewController())
             
         }
         self.window = myWindow

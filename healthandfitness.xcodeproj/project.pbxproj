@@ -21,7 +21,6 @@
 		493B42462A04ECD000808493 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493B42452A04ECD000808493 /* RegisterViewController.swift */; };
 		493F6EF82A04C61E00A721DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F6EF72A04C61E00A721DA /* AppDelegate.swift */; };
 		493F6EFA2A04C61E00A721DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F6EF92A04C61E00A721DA /* SceneDelegate.swift */; };
-		493F6EFC2A04C61E00A721DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F6EFB2A04C61E00A721DA /* ViewController.swift */; };
 		493F6F012A04C61F00A721DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 493F6F002A04C61F00A721DA /* Assets.xcassets */; };
 		493F6F042A04C61F00A721DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 493F6F022A04C61F00A721DA /* LaunchScreen.storyboard */; };
 		493F7A972A078CC2008C0E40 /* WizardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F7A962A078CC2008C0E40 /* WizardCell.swift */; };
@@ -61,7 +60,6 @@
 		493F6EF42A04C61E00A721DA /* healthandfitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = healthandfitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		493F6EF72A04C61E00A721DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		493F6EF92A04C61E00A721DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		493F6EFB2A04C61E00A721DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		493F6F002A04C61F00A721DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		493F6F032A04C61F00A721DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		493F6F052A04C61F00A721DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -157,7 +155,6 @@
 				49A4A8862A04D06C005A4DC2 /* font */,
 				493F6EF72A04C61E00A721DA /* AppDelegate.swift */,
 				493F6EF92A04C61E00A721DA /* SceneDelegate.swift */,
-				493F6EFB2A04C61E00A721DA /* ViewController.swift */,
 				493F6F002A04C61F00A721DA /* Assets.xcassets */,
 				493F6F022A04C61F00A721DA /* LaunchScreen.storyboard */,
 				493F6F052A04C61F00A721DA /* Info.plist */,
@@ -334,7 +331,6 @@
 				493251C22A0B029C00A3BA28 /* ExerciseDetailViewController.swift in Sources */,
 				492521DD2A0822A800C93682 /* PopularCell.swift in Sources */,
 				492521E42A084F3C00C93682 /* HeaderCell.swift in Sources */,
-				493F6EFC2A04C61E00A721DA /* ViewController.swift in Sources */,
 				493F7AB12A07FD8B008C0E40 /* HomeViewController.swift in Sources */,
 				493251BD2A0A434F00A3BA28 /* GenderCell.swift in Sources */,
 				493251BB2A0A3EDE00A3BA28 /* BMIViewController.swift in Sources */,
