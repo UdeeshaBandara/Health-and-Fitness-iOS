@@ -8,10 +8,17 @@
 import Foundation
 import UIKit
 import SnapKit
+import Alamofire
+import SwiftyJSON
+import SwiftKeychainWrapper
+import Kingfisher
 
 class PopularCell : UITableViewCell {
     
     let popluarCollection = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
+    
+    
+    var popularExerciseArray : JSON = ""
     
     
     required init?(coder: NSCoder) {
@@ -23,6 +30,7 @@ class PopularCell : UITableViewCell {
         contentView.addSubview(popluarCollection)
         
         setupConstraint()
+        homeNetworkRequest ()
         
     }
     
@@ -33,7 +41,7 @@ class PopularCell : UITableViewCell {
         popluarCollection.delegate = self
         if let layout = popluarCollection.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
-        
+            
         }
         popluarCollection.register(PopularSubCell.self, forCellWithReuseIdentifier: "popularSubCell")
         
@@ -46,11 +54,37 @@ class PopularCell : UITableViewCell {
         }
         
     }
+    func homeNetworkRequest () {
+        
+        
+        NetworkManager.shared.defaultNetworkRequest(url: HealthAndFitnessBase.BaseURL + "exercise/home", header: ["Authorization":(KeychainWrapper.standard.string(forKey: "accessToken") ?? "")], requestMethod: .get, showIndicator: false, success: { response in
+            
+            
+            if response["status"].boolValue {
+                
+                self.popularExerciseArray = response["data"]
+                self.popluarCollection.reloadData()
+                
+            }else{
+                
+                HealthAndFitnessBase.shared.showToastMessage(title: "Home", message: response["data"].stringValue)
+                
+            }
+            
+            
+            
+        }){errorString in
+            print(errorString)
+            
+            HealthAndFitnessBase.shared.showToastMessage(title: "Home", message: "Something went wrong. Please try again")
+            
+        }
+    }
 }
 extension PopularCell : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 8
+        return popularExerciseArray.count
         
         
     }
@@ -58,7 +92,8 @@ extension PopularCell : UICollectionViewDataSource, UICollectionViewDelegate, UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "popularSubCell", for: indexPath) as! PopularSubCell
         
-        
+        cell.title.text =  popularExerciseArray[indexPath.row]["name"].stringValue
+        cell.backgroundImage.kf.setImage(with: URL(string:   popularExerciseArray[indexPath.row]["coverImageUrl"].stringValue))
         
         return cell
     }

@@ -7,15 +7,21 @@
 
 import UIKit
 import SnapKit
+import Alamofire
+import SwiftyJSON
+import SwiftKeychainWrapper
+import Kingfisher
 
 protocol HomeViewControllerDelegate {
-   func onExerciseClick()
+    func onExerciseClick()
 }
 
 class HomeViewController: UIViewController {
     
     var delegate: HomeViewControllerDelegate?
-
+    
+    var exerciseArray : JSON = ""
+    
     
     var headerTitles : [String] = ["Popular Workouts","Today Plan"]
     
@@ -64,6 +70,8 @@ class HomeViewController: UIViewController {
         view.addSubview(sideMenuToggle)
         
         setupConstraint()
+        greetingLogic()
+        homeNetworkRequest()
     }
     func setupConstraint(){
         
@@ -125,16 +133,59 @@ class HomeViewController: UIViewController {
         
     }
     
-    
-    
-    
+    func greetingLogic() {
+        let date = NSDate()
+        let calendar = NSCalendar.current
+        let currentHour = calendar.component(.hour, from: date as Date)
+        let hourInt = Int(currentHour.description)!
+   
+        
+        if hourInt >= 12 && hourInt <= 16 {
+            greeting.text = "Good Afternoon"
+        }
+        else if hourInt >= 0 && hourInt <= 12 {
+            greeting.text = "Good Morning"
+        }
+        else if hourInt >= 16 && hourInt <= 24 {
+            greeting.text = "Good Evening"
+        }
+        
+    }
+    func homeNetworkRequest () {
+        
+   
+        NetworkManager.shared.defaultNetworkRequest(url: HealthAndFitnessBase.BaseURL + "exercise/home", header: ["Authorization":(KeychainWrapper.standard.string(forKey: "accessToken") ?? "")], requestMethod: .get, showIndicator: true, indicatorParent: self.view, success: { response in
+            
+            
+            if response["status"].boolValue {
+                
+                self.exerciseArray = response["data"]
+                self.tableView.reloadData()
+                
+            }else{
+                
+                HealthAndFitnessBase.shared.showToastMessage(title: "Home", message: response["data"].stringValue)
+                
+            }
+            
+            
+            
+        }){errorString in
+            print(errorString)
+            
+            HealthAndFitnessBase.shared.showToastMessage(title: "Home", message: "Something went wrong. Please try again")
+            
+        }
+    }
 }
+
 extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0) {
             return 1
+        }else{
+            return exerciseArray.count
         }
-        return 10
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -152,7 +203,8 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
             
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "planCell", for: indexPath) as! PlanCell
-            
+            cell.exerciseName.text =  exerciseArray[indexPath.row]["name"].stringValue
+            cell.exerciseImage.kf.setImage(with: URL(string:   exerciseArray[indexPath.row]["coverImageUrl"].stringValue))
             return cell
             
         }
@@ -188,7 +240,7 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func closeMenu(sender : UIButton){
-     
+        
         self.sideMenuController?.showRightView(animated: true)
     }
     

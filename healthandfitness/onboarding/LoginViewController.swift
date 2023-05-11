@@ -95,6 +95,7 @@ class LoginViewController: UIViewController {
         
         email.updateDesign()
         password.updateDesign()
+        email.keyboardType = .emailAddress
         password.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2313431799, green: 0.2313894629, blue: 0.2313401997, alpha: 1)])
         email.attributedPlaceholder = NSAttributedString(string: "Email address", attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2313431799, green: 0.2313894629, blue: 0.2313401997, alpha: 1)])
         password.isSecureTextEntry = true

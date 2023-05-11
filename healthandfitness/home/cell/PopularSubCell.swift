@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
+
 class PopularSubCell : UICollectionViewCell {
     
     let backgroundImage : UIImageView = {
@@ -22,7 +23,9 @@ class PopularSubCell : UICollectionViewCell {
         
         let outerView = UIView()
         outerView.clipsToBounds = false
-//        outerView.layer.backgroundColor =  #colorLiteral(red: 0.7927033305, green: 0.7747715712, blue: 0.7945697904, alpha: 0.4)
+        outerView.layer.backgroundColor =  #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.4)
+        outerView.clipsToBounds = true
+        outerView.layer.cornerRadius = 15
         return outerView
         
     }()
@@ -87,7 +90,7 @@ class PopularSubCell : UICollectionViewCell {
         cal.addImage(imageName: "cal")
         duration.addImage(imageName: "timer")
         
-        outerView.applyGradient(isVertical: false, colorArray: [.green, .blue])
+//        outerView.applyGradient(isVertical: false, colorArray: [.green, .blue])
         contentView.addSubview(backgroundImage)
         contentView.addSubview(outerView)
         vStack.addArrangedSubview(title)
