@@ -39,7 +39,7 @@ class HealthAndFitnessBase{
  
         view.configureContent(title: title, body: message)
 
-        view.layoutMarginAdditions = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        view.layoutMarginAdditions = UIEdgeInsets(top: 0, left: 20, bottom: 20, right: 20)
 
         view.button?.isHidden = true
 

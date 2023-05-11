@@ -7,8 +7,10 @@
 
 import UIKit
 import SnapKit
+import Alamofire
+import SwiftyJSON
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     let scrollView = UIScrollView()
     
@@ -55,7 +57,7 @@ class RegisterViewController: UIViewController {
     }()
     
     
-    let register : UILabel = {
+    let loginLabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
         lbl.numberOfLines = 0
@@ -76,7 +78,7 @@ class RegisterViewController: UIViewController {
         
         
         view.addSubview(signUpLabel)
-        view.addSubview(register)
+        view.addSubview(loginLabel)
         vStack.addArrangedSubview(name)
         vStack.addArrangedSubview(email)
         vStack.addArrangedSubview(phone)
@@ -85,7 +87,10 @@ class RegisterViewController: UIViewController {
         scrollView.addSubview(vStack)
         setupConstraint()
         
-        register.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openRegistration(sender:))))
+        loginLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openLogin(sender:))))
+        
+        submitButton.addTarget(self, action: #selector(performRegistration), for: .touchUpInside)
+        
         
     }
     func setupConstraint(){
@@ -99,6 +104,9 @@ class RegisterViewController: UIViewController {
         password.placeholder = "Password"
         name.placeholder = "Full Name"
         phone.placeholder = "Phone"
+        phone.delegate = self
+        phone.keyboardType = .numberPad
+        
         email.attributedPlaceholder = NSAttributedString(string: "Email address", attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2313431799, green: 0.2313894629, blue: 0.2313401997, alpha: 1)])
         password.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2313431799, green: 0.2313894629, blue: 0.2313401997, alpha: 1)])
         name.attributedPlaceholder = NSAttributedString(string: "Full Name", attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2313431799, green: 0.2313894629, blue: 0.2313401997, alpha: 1)])
@@ -153,7 +161,7 @@ class RegisterViewController: UIViewController {
             const.height.equalTo(45)
         }
         
-        register.snp.makeConstraints { const in
+        loginLabel.snp.makeConstraints { const in
             
             const.height.equalTo(45)
             const.centerX.equalTo(view.snp.centerX)
@@ -162,10 +170,57 @@ class RegisterViewController: UIViewController {
         
         
     }
-    @objc func openRegistration(sender : UIButton){
+    @objc func performRegistration(sender : UIButton){
         
-        navigationController?.popViewController(animated: false)
+        registrationNetworkRequest()
         
+       
         
     }
+    @objc func openLogin(sender : UIButton){
+        
+       
+        navigationController?.popViewController(animated: false)
+        
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let invalidCharacters = CharacterSet(charactersIn: "0123456789").inverted
+    
+        
+        return string.rangeOfCharacter(from: invalidCharacters) == nil
+    }
+    func registrationNetworkRequest () {
+       
+           let param = [
+               "email" : email.text!,
+               "telephone" : phone.text!,
+               "name" : name.text!,
+               "password" : password.text!
+           ]
+           
+        NetworkManager.shared.defaultNetworkRequest(url: HealthAndFitnessBase.BaseURL + "auth/register", param: param, requestMethod: .post, showIndicator: true, indicatorParent: self.view, encoder: JSONEncoding.default, success: { response in
+               print(response)
+               if response["status"].boolValue {
+                   
+                   HealthAndFitnessBase.shared.showToastMessage(title: "Registration", message: "Registration successful", type: 0)
+                   self.navigationController?.popViewController(animated: false)
+                   
+               }else{
+                   
+                   HealthAndFitnessBase.shared.showToastMessage(title: "Registration", message: response["data"].stringValue)
+                   
+               }
+               
+              
+
+           }){errorString in
+               
+             
+               HealthAndFitnessBase.shared.showToastMessage(title: "Registration", message: "Something went wrong. Please try again")
+               
+           }
+           
+           
+       }
 }
+
