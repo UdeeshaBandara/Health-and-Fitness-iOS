@@ -175,12 +175,14 @@ class LoginViewController: UIViewController {
               
                if response["status"].boolValue {
                    
-                   print(response["accessToken"].stringValue)
                    
+                   HealthAndFitnessBase.shared.showToastMessage(title: "Login", message: "Login successful", type: 0)
                    KeychainWrapper.standard.set( response["accessToken"].stringValue, forKey: "accessToken")
+                   KeychainWrapper.standard.set( true, forKey: "isLoggedIn")
+                   KeychainWrapper.standard.set( false, forKey: "isWizardCompleted")
                    let layout = UICollectionViewFlowLayout()
                    layout.scrollDirection = .horizontal
-                   
+                 
                    self.navigationController?.pushViewController(WizardController(collectionViewLayout: layout), animated: false)
                    
                }else{
@@ -193,8 +195,8 @@ class LoginViewController: UIViewController {
 
            }){errorString in
                
-               print(errorString)
-               HealthAndFitnessBase.shared.showToastMessage(title: "Login", message: "Oops! Something went wrong. Please try again")
+             
+               HealthAndFitnessBase.shared.showToastMessage(title: "Login", message: "Something went wrong. Please try again")
                
            }
            

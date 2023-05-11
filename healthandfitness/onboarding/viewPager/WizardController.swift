@@ -45,6 +45,8 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
         button.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 5
+        button.isEnabled = false
+        button.alpha = 0.5
   
         return button
         
@@ -103,6 +105,8 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
         if(nextButton.currentTitle=="Finish"){
             navigationController?.pushViewController(BMIViewController(), animated: true)
         }else{
+            previousButton.isEnabled = true
+            previousButton.alpha = 1
             let nextIndex = min(pageControl.currentPage + 1, pages.count - 1)
             if(nextIndex==3){
                 nextButton.setTitle("Finish", for: .normal)
@@ -119,6 +123,10 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
     @objc private func handlePrev() {
         let nextIndex = max(pageControl.currentPage - 1, 0)
         
+        if(nextIndex==0){
+            previousButton.isEnabled = false
+            previousButton.alpha = 0.5
+        }
         nextButton.setTitle("Next", for: .normal)
         
         wizardCollectionView.isPagingEnabled = false
@@ -165,7 +173,17 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         let x = targetContentOffset.pointee.x
-        if((Int(x / view.frame.width))==2){
+        let nextIndex = (Int(x / view.frame.width))
+        
+        if(nextIndex==0){
+            previousButton.isEnabled = false
+            previousButton.alpha = 0.5
+        }else{
+            previousButton.isEnabled = true
+            previousButton.alpha = 1
+        }
+        
+        if(nextIndex==3){
             nextButton.setTitle("Finish", for: .normal)
             
         }else{
