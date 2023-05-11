@@ -122,7 +122,6 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
                 HealthAndFitnessBase.shared.showToastMessage(title: "Error", message: "Please enter your weight")
                 
             }else{
-                KeychainWrapper.standard.set( true, forKey: "isWizardCompleted")
                 let BMIViewController = BMIViewController()
                 BMIViewController.values = pages
                 navigationController?.pushViewController(BMIViewController, animated: true)

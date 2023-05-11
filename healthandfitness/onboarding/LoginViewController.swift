@@ -130,7 +130,7 @@ class LoginViewController: UIViewController {
             const.height.equalTo(45)
             
         }
- 
+        
         password.snp.makeConstraints { const in
             
             const.height.equalTo(45)
@@ -159,48 +159,49 @@ class LoginViewController: UIViewController {
         
         loginNetworkRequest()
         
-       
+        
         
     }
     
     func loginNetworkRequest () {
-       
-           let param = [
-               "email" : email.text!,
-               "password" : password.text!
-           ]
-           
+        
+        let param = [
+            "email" : email.text!,
+            "password" : password.text!
+        ]
+        
         NetworkManager.shared.defaultNetworkRequest(url: HealthAndFitnessBase.BaseURL + "auth/login", param: param, requestMethod: .post, showIndicator: true, indicatorParent: self.view, encoder: JSONEncoding.default, success: { response in
-               
-              
-               if response["status"].boolValue {
-                   
-                   let layout = UICollectionViewFlowLayout()
-                   layout.scrollDirection = .horizontal
-                 
-                   self.navigationController?.setViewControllers([WizardController(collectionViewLayout: layout)], animated: false)
-                   
-                   HealthAndFitnessBase.shared.showToastMessage(title: "Login", message: "Login successful", type: 0)
-                   KeychainWrapper.standard.set( response["accessToken"].stringValue, forKey: "accessToken")
-                   KeychainWrapper.standard.set( true, forKey: "isLoggedIn")
-                   KeychainWrapper.standard.set( false, forKey: "isWizardCompleted")
-                   
-               }else{
-                   
-                   HealthAndFitnessBase.shared.showToastMessage(title: "Login", message: response["data"].stringValue)
-                   
-               }
-               
-              
-
-           }){errorString in
-               
-             
-               HealthAndFitnessBase.shared.showToastMessage(title: "Login", message: "Something went wrong. Please try again")
-               
-           }
-           
-           
-       }
-       
+            
+            
+            if response["status"].boolValue {
+                
+                let layout = UICollectionViewFlowLayout()
+                layout.scrollDirection = .horizontal
+                let wizardController =    WizardController(collectionViewLayout: layout)
+                
+                self.navigationController?.setViewControllers([wizardController], animated: false)
+                
+                HealthAndFitnessBase.shared.showToastMessage(title: "Login", message: "Login successful", type: 0)
+                KeychainWrapper.standard.set( "Bearer \(response["accessToken"].stringValue)", forKey: "accessToken")
+                KeychainWrapper.standard.set( true, forKey: "isLoggedIn")
+                KeychainWrapper.standard.set( false, forKey: "isWizardCompleted")
+                
+            }else{
+                
+                HealthAndFitnessBase.shared.showToastMessage(title: "Login", message: response["data"].stringValue)
+                
+            }
+            
+            
+            
+        }){errorString in
+            
+            
+            HealthAndFitnessBase.shared.showToastMessage(title: "Login", message: "Something went wrong. Please try again")
+            
+        }
+        
+        
+    }
+    
 }

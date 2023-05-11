@@ -9,6 +9,10 @@ import UIKit
 import GaugeSlider 
 import SnapKit
 import LGSideMenuController
+import Alamofire
+import SwiftyJSON
+import SwiftKeychainWrapper
+
 
 class BMIViewController: UIViewController {
     
@@ -36,7 +40,7 @@ class BMIViewController: UIViewController {
         gaugeSliderView.customControlColor = UIColor(red: 47/255, green: 190/255, blue: 169/255, alpha: 1)
         gaugeSliderView.isUserInteractionEnabled = false
         gaugeSliderView.unit = ""
-        gaugeSliderView.maxValue = 55
+        gaugeSliderView.maxValue = 45
         gaugeSliderView.minValue = 14
         gaugeSliderView.placeholderFont = UIFont(name: "Roboto-Regular", size: 16)!
         gaugeSliderView.unitIndicatorFont = UIFont(name: "Roboto-Regular", size: 16)!
@@ -120,12 +124,49 @@ class BMIViewController: UIViewController {
     }
     
     @objc private func handleNext() {
-        let sideMenuController = LGSideMenuController()
-        sideMenuController.rootViewController = HomeViewController()
-        sideMenuController.rightViewController = SideMenuViewController()
-        sideMenuController.rightViewPresentationStyle = .slideBelowShifted
-        sideMenuController.rightViewWidth = (UIScreen.main.bounds.width / 3) * 2
-        navigationController?.setViewControllers([sideMenuController], animated: true)
+        updateProfileNetworkRequest()
+        
     }
-    
+    func updateProfileNetworkRequest () {
+        
+        let param = [
+            
+            "gender" : values[0].value,
+            "weight" : values[3].value,
+            "age" : values[1].value,
+            "bmi" : gaugeSliderView.progress,
+            "height" : values[2].value
+        ] as [String : Any]
+        
+       
+        NetworkManager.shared.defaultNetworkRequest(url: HealthAndFitnessBase.BaseURL + "user/wizard", header: ["Authorization":(KeychainWrapper.standard.string(forKey: "accessToken") ?? "")],param: param, requestMethod: .post, showIndicator: true, indicatorParent: self.view, encoder: JSONEncoding.default, success: { response in
+     
+            if response["status"].boolValue {
+                KeychainWrapper.standard.set( true, forKey: "isWizardCompleted")
+                let sideMenuController = LGSideMenuController()
+                sideMenuController.rootViewController = HomeViewController()
+                sideMenuController.rightViewController = SideMenuViewController()
+                sideMenuController.rightViewPresentationStyle = .slideBelowShifted
+                sideMenuController.rightViewWidth = (UIScreen.main.bounds.width / 3) * 2
+                self.navigationController?.setViewControllers([sideMenuController], animated: true)
+                
+                
+                
+            }else{
+                
+                HealthAndFitnessBase.shared.showToastMessage(title: "Personal Info", message: response["data"].stringValue)
+                
+            }
+            
+            
+            
+        }){errorString in
+            
+            
+            HealthAndFitnessBase.shared.showToastMessage(title: "Personal Info", message: "Something went wrong. Please try again")
+            
+        }
+        
+        
+    }
 }
