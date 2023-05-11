@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 class SideMenuViewController: UIViewController {
     
@@ -71,6 +72,20 @@ class SideMenuViewController: UIViewController {
         return lbl
     }()
     
+    let logoutLabel : UILabel = {
+        let lbl = UILabel()
+        lbl.textColor = .white
+        lbl.numberOfLines = 0
+        lbl.sizeToFit()
+        lbl.isUserInteractionEnabled = true
+        lbl.text = "Logout"
+        lbl.font = UIFont(name:"Roboto-Bold",size:18)
+        lbl.textAlignment = .center
+        lbl.isUserInteractionEnabled = true
+        return lbl
+    }()
+    
+    
     let bottomLabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .white
@@ -121,9 +136,8 @@ class SideMenuViewController: UIViewController {
         
         view.backgroundColor = .black
         view.addSubview(mainLogo)
-        view.addSubview(menuClose)
-        
         view.addSubview(menuSubBackgroundView)
+        view.addSubview(menuClose)
         menuSubBackgroundView.addSubview(scrollView)
         
         vStack.addArrangedSubview(scheduleLabel)
@@ -134,6 +148,7 @@ class SideMenuViewController: UIViewController {
         
         scrollView.addSubview(vStack)
         
+        menuSubBackgroundView.addSubview(logoutLabel)
         menuSubBackgroundView.addSubview(deviderBottom)
         menuSubBackgroundView.addSubview(bottomLabel)
         
@@ -145,6 +160,7 @@ class SideMenuViewController: UIViewController {
         aboutUsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openAboutUs(sender:))))
         
         contactUsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openContactUs(sender:))))
+        logoutLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(logout(sender:))))
     
     }
     func setupConstraints(){
@@ -185,6 +201,13 @@ class SideMenuViewController: UIViewController {
             
             const.height.equalTo(1)
             const.bottom.equalTo(bottomLabel.snp.top).offset(-25)
+            const.width.equalTo(menuSubBackgroundView.snp.width).inset(40)
+            const.centerX.equalTo(menuSubBackgroundView.snp.centerX)
+        }
+        logoutLabel.snp.makeConstraints { const in
+            
+             
+            const.bottom.equalTo(deviderBottom.snp.top).offset(-25)
             const.width.equalTo(menuSubBackgroundView.snp.width).inset(40)
             const.centerX.equalTo(menuSubBackgroundView.snp.centerX)
         }
@@ -232,6 +255,10 @@ class SideMenuViewController: UIViewController {
     @objc func openAboutUs(sender : UIButton){
         
       
+    }
+    @objc func logout(sender : UIButton){
+        KeychainWrapper.standard.removeAllKeys()
+        navigationController?.setViewControllers([LoginViewController()], animated: true)
     }
    
     

@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftKeychainWrapper
+import LGSideMenuController
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -21,7 +22,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if KeychainWrapper.standard.bool(forKey: "isLoggedIn") ?? false {
                 if KeychainWrapper.standard.bool(forKey: "isWizardCompleted") != nil  {
                     if KeychainWrapper.standard.bool(forKey: "isWizardCompleted") ?? false {
-                        myWindow.rootViewController = UINavigationController(rootViewController: HomeViewController())
+                        let sideMenuController = LGSideMenuController()
+                        sideMenuController.rootViewController = HomeViewController()
+                        sideMenuController.rightViewController = SideMenuViewController()
+                        sideMenuController.rightViewPresentationStyle = .slideBelowShifted
+                        sideMenuController.rightViewWidth = (UIScreen.main.bounds.width / 3) * 2
+                   
+                        myWindow.rootViewController = UINavigationController(rootViewController: sideMenuController)
                     }else{
                         
                         let layout = UICollectionViewFlowLayout()
