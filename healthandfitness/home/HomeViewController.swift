@@ -27,7 +27,6 @@ class HomeViewController: UIViewController {
     
     let greeting: UILabel = {
         let lbl = UILabel()
-        lbl.text = "Good morning"
         lbl.font = UIFont(name: "Roboto-Regular", size: 14)
         lbl.textAlignment = .left
         lbl.textColor = .black
@@ -36,7 +35,6 @@ class HomeViewController: UIViewController {
     }()
     let userName: UILabel = {
         let lbl = UILabel()
-        lbl.text = "Udesha Bandara"
         lbl.font = UIFont(name: "Roboto-Medium", size: 20)
         lbl.textAlignment = .left
         lbl.textColor = .black
@@ -72,6 +70,7 @@ class HomeViewController: UIViewController {
         setupConstraint()
         greetingLogic()
         homeNetworkRequest()
+        profileNetworkRequest()
     }
     func setupConstraint(){
         
@@ -138,7 +137,7 @@ class HomeViewController: UIViewController {
         let calendar = NSCalendar.current
         let currentHour = calendar.component(.hour, from: date as Date)
         let hourInt = Int(currentHour.description)!
-   
+        
         
         if hourInt >= 12 && hourInt <= 16 {
             greeting.text = "Good Afternoon"
@@ -153,7 +152,7 @@ class HomeViewController: UIViewController {
     }
     func homeNetworkRequest () {
         
-   
+        
         NetworkManager.shared.defaultNetworkRequest(url: HealthAndFitnessBase.BaseURL + "exercise/home", header: ["Authorization":(KeychainWrapper.standard.string(forKey: "accessToken") ?? "")], requestMethod: .get, showIndicator: true, indicatorParent: self.view, success: { response in
             
             
@@ -167,9 +166,31 @@ class HomeViewController: UIViewController {
                 HealthAndFitnessBase.shared.showToastMessage(title: "Home", message: response["data"].stringValue)
                 
             }
+        }){errorString in
+            print(errorString)
+            
+            HealthAndFitnessBase.shared.showToastMessage(title: "Home", message: "Something went wrong. Please try again")
+            
+        }
+    }
+    func profileNetworkRequest () {
+        
+        
+        NetworkManager.shared.defaultNetworkRequest(url: HealthAndFitnessBase.BaseURL + "user", header: ["Authorization":(KeychainWrapper.standard.string(forKey: "accessToken") ?? "")], requestMethod: .get, success: { response in
             
             
-            
+            if response["status"].boolValue {
+                
+                KeychainWrapper.standard.set( response["data"]["name"].stringValue, forKey: "userName")
+                KeychainWrapper.standard.set( response["data"]["email"].stringValue, forKey: "email")
+                KeychainWrapper.standard.set( response["data"]["telephone"].stringValue, forKey: "telephone")
+                self.userName.text = response["data"]["name"].stringValue
+                
+            }else{
+                
+                HealthAndFitnessBase.shared.showToastMessage(title: "Home", message: response["data"].stringValue)
+                
+            }
         }){errorString in
             print(errorString)
             
