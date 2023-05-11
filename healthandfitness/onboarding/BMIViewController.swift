@@ -12,6 +12,7 @@ import LGSideMenuController
 
 class BMIViewController: UIViewController {
     
+    var values = [Page]()
     
     let mainTitle: UILabel = {
         let lbl = UILabel()
@@ -71,7 +72,7 @@ class BMIViewController: UIViewController {
         view.addSubview(continueButton)
         
         setupConstraint()
-        
+         
         continueButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
         
     }
@@ -94,6 +95,13 @@ class BMIViewController: UIViewController {
         }
         
     }
+    func calculateBMI(){
+        
+        
+        
+        
+    }
+    
     @objc private func handleNext() {
         let sideMenuController = LGSideMenuController()
         sideMenuController.rootViewController = HomeViewController()

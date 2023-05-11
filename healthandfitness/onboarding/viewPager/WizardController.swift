@@ -8,14 +8,14 @@
 import Foundation
 import UIKit
 import SnapKit
-
+import SwiftKeychainWrapper
 
 class WizardController : UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let wizardCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     
-    let pages = [
-        Page(measurement: "", headerText: "", value: 0.0),
+    var pages = [
+        Page(measurement: "", headerText: "", value: -1),
         Page(measurement: "Years", headerText: "Select age", value: 0.0),
         Page(measurement: "Centimeters", headerText: "Select height", value: 0.0),
         Page(measurement: "Kg", headerText: "Select weight", value: 0.0),
@@ -31,7 +31,7 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
         button.titleLabel?.font =  UIFont(name: "Roboto-Bold", size: 18)
         button.backgroundColor = .black
         button.layer.cornerRadius = 5
-      
+        
         return button
         
     }()
@@ -47,7 +47,7 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
         button.layer.cornerRadius = 5
         button.isEnabled = false
         button.alpha = 0.5
-  
+        
         return button
         
     }()
@@ -100,10 +100,34 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
     
     
     @objc private func handleNext() {
-    
+        
         
         if(nextButton.currentTitle=="Finish"){
-            navigationController?.pushViewController(BMIViewController(), animated: true)
+            
+            if(pages[0].value == -1){
+                
+                HealthAndFitnessBase.shared.showToastMessage(title: "Error", message: "Please select your gender")
+                
+            }
+            else if(pages[1].value == 0){
+                
+                HealthAndFitnessBase.shared.showToastMessage(title: "Error", message: "Please enter your age")
+                
+            }else  if(pages[2].value == 0){
+                
+                HealthAndFitnessBase.shared.showToastMessage(title: "Error", message: "Please enter your height")
+                
+            }else  if(pages[3].value == 0){
+                
+                HealthAndFitnessBase.shared.showToastMessage(title: "Error", message: "Please enter your weight")
+                
+            }else{
+                KeychainWrapper.standard.set( true, forKey: "isWizardCompleted")
+                let BMIViewController = BMIViewController()
+                BMIViewController.values = pages
+                navigationController?.pushViewController(BMIViewController, animated: true)
+            }
+            
         }else{
             previousButton.isEnabled = true
             previousButton.alpha = 1
@@ -207,13 +231,14 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if(indexPath.row == 0){
             let cell = wizardCollectionView.dequeueReusableCell(withReuseIdentifier: "genderCell", for: indexPath) as! GenderCell
-            
+            cell.delegate = self
             return cell
         }else{
             let cell = wizardCollectionView.dequeueReusableCell(withReuseIdentifier: "wizardCell", for: indexPath) as! WizardCell
-            
+            cell.row = indexPath.row
             cell.title.text = pages[indexPath.row].headerText
             cell.measurementUnit.text = pages[indexPath.row].measurement
+            cell.delegate = self
             return cell
         }
     }
@@ -222,4 +247,14 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
         return CGSize(width: view.frame.width, height: (view.frame.height * 0.5))
     }
     
-} 
+}
+extension WizardController: GenderCellDelegate {
+    func onGenderSelect(gender selectedGender: Int) {
+        pages[0].value =  Float(selectedGender)
+    }
+}
+extension WizardController: WizardCellDelegate {
+    func onTextChange(currentIndex: Int, value enteredValue: String) {
+        pages[currentIndex].value =  NumberFormatter().number(from: enteredValue)?.floatValue ?? 0
+    }
+}

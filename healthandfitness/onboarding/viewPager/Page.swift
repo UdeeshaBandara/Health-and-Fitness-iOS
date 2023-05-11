@@ -11,7 +11,7 @@ struct Page {
     
     let measurement: String
     let headerText: String
-    let value: Float
+    var value: Float
     
 }
 

@@ -9,8 +9,17 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol WizardCellDelegate: AnyObject {
+    func onTextChange(currentIndex: Int, value enteredValue : String)
+}
+
+
 class WizardCell: UICollectionViewCell, UITextFieldDelegate {
     
+    
+    var row : Int = -1
+    
+    weak var delegate: WizardCellDelegate?
     
     let title: UILabel = {
         let lbl = UILabel()
@@ -59,6 +68,8 @@ class WizardCell: UICollectionViewCell, UITextFieldDelegate {
         inputField.delegate = self
         inputField.keyboardType = .numberPad
         setupConstraint()
+        
+        inputField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
     private func setupConstraint() {
@@ -94,6 +105,11 @@ class WizardCell: UICollectionViewCell, UITextFieldDelegate {
         
         
         
+    }
+    
+    @objc final private func textFieldDidChange(textField: UITextField) {
+        
+        self.delegate?.onTextChange(currentIndex: row, value: textField.text!)
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let invalidCharacters = CharacterSet(charactersIn: "0123456789").inverted

@@ -9,8 +9,13 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol GenderCellDelegate: AnyObject {
+    func onGenderSelect(gender selectedGender : Int)
+}
+
 class GenderCell: UICollectionViewCell, UITextFieldDelegate {
     
+    weak var delegate: GenderCellDelegate?
     
     let title: UILabel = {
         let lbl = UILabel()
@@ -178,6 +183,8 @@ class GenderCell: UICollectionViewCell, UITextFieldDelegate {
         vStackFemale.layer.borderColor =   #colorLiteral(red: 0.9215685725, green: 0.9215685725, blue: 0.9215685725, alpha: 1)
         vStackFemale.layer.borderWidth = 1
         
+        self.delegate?.onGenderSelect(gender: 1)
+        
         
     }
     @objc private func selectFemale(sender : UITapGestureRecognizer) {
@@ -190,7 +197,7 @@ class GenderCell: UICollectionViewCell, UITextFieldDelegate {
         
         vStackMale.layer.borderColor =   #colorLiteral(red: 0.9215685725, green: 0.9215685725, blue: 0.9215685725, alpha: 1)
         vStackMale.layer.borderWidth = 1
-        
+        self.delegate?.onGenderSelect(gender: 2)
         
     }
     
