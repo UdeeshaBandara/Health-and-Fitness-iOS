@@ -112,14 +112,14 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
-		493251C32A0B49EF00A3BA28 /* exercise */ = {
+		493251C32A0B49EF00A3BA28 /* Exercise */ = {
 			isa = PBXGroup;
 			children = (
 				493251C42A0B4A1200A3BA28 /* cell */,
 				493251C12A0B029C00A3BA28 /* ExerciseDetailViewController.swift */,
 				493251C72A0B4FF100A3BA28 /* ExerciseTrackViewController.swift */,
 			);
-			path = exercise;
+			path = Exercise;
 			sourceTree = "<group>";
 		};
 		493251C42A0B4A1200A3BA28 /* cell */ = {
@@ -149,11 +149,12 @@
 		493F6EF62A04C61E00A721DA /* healthandfitness */ = {
 			isa = PBXGroup;
 			children = (
-				493251C32A0B49EF00A3BA28 /* exercise */,
+				4954C6622A0D8B29009576B4 /* CustomSchedule */,
+				493251C32A0B49EF00A3BA28 /* Exercise */,
 				498BB5552A0874C6008EEA5B /* SideMenu */,
-				493F7AAF2A07FD71008C0E40 /* home */,
-				49A4A8992A04DABD005A4DC2 /* utils */,
-				49A4A8982A04D9FF005A4DC2 /* onboarding */,
+				493F7AAF2A07FD71008C0E40 /* Home */,
+				49A4A8992A04DABD005A4DC2 /* Utils */,
+				49A4A8982A04D9FF005A4DC2 /* Onboarding */,
 				49A4A8862A04D06C005A4DC2 /* font */,
 				493F6EF72A04C61E00A721DA /* AppDelegate.swift */,
 				493F6EF92A04C61E00A721DA /* SceneDelegate.swift */,
@@ -175,13 +176,20 @@
 			path = viewPager;
 			sourceTree = "<group>";
 		};
-		493F7AAF2A07FD71008C0E40 /* home */ = {
+		493F7AAF2A07FD71008C0E40 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				492521DB2A08229700C93682 /* cell */,
 				493F7AB02A07FD8B008C0E40 /* HomeViewController.swift */,
 			);
-			path = home;
+			path = Home;
+			sourceTree = "<group>";
+		};
+		4954C6622A0D8B29009576B4 /* CustomSchedule */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomSchedule;
 			sourceTree = "<group>";
 		};
 		498BB5552A0874C6008EEA5B /* SideMenu */ = {
@@ -205,7 +213,7 @@
 			path = font;
 			sourceTree = "<group>";
 		};
-		49A4A8982A04D9FF005A4DC2 /* onboarding */ = {
+		49A4A8982A04D9FF005A4DC2 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
 				493F7A922A078C11008C0E40 /* viewPager */,
@@ -213,16 +221,16 @@
 				493B42452A04ECD000808493 /* RegisterViewController.swift */,
 				493251BA2A0A3EDE00A3BA28 /* BMIViewController.swift */,
 			);
-			path = onboarding;
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
-		49A4A8992A04DABD005A4DC2 /* utils */ = {
+		49A4A8992A04DABD005A4DC2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				49A4A89A2A04DADD005A4DC2 /* HealthAndFitnessBase.swift */,
 				49CBACCB2A0C090F00053342 /* NetworkManager.swift */,
 			);
-			path = utils;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
