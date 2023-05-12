@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		491756C02A0D8C6E00117589 /* CustomScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491756BF2A0D8C6E00117589 /* CustomScheduleViewController.swift */; };
+		491756C22A0D924900117589 /* ExerciseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491756C12A0D924900117589 /* ExerciseListViewController.swift */; };
+		491756C52A0D92E000117589 /* ExerciseSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491756C42A0D92E000117589 /* ExerciseSelectCell.swift */; };
 		492521DD2A0822A800C93682 /* PopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492521DC2A0822A800C93682 /* PopularCell.swift */; };
 		492521DF2A0822BF00C93682 /* PlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492521DE2A0822BF00C93682 /* PlanCell.swift */; };
 		492521E22A0829C800C93682 /* PopularSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492521E12A0829C800C93682 /* PopularSubCell.swift */; };
@@ -48,6 +51,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		491756BF2A0D8C6E00117589 /* CustomScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomScheduleViewController.swift; sourceTree = "<group>"; };
+		491756C12A0D924900117589 /* ExerciseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewController.swift; sourceTree = "<group>"; };
+		491756C42A0D92E000117589 /* ExerciseSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSelectCell.swift; sourceTree = "<group>"; };
 		492521DC2A0822A800C93682 /* PopularCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCell.swift; sourceTree = "<group>"; };
 		492521DE2A0822BF00C93682 /* PlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanCell.swift; sourceTree = "<group>"; };
 		492521E12A0829C800C93682 /* PopularSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularSubCell.swift; sourceTree = "<group>"; };
@@ -101,6 +107,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		491756C32A0D92B900117589 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				491756C42A0D92E000117589 /* ExerciseSelectCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		492521DB2A08229700C93682 /* cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +202,9 @@
 		4954C6622A0D8B29009576B4 /* CustomSchedule */ = {
 			isa = PBXGroup;
 			children = (
+				491756C32A0D92B900117589 /* cell */,
+				491756BF2A0D8C6E00117589 /* CustomScheduleViewController.swift */,
+				491756C12A0D924900117589 /* ExerciseListViewController.swift */,
 			);
 			path = CustomSchedule;
 			sourceTree = "<group>";
@@ -339,6 +356,7 @@
 				49CBACCC2A0C090F00053342 /* NetworkManager.swift in Sources */,
 				49A4A8972A04D9F1005A4DC2 /* LoginViewController.swift in Sources */,
 				493251C82A0B4FF100A3BA28 /* ExerciseTrackViewController.swift in Sources */,
+				491756C02A0D8C6E00117589 /* CustomScheduleViewController.swift in Sources */,
 				493F7A9B2A0793B5008C0E40 /* Page.swift in Sources */,
 				493251C22A0B029C00A3BA28 /* ExerciseDetailViewController.swift in Sources */,
 				492521DD2A0822A800C93682 /* PopularCell.swift in Sources */,
@@ -348,8 +366,10 @@
 				493251BB2A0A3EDE00A3BA28 /* BMIViewController.swift in Sources */,
 				493B42462A04ECD000808493 /* RegisterViewController.swift in Sources */,
 				493F6EF82A04C61E00A721DA /* AppDelegate.swift in Sources */,
+				491756C52A0D92E000117589 /* ExerciseSelectCell.swift in Sources */,
 				493F7A972A078CC2008C0E40 /* WizardCell.swift in Sources */,
 				493F7AB32A0803D5008C0E40 /* WizardController.swift in Sources */,
+				491756C22A0D924900117589 /* ExerciseListViewController.swift in Sources */,
 				498BB5572A087503008EEA5B /* SideMenuViewController.swift in Sources */,
 				493251C62A0B4A2900A3BA28 /* ExerciseCell.swift in Sources */,
 				493F6EFA2A04C61E00A721DA /* SceneDelegate.swift in Sources */,

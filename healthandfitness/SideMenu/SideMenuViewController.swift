@@ -157,6 +157,7 @@ class SideMenuViewController: UIViewController {
         
         menuClose.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeMenu(sender:))))
         
+        scheduleLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openSchedule(sender:))))
         aboutUsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openAboutUs(sender:))))
         
         contactUsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openContactUs(sender:))))
@@ -247,6 +248,12 @@ class SideMenuViewController: UIViewController {
     @objc func closeMenu(sender : UIButton){
      
         self.sideMenuController?.hideRightView(animated: true)
+    }
+    @objc func openSchedule(sender : UIButton){
+        
+        self.sideMenuController?.hideRightView(animated: true)
+        navigationController?.pushViewController(CustomScheduleViewController(), animated: false)
+        
     }
     @objc func openContactUs(sender : UIButton){
        
