@@ -31,7 +31,6 @@ class ExerciseListViewController: UIViewController {
     let tableView : UITableView = {
         
         let myTableView = UITableView(frame: CGRect(x: 100, y: 101, width: 202, height: 2 - 1))
-        myTableView.register(PopularCell.self, forCellReuseIdentifier: "popularCell")
         myTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         return myTableView
         
@@ -49,17 +48,7 @@ class ExerciseListViewController: UIViewController {
         return button
         
     }()
-    
-    
-    
-    let checkboxImage : UIImageView = {
-        let imgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        imgView.image = #imageLiteral(resourceName: "check_tick")
-        imgView.contentMode = .scaleAspectFit
-        imgView.clipsToBounds = true
-        return imgView
-    }()
-    
+     
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,7 +70,7 @@ class ExerciseListViewController: UIViewController {
         scheduleName.attributedPlaceholder = NSAttributedString(string: "Enter Schedule Name", attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2313431799, green: 0.2313894629, blue: 0.2313401997, alpha: 1)])
         
         tableView.showsVerticalScrollIndicator = false
-        tableView.contentInset = UIEdgeInsets(top: -10, left: 0, bottom: 0, right: 0);
+        tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0);
     
         tableView.contentInset.bottom = 90
         tableView.backgroundColor = .white
@@ -166,9 +155,7 @@ extension ExerciseListViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseSelectCell", for: indexPath) as! ExerciseSelectCell
-        
-        //        cell.accessoryView =  checkboxImage
-        
+         
         cell.selectionStyle = .none
         cell.exerciseLabel.text = exerciseArray[indexPath.row]["name"].stringValue
         cell.exerciseImage.kf.setImage(with: URL(string:   exerciseArray[indexPath.row]["coverImageUrl"].stringValue))
@@ -196,10 +183,10 @@ extension ExerciseListViewController: UITableViewDelegate, UITableViewDataSource
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(exerciseArray[indexPath.row]["isChecked"].boolValue){
-            return 170
+            return 160
             
         }else{
-            return 110
+            return 100
         }
         
     }
