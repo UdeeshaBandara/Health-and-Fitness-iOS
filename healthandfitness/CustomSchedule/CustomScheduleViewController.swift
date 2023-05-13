@@ -16,7 +16,7 @@ class CustomScheduleViewController: UIViewController {
         lbl.textAlignment = .center
         lbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6)
         lbl.numberOfLines = 3
-        lbl.text = "You don't have any customized schedules. Tap 'add' to create new one"
+        lbl.text = "You don't have any customized schedules. Tap '+' to create new one"
         return lbl
     }()
 
@@ -27,8 +27,8 @@ class CustomScheduleViewController: UIViewController {
         view.backgroundColor = .white
         
         view.addSubview(emptyMsg)
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addNewSchedule))
+   
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addNewSchedule))
         
         setupConstraint()
     }
