@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
+import SwiftKeychainWrapper
+import Kingfisher
 
 class CustomScheduleViewController: UIViewController {
     
+    var exerciseArray : JSON = ""
     
     let emptyMsg: UILabel = {
         let lbl = UILabel()
@@ -19,7 +24,7 @@ class CustomScheduleViewController: UIViewController {
         lbl.text = "You don't have any customized schedules. Tap '+' to create new one"
         return lbl
     }()
-
+    
     
     let tableView : UITableView = {
         
@@ -37,22 +42,26 @@ class CustomScheduleViewController: UIViewController {
         view.addSubview(emptyMsg)
         view.addSubview(tableView)
         
-   
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addNewSchedule))
         
         setupConstraint()
+        customeScheduleNetworkRequest()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        print("on appear")
     }
     func setupConstraint(){
         
         tableView.showsVerticalScrollIndicator = false
         tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0);
-    
+        
         tableView.contentInset.bottom = 90
         tableView.backgroundColor = .white
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.allowsSelection = true
+//        tableView.allowsSelection = true
         
         tableView.register(PlanCell.self, forCellReuseIdentifier: "planCell")
         
@@ -72,7 +81,7 @@ class CustomScheduleViewController: UIViewController {
             const.bottom.equalTo(view.safeAreaLayoutGuide)
             
         }
- 
+        
         
     }
     @objc func addNewSchedule(sender : UIButton){
@@ -80,20 +89,62 @@ class CustomScheduleViewController: UIViewController {
         self.present(ExerciseListViewController(), animated: true, completion: nil)
     }
     
+    func customeScheduleNetworkRequest () {
+        
+        
+        NetworkManager.shared.defaultNetworkRequest(url: HealthAndFitnessBase.BaseURL + "custom/exercise", header: ["Authorization":(KeychainWrapper.standard.string(forKey: "accessToken") ?? "")], requestMethod: .get, showIndicator: true, indicatorParent: self.view, success: { response in
+            
+            
+            if response["status"].boolValue {
+                
+                self.exerciseArray = response["data"]
+                if(self.exerciseArray.count > 0){
+                    self.emptyMsg.isHidden = true
+                    self.tableView.isHidden = false
+                }else{
+                    self.emptyMsg.isHidden = false
+                    self.tableView.isHidden = true
+                }
+                self.tableView.reloadData()
+                
+            }else{
+                
+                HealthAndFitnessBase.shared.showToastMessage(title: "Custom schedule", message: response["data"].stringValue)
+                
+            }
+        }){errorString in
+            print(errorString)
+            
+            HealthAndFitnessBase.shared.showToastMessage(title: "Custom schedule", message: "Something went wrong. Please try again")
+            
+        }
+    }
+    
     
 }
 extension CustomScheduleViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return exerciseArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "planCell", for: indexPath) as! PlanCell
         
+        cell.exerciseName.text =  exerciseArray[indexPath.row]["name"].stringValue
+        cell.exerciseImage.kf.setImage(with: URL(string:   "https://post.healthline.com/wp-content/uploads/2020/02/man-exercising-plank-push-up-732x549-thumbnail.jpg"))
+        
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      
+            let exerciseDetailViewController = ExerciseDetailViewController()
+            exerciseDetailViewController.selectedExercise = exerciseArray[indexPath.row]
+            exerciseDetailViewController.isDefaultCategory = false
+            navigationController?.pushViewController(exerciseDetailViewController, animated: false)
+        
     }
     
 }
