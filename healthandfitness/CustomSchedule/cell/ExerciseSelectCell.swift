@@ -8,10 +8,12 @@
 import Foundation
 import UIKit
 
-class ExerciseSelectCell: UITableViewCell {
+class ExerciseSelectCell: UITableViewCell, UITextFieldDelegate {
 
     
     var onSelectExercise: ((_ isSelected : Bool) -> Void)? = nil
+    var onRepChange: ((_ repCount : Int) -> Void)? = nil
+    var onSetChange: ((_ setCount : Int) -> Void)? = nil
     
     let repCount  = UITextField()
     let setCount  = UITextField()
@@ -79,9 +81,14 @@ class ExerciseSelectCell: UITableViewCell {
         accessoryView = selectionSwitch
         accessoryView?.backgroundColor = .white 
         setupConstraint()
+        setCount.delegate = self
+        repCount.delegate = self
         
         selectionSwitch.addTarget(self, action: #selector(changeSelection), for: .valueChanged)
         
+        repCount.addTarget(self, action: #selector(repChange), for: .editingChanged)
+        setCount.addTarget(self, action: #selector(setChange), for: .editingChanged)
+         
     }
     
     private func setupConstraint() {
@@ -89,9 +96,11 @@ class ExerciseSelectCell: UITableViewCell {
         
      
         setCount.updateDesign()
+       
         setCount.keyboardType = .numberPad
         setCount.attributedPlaceholder = NSAttributedString(string: "No of sets", attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2313431799, green: 0.2313894629, blue: 0.2313401997, alpha: 1)])
         repCount.updateDesign()
+        
         repCount.keyboardType = .numberPad
         repCount.attributedPlaceholder = NSAttributedString(string: "No of reps", attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2313431799, green: 0.2313894629, blue: 0.2313401997, alpha: 1)])
 
@@ -147,7 +156,15 @@ class ExerciseSelectCell: UITableViewCell {
         
         onSelectExercise?(selectionSwitch.isOn)
         
+    }
+    @objc func repChange(_ textField: UITextField){
         
+        onRepChange?(Int(textField.text!) ?? 0)
+        
+    }
+    @objc func setChange(_ textField: UITextField){
+        
+        onSetChange?(Int(textField.text!) ?? 0)
         
     }
     
@@ -160,7 +177,7 @@ class ExerciseSelectCell: UITableViewCell {
         let newLength = currentCharacterCount + string.count - range.length
         
         return string.rangeOfCharacter(from: invalidCharacters) == nil && newLength <= 3
-    }
+    } 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
