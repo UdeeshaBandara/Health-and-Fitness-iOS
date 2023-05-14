@@ -97,6 +97,18 @@ class ExerciseCell : UITableViewCell {
         return outerView
         
     }()
+    let markAsCompleteButton : UIButton = {
+        
+        let button = UIButton()
+        button.setTitle("Mark as complete", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font =  UIFont(name: "Roboto-Bold", size: 14)
+        button.backgroundColor = .black
+        button.layer.cornerRadius = 5
+        
+        return button
+        
+    }()
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -115,6 +127,7 @@ class ExerciseCell : UITableViewCell {
         
         hStack.addArrangedSubview(subView)
         hStack.addArrangedSubview(vStack)
+        hStack.addArrangedSubview(markAsCompleteButton)
 
         mainView.addSubview(hStack)
         contentView.addSubview(mainView)
