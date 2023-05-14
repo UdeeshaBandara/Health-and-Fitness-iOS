@@ -128,7 +128,7 @@ class ExerciseListViewController: UIViewController {
                         
                         break;
                     }else{
-                        var sendingItem: JSON = JSON([ "exerciseId" :  item["id"], "repCount" :  item["repCount"], "setCount" : item["setCount"]])
+                        let sendingItem: JSON = JSON([ "exerciseId" :  item["id"], "repCount" :  item["repCount"], "setCount" : item["setCount"]])
                        
                         selectedExercises.append(sendingItem)
                     }

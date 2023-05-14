@@ -21,7 +21,7 @@ class ExerciseDetailViewController: UIViewController {
     let workout: UILabel = {
         let lbl = UILabel()
         lbl.text = "Workout"
-        lbl.font = UIFont(name: "Roboto-MediumItalic", size: 20)
+        lbl.font = UIFont(name: "Roboto-Bold", size: 20)
         lbl.textAlignment = .center
         lbl.textColor = .black
         
@@ -52,7 +52,7 @@ class ExerciseDetailViewController: UIViewController {
     
     let exerciseTitle: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: "Roboto-MediumItalic", size: 16)
+        lbl.font = UIFont(name: "Roboto-Bold", size: 18)
         lbl.textAlignment = .left
         lbl.textColor = .black
         
@@ -93,6 +93,28 @@ class ExerciseDetailViewController: UIViewController {
         return button
         
     }()
+    let outerShade : UIView = {
+        
+        let outerView = UIView()
+        outerView.clipsToBounds = false
+        outerView.layer.backgroundColor =  #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.4)
+        outerView.clipsToBounds = true
+        outerView.layer.cornerRadius = 20
+        return outerView
+        
+    }()
+    
+    let subView : UIView = {
+        
+        let outerView = UIView()
+        outerView.clipsToBounds = false
+        outerView.layer.backgroundColor =  #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.4)
+        outerView.clipsToBounds = true
+        outerView.layer.cornerRadius = 20
+        return outerView
+        
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,7 +123,10 @@ class ExerciseDetailViewController: UIViewController {
         
         view.addSubview(workout)
         
-        vStack.addArrangedSubview(exerciseImage)
+        subView.addSubview(exerciseImage)
+        subView.addSubview(outerShade)
+        
+        vStack.addArrangedSubview(subView)
         vStack.addArrangedSubview(exerciseTitle)
         vStack.addArrangedSubview(exerciseDescription)
         
@@ -114,6 +139,7 @@ class ExerciseDetailViewController: UIViewController {
         setupTableView()
         populateData()
         
+        startButton.addTarget(self, action: #selector(startAction), for: .touchUpInside)
     }
     func setupTableView(){
         
@@ -180,12 +206,40 @@ class ExerciseDetailViewController: UIViewController {
             const.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(5)
             
         }
+        subView.snp.makeConstraints { const in
+            
+            
+            const.height.equalTo(200)
+           
+            
+        }
+        exerciseImage.snp.makeConstraints { const in
+            
+            
+            const.edges.equalTo(subView)
+           
+            
+        }
+        outerShade.snp.makeConstraints { const in
+            
+            
+            const.edges.equalTo(subView)
+           
+            
+        }
     }
     func populateData(){
         exerciseTitle.text = selectedExercise["name"].stringValue
         exerciseDescription.text = selectedExercise["description"].stringValue
+        exerciseImage.kf.setImage(with: URL(string:   selectedExercise["coverImageUrl"].stringValue))
         
         
+    }
+    @objc func startAction(sender : UIButton){
+        let exerciseTrackViewController = ExerciseTrackViewController()
+        exerciseTrackViewController.selectedExerciseList = selectedExercise["exercises"]
+        exerciseTrackViewController.isDefaultCategory = isDefaultCategory
+        navigationController?.pushViewController(exerciseTrackViewController, animated: false)
     }
 }
 extension ExerciseDetailViewController: UITableViewDelegate, UITableViewDataSource{
@@ -210,7 +264,5 @@ extension ExerciseDetailViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(ExerciseTrackViewController(), animated: false)
-    }
+    
 }

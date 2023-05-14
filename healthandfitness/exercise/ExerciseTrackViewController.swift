@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import SnapKit
+import Alamofire
+import SwiftyJSON
+import SwiftKeychainWrapper
+import Kingfisher
 
 class ExerciseTrackViewController: UIViewController {
     
@@ -13,6 +18,10 @@ class ExerciseTrackViewController: UIViewController {
     private var startTime: CFTimeInterval?
     private var elapsed: CFTimeInterval = 0
     private var priorElapsed: CFTimeInterval = 0
+    
+    var selectedExerciseList : JSON = ""
+    
+    var isDefaultCategory : Bool = true
     
     let trackWorkout: UILabel = {
         let lbl = UILabel()
@@ -86,6 +95,15 @@ class ExerciseTrackViewController: UIViewController {
         return imgView
     }()
     
+    let tableView : UITableView = {
+        
+        let myTableView = UITableView(frame: CGRect(x: 100, y: 101, width: 202, height: 2 - 1))
+        myTableView.register(ExerciseCell.self, forCellReuseIdentifier: "exerciseCell")
+        myTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        return myTableView
+        
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -97,12 +115,40 @@ class ExerciseTrackViewController: UIViewController {
         view.addSubview(trackWorkout)
         view.addSubview(hStack)
         view.addSubview(hStackButtons)
-        setupConstraint()
         
+        view.addSubview(tableView)
+        setupConstraint()
+        setupTableView()
         
         startPauseButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(startPauseTimer(sender:))))
         resetButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(resetTimer(sender:))))
+        
+        
     }
+    
+    func setupTableView(){
+        
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.backgroundColor = .white
+        tableView.contentInset.bottom = 50
+        tableView.contentInset.top = 20
+        
+        tableView.snp.makeConstraints { const in
+            
+            
+            const.centerX.equalTo(view)
+            const.width.equalTo(view)
+            const.top.equalTo(hStackButtons.snp.bottom).offset(10)
+            const.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(10)
+            
+            
+        }
+    }
+    
     
     func setupConstraint(){
         
@@ -205,18 +251,25 @@ extension ExerciseTrackViewController{
 }
 extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return selectedExerciseList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =   tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! ExerciseCell
+        cell.exerciseName.text =  selectedExerciseList[indexPath.row]["name"].stringValue
+        if(isDefaultCategory){
+            cell.repSetCount.text =  "3 Reps X 4 Sets"
+        }else{
+            
+            cell.repSetCount.text =  "\(selectedExerciseList[indexPath.row]["customScheduleExercises"]["repCount"].stringValue) Reps X \(selectedExerciseList[indexPath.row]["customScheduleExercises"]["setCount"].stringValue) Sets"
+        }
+        cell.exerciseImage.kf.setImage(with: URL(string:   selectedExerciseList[indexPath.row]["coverImageUrl"].stringValue))
+   
         return cell
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(ExerciseTrackViewController(), animated: false)
-    }
+  
 }
