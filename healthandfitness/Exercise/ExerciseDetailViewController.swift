@@ -22,7 +22,7 @@ class ExerciseDetailViewController: UIViewController {
         let lbl = UILabel()
         lbl.text = "Workout"
         lbl.font = UIFont(name: "Roboto-Bold", size: 20)
-        lbl.textAlignment = .center
+        lbl.textAlignment = .left
         lbl.textColor = .black
         
         return lbl
@@ -115,6 +115,19 @@ class ExerciseDetailViewController: UIViewController {
         
     }()
     
+    let remindMeLaterButton : UIButton = {
+        
+        let button = UIButton()
+        button.setTitle("Remind me later", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font =  UIFont(name: "Roboto-Bold", size: 18)
+        button.backgroundColor = .black
+        button.layer.cornerRadius = 5
+        
+        return button
+        
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,6 +135,7 @@ class ExerciseDetailViewController: UIViewController {
         view.backgroundColor = .white
         
         view.addSubview(workout)
+        view.addSubview(remindMeLaterButton)
         
         subView.addSubview(exerciseImage)
         subView.addSubview(outerShade)
@@ -172,9 +186,17 @@ class ExerciseDetailViewController: UIViewController {
         workout.snp.makeConstraints { const in
             
             
-            const.centerX.equalTo(view)
-            const.width.equalTo(view).inset(20)
+            const.leading.equalTo(view).offset(20)
             const.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            
+            
+        }
+        remindMeLaterButton.snp.makeConstraints { const in
+
+ 
+            const.centerY.equalTo(workout)
+            const.width.equalTo(160)
+            const.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
             
             
         }
