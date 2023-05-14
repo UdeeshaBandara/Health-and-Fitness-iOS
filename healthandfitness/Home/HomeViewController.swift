@@ -256,7 +256,10 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(indexPath.section == 1){
-            navigationController?.pushViewController(ExerciseDetailViewController(), animated: false)
+            let exerciseDetailViewController = ExerciseDetailViewController()
+            exerciseDetailViewController.selectedExercise = exerciseArray[indexPath.row]
+            exerciseDetailViewController.isDefaultCategory = true
+            navigationController?.pushViewController(exerciseDetailViewController, animated: false)
         }
     }
     

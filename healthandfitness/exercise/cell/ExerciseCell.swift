@@ -76,7 +76,27 @@ class ExerciseCell : UITableViewCell {
         return lbl
     }()
     
-   
+    let outerShade : UIView = {
+        
+        let outerView = UIView()
+        outerView.clipsToBounds = false
+        outerView.layer.backgroundColor =  #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.4)
+        outerView.clipsToBounds = true
+        outerView.layer.cornerRadius = 20
+        return outerView
+        
+    }()
+    
+    let subView : UIView = {
+        
+        let outerView = UIView()
+        outerView.clipsToBounds = false
+        outerView.layer.backgroundColor =  #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.4)
+        outerView.clipsToBounds = true
+        outerView.layer.cornerRadius = 20
+        return outerView
+        
+    }()
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -90,7 +110,10 @@ class ExerciseCell : UITableViewCell {
         vStack.addArrangedSubview(exerciseName)
         vStack.addArrangedSubview(repSetCount)
         
-        hStack.addArrangedSubview(exerciseImage)
+        subView.addSubview(exerciseImage)
+        subView.addSubview(outerShade)
+        
+        hStack.addArrangedSubview(subView)
         hStack.addArrangedSubview(vStack)
 
         mainView.addSubview(hStack)
@@ -109,10 +132,24 @@ class ExerciseCell : UITableViewCell {
             const.width.equalTo(contentView).inset(20)
             const.centerX.equalTo(contentView)
         }
-        exerciseImage.snp.makeConstraints { const in
+        subView.snp.makeConstraints { const in
 
             const.height.width.equalTo(90)
             const.centerY.equalTo(mainView)
+            const.leading.equalTo(mainView).inset(10)
+
+        }
+        exerciseImage.snp.makeConstraints { const in
+
+            const.edges.equalTo(subView)
+            
+
+        }
+        
+        
+        outerShade.snp.makeConstraints { const in
+
+            const.edges.equalTo(subView)
 
         }
         

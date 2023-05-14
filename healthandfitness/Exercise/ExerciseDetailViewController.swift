@@ -6,9 +6,17 @@
 //
 
 import UIKit
+import SnapKit
+import Alamofire
+import SwiftyJSON
+import SwiftKeychainWrapper
+import Kingfisher
 
 class ExerciseDetailViewController: UIViewController {
     
+    var selectedExercise : JSON = ""
+    
+    var isDefaultCategory : Bool = true
     
     let workout: UILabel = {
         let lbl = UILabel()
@@ -44,7 +52,6 @@ class ExerciseDetailViewController: UIViewController {
     
     let exerciseTitle: UILabel = {
         let lbl = UILabel()
-        lbl.text = "Hand Training"
         lbl.font = UIFont(name: "Roboto-MediumItalic", size: 16)
         lbl.textAlignment = .left
         lbl.textColor = .black
@@ -54,7 +61,6 @@ class ExerciseDetailViewController: UIViewController {
     
     let exerciseDescription: UILabel = {
         let lbl = UILabel()
-        lbl.text = "The lower abdomen and hips are the most difficult areas of the body to reduce when we are on a diet. Even so, in this area, especially the legs as a whole, you can reduce weight even if you don't use tools."
         lbl.font = UIFont(name: "Roboto-Regular", size: 12)
         lbl.textAlignment = .justified
         lbl.textColor = .black
@@ -106,6 +112,7 @@ class ExerciseDetailViewController: UIViewController {
         setupConstraint()
         
         setupTableView()
+        populateData()
         
     }
     func setupTableView(){
@@ -174,14 +181,29 @@ class ExerciseDetailViewController: UIViewController {
             
         }
     }
+    func populateData(){
+        exerciseTitle.text = selectedExercise["name"].stringValue
+        exerciseDescription.text = selectedExercise["description"].stringValue
+        
+        
+    }
 }
 extension ExerciseDetailViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return selectedExercise["exercises"].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =   tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! ExerciseCell
+        cell.exerciseName.text =  selectedExercise["exercises"][indexPath.row]["name"].stringValue
+        if(isDefaultCategory){
+            cell.repSetCount.text =  "3 Reps X 4 Sets"
+        }else{
+            
+            cell.repSetCount.text =  "\(selectedExercise["exercises"][indexPath.row]["customScheduleExercises"]["repCount"].stringValue) Reps X \(selectedExercise["exercises"][indexPath.row]["customScheduleExercises"]["setCount"].stringValue) Sets"
+        }
+        cell.exerciseImage.kf.setImage(with: URL(string:   selectedExercise["exercises"][indexPath.row]["coverImageUrl"].stringValue))
+   
         return cell
         
     }
