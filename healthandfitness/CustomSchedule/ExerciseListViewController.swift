@@ -38,19 +38,6 @@ class ExerciseListViewController: UIViewController {
     }()
     
     
-    let submitButton : UIButton = {
-        
-        let button = UIButton()
-        button.setTitle("Save", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font =  UIFont(name: "Roboto-Bold", size: 18)
-        button.backgroundColor = .black
-        button.layer.cornerRadius = 5
-        return button
-        
-    }()
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,11 +46,15 @@ class ExerciseListViewController: UIViewController {
         view.addSubview(titleExercise)
         
         view.addSubview(tableView)
-        view.addSubview(submitButton)
         setupConstraint()
         exerciseListNetworkRequest()
         
-        submitButton.addTarget(self, action: #selector(nextStep), for: .touchUpInside)
+        
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButtonTapped))
+        let saveButton = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(nextStep))
+        
+        navigationItem.leftBarButtonItem = cancelButton
+        navigationItem.rightBarButtonItem = saveButton
     }
     func setupConstraint(){
         
@@ -106,14 +97,7 @@ class ExerciseListViewController: UIViewController {
             const.bottom.equalTo(view.safeAreaLayoutGuide)
             
         }
-        submitButton.snp.makeConstraints { const in
-            
-            const.width.equalTo(view.snp.width).inset(20)
-            const.centerX.equalTo(view)
-            const.height.equalTo(45)
-            const.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-            
-        }
+        
         
     }
     @objc func nextStep(sender : UIButton){
@@ -143,6 +127,11 @@ class ExerciseListViewController: UIViewController {
             }
             
         }
+    }
+    
+    @objc func cancelButtonTapped() {
+        // Handle the cancel button action
+        dismiss(animated: true, completion: nil)
     }
     
     func exerciseListNetworkRequest () {
@@ -181,7 +170,7 @@ class ExerciseListViewController: UIViewController {
             
             if response["status"].boolValue {
                 
-
+                
                 self.dismiss(animated: true,completion: {
                     
                     HealthAndFitnessBase.shared.showToastMessage(title: "Custom schedule", message: "Schedule added successfully", type: 0)
@@ -243,7 +232,7 @@ extension ExerciseListViewController: UITableViewDelegate, UITableViewDataSource
         }
         
         cell.onSetChange = { setCount in
-           
+            
             self.exerciseArray[indexPath.row]["setCount"] = JSON(setCount)
             
             

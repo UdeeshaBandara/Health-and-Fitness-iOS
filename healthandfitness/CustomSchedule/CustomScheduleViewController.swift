@@ -86,7 +86,9 @@ class CustomScheduleViewController: UIViewController {
     }
     @objc func addNewSchedule(sender : UIButton){
         let exerciseListViewController = ExerciseListViewController()
-        self.present(exerciseListViewController, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: exerciseListViewController)
+
+        self.present(navigationController, animated: true, completion: nil)
         exerciseListViewController.onDismiss = {
             self.customeScheduleNetworkRequest()
         }
