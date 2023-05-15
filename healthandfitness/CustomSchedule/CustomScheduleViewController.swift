@@ -46,10 +46,10 @@ class CustomScheduleViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addNewSchedule))
         
         setupConstraint()
-        customeScheduleNetworkRequest()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
-        print("on appear")
+        customeScheduleNetworkRequest()
     }
     func setupConstraint(){
         

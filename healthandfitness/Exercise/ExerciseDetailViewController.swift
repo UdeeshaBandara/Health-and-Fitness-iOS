@@ -22,6 +22,7 @@ class ExerciseDetailViewController: UIViewController {
     
     let store = EKEventStore()
     
+    
     let workout: UILabel = {
         let lbl = UILabel()
         lbl.text = "Workout"
@@ -270,6 +271,7 @@ class ExerciseDetailViewController: UIViewController {
     }
     @objc func remindLater(sender : UIButton){
         let eventVC = EKEventEditViewController()
+        
         
         store.requestAccess(to: .event){ [weak self] success, error in
             if success, error == nil{

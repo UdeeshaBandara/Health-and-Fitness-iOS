@@ -37,6 +37,7 @@
 		493F7AB12A07FD8B008C0E40 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F7AB02A07FD8B008C0E40 /* HomeViewController.swift */; };
 		493F7AB32A0803D5008C0E40 /* WizardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F7AB22A0803D5008C0E40 /* WizardController.swift */; };
 		4954C6612A0D83E2009576B4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4954C6602A0D83E2009576B4 /* Kingfisher */; };
+		496EA0F82A11FE6600A08FF3 /* LKRulerPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 496EA0F72A11FE6600A08FF3 /* LKRulerPicker */; };
 		498374D92A10F3EE00E9554F /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498374D82A10F3EE00E9554F /* GoalViewController.swift */; };
 		498374DB2A10F59000E9554F /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498374DA2A10F59000E9554F /* GoalCell.swift */; };
 		498BB5542A0874BA008EEA5B /* LGSideMenuController in Frameworks */ = {isa = PBXBuildFile; productRef = 498BB5532A0874BA008EEA5B /* LGSideMenuController */; };
@@ -96,6 +97,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				498BB5542A0874BA008EEA5B /* LGSideMenuController in Frameworks */,
+				496EA0F82A11FE6600A08FF3 /* LKRulerPicker in Frameworks */,
 				49CBACCA2A0C08C200053342 /* SwiftyJSON in Frameworks */,
 				49CBACCF2A0C0AE200053342 /* SwiftMessages in Frameworks */,
 				49A4A8952A04D964005A4DC2 /* SnapKit in Frameworks */,
@@ -283,6 +285,7 @@
 				49CBACCE2A0C0AE200053342 /* SwiftMessages */,
 				49CBACD42A0C0EB800053342 /* SwiftKeychainWrapper */,
 				4954C6602A0D83E2009576B4 /* Kingfisher */,
+				496EA0F72A11FE6600A08FF3 /* LKRulerPicker */,
 			);
 			productName = healthandfitness;
 			productReference = 493F6EF42A04C61E00A721DA /* healthandfitness.app */;
@@ -323,6 +326,7 @@
 				49CBACCD2A0C0AE200053342 /* XCRemoteSwiftPackageReference "SwiftMessages" */,
 				49CBACD32A0C0EB800053342 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
 				4954C65F2A0D83E2009576B4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				496EA0F62A11FE6600A08FF3 /* XCRemoteSwiftPackageReference "LKRulerPicker" */,
 			);
 			productRefGroup = 493F6EF52A04C61E00A721DA /* Products */;
 			projectDirPath = "";
@@ -622,6 +626,14 @@
 				minimumVersion = 7.6.2;
 			};
 		};
+		496EA0F62A11FE6600A08FF3 /* XCRemoteSwiftPackageReference "LKRulerPicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lalkrishna/LKRulerPicker";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
 		498BB5522A0874BA008EEA5B /* XCRemoteSwiftPackageReference "LGSideMenuController" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Friend-LGA/LGSideMenuController.git";
@@ -695,6 +707,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4954C65F2A0D83E2009576B4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		496EA0F72A11FE6600A08FF3 /* LKRulerPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 496EA0F62A11FE6600A08FF3 /* XCRemoteSwiftPackageReference "LKRulerPicker" */;
+			productName = LKRulerPicker;
 		};
 		498BB5532A0874BA008EEA5B /* LGSideMenuController */ = {
 			isa = XCSwiftPackageProductDependency;

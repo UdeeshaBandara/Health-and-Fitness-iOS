@@ -15,7 +15,7 @@ class ExerciseListViewController: UIViewController {
     
     
     var exerciseArray : JSON = ""
-     
+    
     
     let scheduleName  = UITextField()
     
@@ -48,7 +48,7 @@ class ExerciseListViewController: UIViewController {
         return button
         
     }()
-     
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +71,7 @@ class ExerciseListViewController: UIViewController {
         
         tableView.showsVerticalScrollIndicator = false
         tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0);
-    
+        
         tableView.contentInset.bottom = 90
         tableView.backgroundColor = .white
         
@@ -119,25 +119,28 @@ class ExerciseListViewController: UIViewController {
         if(scheduleName.text == ""){
             HealthAndFitnessBase.shared.showToastMessage(title: "Custom schedule", message: "Please enter schedule name")
         }else{
-            var selectedExercises = [(JSON)]()
+            
+            var selectedExercises: [[String: Any]] = []
             for item in self.exerciseArray.arrayValue {
                 if(item["isChecked"].boolValue){
                     if(item["repCount"].intValue == 0 || item["setCount"].intValue == 0 ){
                         
                         HealthAndFitnessBase.shared.showToastMessage(title: "Custom schedule", message: "Please enter rep and set counts")
                         
-                        break;
+                        return
                     }else{
-                        let sendingItem: JSON = JSON([ "exerciseId" :  item["id"], "repCount" :  item["repCount"], "setCount" : item["setCount"]])
-                       
+                        let sendingItem = ["exerciseId":  item["id"].intValue, "repCount":  item["repCount"].intValue, "setCount" : item["setCount"].intValue]
+                        
                         selectedExercises.append(sendingItem)
                     }
                 }
             }
             if(selectedExercises.count>0){
                 saveCustomeScheduleNetworkRequest(selectedExercises: selectedExercises)
+            }else{
+                HealthAndFitnessBase.shared.showToastMessage(title: "Custom schedule", message: "Please select at least one exercise")
             }
-           
+            
         }
     }
     
@@ -164,24 +167,28 @@ class ExerciseListViewController: UIViewController {
             
         }
     }
-    func saveCustomeScheduleNetworkRequest ( selectedExercises : [(JSON)]) {
-   
-
+    func saveCustomeScheduleNetworkRequest ( selectedExercises : [[String: Any]]) {
+        
+        
     
         
-        let param = [
-            "name" : scheduleName.text!,
-            "exercises" : NSArray(array:[selectedExercises]),
+        let reqBody: [String: Any] = [
+            "exercises" : selectedExercises,
+            "name" :  scheduleName.text!
         ] as [String : Any]
         
-        print(param)
+ 
         
-        NetworkManager.shared.jsonArrayRequest(url: HealthAndFitnessBase.BaseURL + "custom/exercise", header: ["Authorization":(KeychainWrapper.standard.string(forKey: "accessToken") ?? "")], param: selectedExercises,  success: { response in
+        NetworkManager.shared.defaultNetworkRequest(url: HealthAndFitnessBase.BaseURL + "custom/exercise", header: ["Authorization":(KeychainWrapper.standard.string(forKey: "accessToken") ?? "")], param: reqBody, requestMethod: .post, showIndicator: true, indicatorParent: self.view, encoder: JSONEncoding.default, success: { response in
             
             
             if response["status"].boolValue {
                 
-                self.dismiss(animated: true)
+
+                self.dismiss(animated: true,completion: {
+                    
+                    HealthAndFitnessBase.shared.showToastMessage(title: "Custom schedule", message: "Schedule added successfully", type: 0)
+                })
                 
             }else{
                 
@@ -189,7 +196,6 @@ class ExerciseListViewController: UIViewController {
                 
             }
         }){errorString in
-            print(errorString)
             
             HealthAndFitnessBase.shared.showToastMessage(title: "Custom schedule", message: "Something went wrong. Please try again")
             
@@ -199,7 +205,7 @@ class ExerciseListViewController: UIViewController {
 }
 extension ExerciseListViewController: UITableViewDelegate, UITableViewDataSource{
     
- 
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return exerciseArray.count
@@ -207,11 +213,11 @@ extension ExerciseListViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "exerciseSelectCell", for: indexPath) as! ExerciseSelectCell
-         
+        
         cell.selectionStyle = .none
         cell.exerciseLabel.text = exerciseArray[indexPath.row]["name"].stringValue
         cell.repCount.text = exerciseArray[indexPath.row]["repCount"].intValue == 0 ? "" : exerciseArray[indexPath.row]["repCount"].stringValue
-        cell.setCount.text = exerciseArray[indexPath.row]["setCount"].intValue == 0 ? "" : exerciseArray[indexPath.row]["setCount"].stringValue 
+        cell.setCount.text = exerciseArray[indexPath.row]["setCount"].intValue == 0 ? "" : exerciseArray[indexPath.row]["setCount"].stringValue
         cell.exerciseImage.kf.setImage(with: URL(string:   exerciseArray[indexPath.row]["coverImageUrl"].stringValue))
         if(exerciseArray[indexPath.row]["isChecked"].boolValue){
             cell.selectionSwitch.isOn = true
@@ -222,7 +228,7 @@ extension ExerciseListViewController: UITableViewDelegate, UITableViewDataSource
         }
         
         cell.onSelectExercise = { isSelected in
-         
+            
             if(isSelected){
                 self.exerciseArray[indexPath.row]["isChecked"] = true
             }else{
@@ -233,19 +239,16 @@ extension ExerciseListViewController: UITableViewDelegate, UITableViewDataSource
             tableView.reloadData()
         }
         cell.onRepChange = { repCount in
-         
-        print(repCount)
+            
             self.exerciseArray[indexPath.row]["repCount"] = JSON(repCount)
             
- 
         }
         
         cell.onSetChange = { setCount in
-            print(setCount)
-        
+           
             self.exerciseArray[indexPath.row]["setCount"] = JSON(setCount)
             
-     
+            
         }
         
         return cell
