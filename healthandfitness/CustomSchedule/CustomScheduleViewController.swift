@@ -15,6 +15,8 @@ class CustomScheduleViewController: UIViewController {
     
     var exerciseArray : JSON = ""
     
+   
+    
     let emptyMsg: UILabel = {
         let lbl = UILabel()
         lbl.font = UIFont(name: "Roboto-Light", size: 18)
@@ -46,11 +48,10 @@ class CustomScheduleViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addNewSchedule))
         
         setupConstraint()
+        customeScheduleNetworkRequest()
         
     }
-    override func viewWillAppear(_ animated: Bool) {
-        customeScheduleNetworkRequest()
-    }
+    
     func setupConstraint(){
         
         tableView.showsVerticalScrollIndicator = false
@@ -60,8 +61,7 @@ class CustomScheduleViewController: UIViewController {
         tableView.backgroundColor = .white
         
         tableView.delegate = self
-        tableView.dataSource = self
-//        tableView.allowsSelection = true
+        tableView.dataSource = self 
         
         tableView.register(PlanCell.self, forCellReuseIdentifier: "planCell")
         
@@ -85,8 +85,11 @@ class CustomScheduleViewController: UIViewController {
         
     }
     @objc func addNewSchedule(sender : UIButton){
-        
-        self.present(ExerciseListViewController(), animated: true, completion: nil)
+        let exerciseListViewController = ExerciseListViewController()
+        self.present(exerciseListViewController, animated: true, completion: nil)
+        exerciseListViewController.onDismiss = {
+            self.customeScheduleNetworkRequest()
+        }
     }
     
     func customeScheduleNetworkRequest () {

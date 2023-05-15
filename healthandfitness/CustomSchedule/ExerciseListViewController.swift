@@ -16,6 +16,7 @@ class ExerciseListViewController: UIViewController {
     
     var exerciseArray : JSON = ""
     
+    var onDismiss: (() -> Void)?
     
     let scheduleName  = UITextField()
     
@@ -169,15 +170,11 @@ class ExerciseListViewController: UIViewController {
     }
     func saveCustomeScheduleNetworkRequest ( selectedExercises : [[String: Any]]) {
         
-        
-    
-        
         let reqBody: [String: Any] = [
             "exercises" : selectedExercises,
             "name" :  scheduleName.text!
-        ] as [String : Any]
+        ]
         
- 
         
         NetworkManager.shared.defaultNetworkRequest(url: HealthAndFitnessBase.BaseURL + "custom/exercise", header: ["Authorization":(KeychainWrapper.standard.string(forKey: "accessToken") ?? "")], param: reqBody, requestMethod: .post, showIndicator: true, indicatorParent: self.view, encoder: JSONEncoding.default, success: { response in
             
@@ -188,6 +185,7 @@ class ExerciseListViewController: UIViewController {
                 self.dismiss(animated: true,completion: {
                     
                     HealthAndFitnessBase.shared.showToastMessage(title: "Custom schedule", message: "Schedule added successfully", type: 0)
+                    self.onDismiss?()
                 })
                 
             }else{
