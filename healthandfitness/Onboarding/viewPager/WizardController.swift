@@ -17,8 +17,8 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
     var pages = [
         Page(measurement: "", headerText: "", value: -1),
         Page(measurement: "Years", headerText: "Select age", value: 0.0),
-        Page(measurement: "Centimeters", headerText: "Select height", value: 0.0),
-        Page(measurement: "Kg", headerText: "Select weight", value: 0.0),
+        Page(measurement: "Centimeters", headerText: "Select height", value: 150.0),
+        Page(measurement: "Kg", headerText: "Select weight", value: 50.0),
         
     ]
     
@@ -238,6 +238,7 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
             cell.title.text = pages[indexPath.row].headerText
             cell.measurementUnit.text = pages[indexPath.row].measurement
             cell.delegate = self
+            cell.configureCellContent(row: indexPath.row)
             return cell
         }
     }
