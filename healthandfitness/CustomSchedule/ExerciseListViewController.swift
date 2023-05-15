@@ -55,6 +55,9 @@ class ExerciseListViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
+        
+        navigationItem.title = "Create Schedule"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
     }
     func setupConstraint(){
         

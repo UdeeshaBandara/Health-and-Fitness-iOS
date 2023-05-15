@@ -50,6 +50,9 @@ class CustomScheduleViewController: UIViewController {
         setupConstraint()
         customeScheduleNetworkRequest()
         
+        navigationItem.title = "My Schedules"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
     }
     
     func setupConstraint(){

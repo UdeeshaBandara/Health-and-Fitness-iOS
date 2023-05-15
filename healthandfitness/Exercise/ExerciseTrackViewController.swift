@@ -23,15 +23,6 @@ class ExerciseTrackViewController: UIViewController {
 
     var isDefaultCategory : Bool = true
 
-    let trackWorkout: UILabel = {
-        let lbl = UILabel()
-        lbl.text = "Track Your Workout"
-        lbl.font = UIFont(name: "Roboto-Medium", size: 20)
-        lbl.textAlignment = .center
-        lbl.textColor = .black
-
-        return lbl
-    }()
 
     let secondsLabel: UILabel = {
         let lbl = UILabel()
@@ -112,7 +103,6 @@ class ExerciseTrackViewController: UIViewController {
         hStack.addArrangedSubview(secondsLabel)
         hStackButtons.addArrangedSubview(startPauseButton)
         hStackButtons.addArrangedSubview(resetButton)
-        view.addSubview(trackWorkout)
         view.addSubview(hStack)
         view.addSubview(hStackButtons)
 
@@ -122,6 +112,10 @@ class ExerciseTrackViewController: UIViewController {
 
         startPauseButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(startPauseTimer(sender:))))
         resetButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(resetTimer(sender:))))
+        
+        
+        navigationItem.title = "Track Workout"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
 
 
     }
@@ -152,19 +146,10 @@ class ExerciseTrackViewController: UIViewController {
 
     func setupConstraint(){
 
-
-
-        trackWorkout.snp.makeConstraints { const in
-
-            const.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            const.centerX.equalTo(view)
-            const.width.equalTo(view.snp.width).inset(20)
-
-
-        }
+ 
         hStack.snp.makeConstraints { const in
 
-            const.top.equalTo(trackWorkout.snp.bottom).offset(20)
+            const.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             const.centerX.equalTo(view)
             const.width.equalTo(view.snp.width).inset(20)
 

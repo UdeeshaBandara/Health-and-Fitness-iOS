@@ -22,17 +22,7 @@ class ExerciseDetailViewController: UIViewController {
     
     let store = EKEventStore()
     
-    
-    let workout: UILabel = {
-        let lbl = UILabel()
-        lbl.text = "Workout"
-        lbl.font = UIFont(name: "Roboto-Bold", size: 20)
-        lbl.textAlignment = .left
-        lbl.textColor = .black
-        
-        return lbl
-    }()
-    
+  
     
     let vStack : UIStackView = {
         
@@ -138,9 +128,7 @@ class ExerciseDetailViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        
-        view.addSubview(workout)
-        view.addSubview(remindMeLaterButton)
+         
         
         subView.addSubview(exerciseImage)
         subView.addSubview(outerShade)
@@ -160,6 +148,12 @@ class ExerciseDetailViewController: UIViewController {
         
         startButton.addTarget(self, action: #selector(startAction), for: .touchUpInside)
         remindMeLaterButton.addTarget(self, action: #selector(remindLater), for: .touchUpInside)
+        
+        let saveButton = UIBarButtonItem(title: "Add reminder", style: .plain, target: self, action: #selector(remindLater))
+        
+        navigationItem.rightBarButtonItem = saveButton
+        navigationItem.title = "Workout"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
     }
     func setupTableView(){
         
@@ -189,42 +183,16 @@ class ExerciseDetailViewController: UIViewController {
         
         
         
-        workout.snp.makeConstraints { const in
-            
-            
-            const.leading.equalTo(view).offset(20)
-            const.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            
-            
-        }
-        remindMeLaterButton.snp.makeConstraints { const in
-
- 
-            const.centerY.equalTo(workout)
-            const.width.equalTo(160)
-            const.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
-            
-            
-        }
+    
         vStack.snp.makeConstraints { const in
             
             
             const.centerX.equalTo(view)
             const.width.equalTo(view).inset(20)
-            const.top.equalTo(workout.snp.bottom).offset(20)
+            const.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
             
             
-        }
-        
-        vStack.snp.makeConstraints { const in
-            
-            
-            const.centerX.equalTo(view)
-            const.width.equalTo(view).inset(20)
-            const.top.equalTo(workout.snp.bottom).offset(20)
-            
-            
-        }
+        } 
         startButton.snp.makeConstraints { const in
             
             
