@@ -81,7 +81,6 @@ class SideMenuViewController: UIViewController {
         lbl.text = "Logout"
         lbl.font = UIFont(name:"Roboto-Bold",size:18)
         lbl.textAlignment = .center
-        lbl.isUserInteractionEnabled = true
         return lbl
     }()
     
