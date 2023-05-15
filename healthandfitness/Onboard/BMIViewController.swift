@@ -124,49 +124,10 @@ class BMIViewController: UIViewController {
     }
     
     @objc private func handleNext() {
-        updateProfileNetworkRequest()
-        
-    }
-    func updateProfileNetworkRequest () {
-        
-        let param = [
-            
-            "gender" : values[0].value,
-            "weight" : values[3].value,
-            "age" : values[1].value,
-            "bmi" : gaugeSliderView.progress,
-            "height" : values[2].value
-        ] as [String : Any]
-        
-       
-        NetworkManager.shared.defaultNetworkRequest(url: HealthAndFitnessBase.BaseURL + "user/wizard", header: ["Authorization":(KeychainWrapper.standard.string(forKey: "accessToken") ?? "")],param: param, requestMethod: .post, showIndicator: true, indicatorParent: self.view, encoder: JSONEncoding.default, success: { response in
-     
-            if response["status"].boolValue {
-                KeychainWrapper.standard.set( true, forKey: "isWizardCompleted")
-                let sideMenuController = LGSideMenuController()
-                sideMenuController.rootViewController = HomeViewController()
-                sideMenuController.rightViewController = SideMenuViewController()
-                sideMenuController.rightViewPresentationStyle = .slideBelowShifted
-                sideMenuController.rightViewWidth = (UIScreen.main.bounds.width / 3) * 2
-                self.navigationController?.setViewControllers([sideMenuController], animated: true)
-                
-                
-                
-            }else{
-                
-                HealthAndFitnessBase.shared.showToastMessage(title: "Personal Info", message: response["data"].stringValue)
-                
-            }
-            
-            
-            
-        }){errorString in
-            
-            
-            HealthAndFitnessBase.shared.showToastMessage(title: "Personal Info", message: "Something went wrong. Please try again")
-            
-        }
-        
+        let goalViewController = GoalViewController()
+        goalViewController.values = values
+        goalViewController.bmiValue =  gaugeSliderView.value
+        navigationController?.pushViewController(goalViewController, animated: false)
         
     }
 }
