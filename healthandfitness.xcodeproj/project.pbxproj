@@ -37,6 +37,8 @@
 		493F7AB12A07FD8B008C0E40 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F7AB02A07FD8B008C0E40 /* HomeViewController.swift */; };
 		493F7AB32A0803D5008C0E40 /* WizardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F7AB22A0803D5008C0E40 /* WizardController.swift */; };
 		4954C6612A0D83E2009576B4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4954C6602A0D83E2009576B4 /* Kingfisher */; };
+		498374D92A10F3EE00E9554F /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498374D82A10F3EE00E9554F /* GoalViewController.swift */; };
+		498374DB2A10F59000E9554F /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498374DA2A10F59000E9554F /* GoalCell.swift */; };
 		498BB5542A0874BA008EEA5B /* LGSideMenuController in Frameworks */ = {isa = PBXBuildFile; productRef = 498BB5532A0874BA008EEA5B /* LGSideMenuController */; };
 		498BB5572A087503008EEA5B /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BB5562A087503008EEA5B /* SideMenuViewController.swift */; };
 		49A4A8952A04D964005A4DC2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 49A4A8942A04D964005A4DC2 /* SnapKit */; };
@@ -80,6 +82,8 @@
 		493F7AA72A07DB70008C0E40 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		493F7AB02A07FD8B008C0E40 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		493F7AB22A0803D5008C0E40 /* WizardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WizardController.swift; sourceTree = "<group>"; };
+		498374D82A10F3EE00E9554F /* GoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
+		498374DA2A10F59000E9554F /* GoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
 		498BB5562A087503008EEA5B /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		49A4A8962A04D9F1005A4DC2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		49A4A89A2A04DADD005A4DC2 /* HealthAndFitnessBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAndFitnessBase.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 				493F7A9A2A0793B5008C0E40 /* Page.swift */,
 				493F7AB22A0803D5008C0E40 /* WizardController.swift */,
 				493251BC2A0A434F00A3BA28 /* GenderCell.swift */,
+				498374DA2A10F59000E9554F /* GoalCell.swift */,
 			);
 			path = viewPager;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 				49A4A8962A04D9F1005A4DC2 /* LoginViewController.swift */,
 				493B42452A04ECD000808493 /* RegisterViewController.swift */,
 				493251BA2A0A3EDE00A3BA28 /* BMIViewController.swift */,
+				498374D82A10F3EE00E9554F /* GoalViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -363,6 +369,7 @@
 				492521E42A084F3C00C93682 /* HeaderCell.swift in Sources */,
 				493F7AB12A07FD8B008C0E40 /* HomeViewController.swift in Sources */,
 				493251BD2A0A434F00A3BA28 /* GenderCell.swift in Sources */,
+				498374DB2A10F59000E9554F /* GoalCell.swift in Sources */,
 				493251BB2A0A3EDE00A3BA28 /* BMIViewController.swift in Sources */,
 				493B42462A04ECD000808493 /* RegisterViewController.swift in Sources */,
 				493F6EF82A04C61E00A721DA /* AppDelegate.swift in Sources */,
@@ -371,6 +378,7 @@
 				493F7AB32A0803D5008C0E40 /* WizardController.swift in Sources */,
 				491756C22A0D924900117589 /* ExerciseListViewController.swift in Sources */,
 				498BB5572A087503008EEA5B /* SideMenuViewController.swift in Sources */,
+				498374D92A10F3EE00E9554F /* GoalViewController.swift in Sources */,
 				493251C62A0B4A2900A3BA28 /* ExerciseCell.swift in Sources */,
 				493F6EFA2A04C61E00A721DA /* SceneDelegate.swift in Sources */,
 			);

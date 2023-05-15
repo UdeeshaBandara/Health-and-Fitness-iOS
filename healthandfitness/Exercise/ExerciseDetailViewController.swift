@@ -11,12 +11,16 @@ import Alamofire
 import SwiftyJSON
 import SwiftKeychainWrapper
 import Kingfisher
+import EventKit
+import EventKitUI
 
 class ExerciseDetailViewController: UIViewController {
     
     var selectedExercise : JSON = ""
     
     var isDefaultCategory : Bool = true
+    
+    let store = EKEventStore()
     
     let workout: UILabel = {
         let lbl = UILabel()
@@ -154,6 +158,7 @@ class ExerciseDetailViewController: UIViewController {
         populateData()
         
         startButton.addTarget(self, action: #selector(startAction), for: .touchUpInside)
+        remindMeLaterButton.addTarget(self, action: #selector(remindLater), for: .touchUpInside)
     }
     func setupTableView(){
         
@@ -263,6 +268,31 @@ class ExerciseDetailViewController: UIViewController {
         exerciseTrackViewController.isDefaultCategory = isDefaultCategory
         navigationController?.pushViewController(exerciseTrackViewController, animated: false)
     }
+    @objc func remindLater(sender : UIButton){
+        let eventVC = EKEventEditViewController()
+        
+        store.requestAccess(to: .event){ [weak self] success, error in
+            if success, error == nil{
+                DispatchQueue.main.async {
+                    guard let store = self?.store else {return}
+                    let event = EKEvent(eventStore: store)
+                    event.title = self?.selectedExercise["name"].stringValue
+                    event.startDate = Date()
+                    event.endDate = Date()
+                    
+                    
+                    eventVC.eventStore = store
+                    eventVC.event = event
+                    eventVC.editViewDelegate = self
+                    self?.present(eventVC, animated: true)
+                    
+                }
+            }
+            
+        }
+        
+        
+    }
 }
 extension ExerciseDetailViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -286,5 +316,18 @@ extension ExerciseDetailViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
+ 
+}
+extension ExerciseDetailViewController: EKEventEditViewDelegate {
     
+    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+        
+       
+        controller.dismiss(animated: true, completion: {
+            
+             if(action == EKEventEditViewAction.saved){
+                 HealthAndFitnessBase.shared.showToastMessage(title: "Reminder", message: "Successfully added a new reminder to your calendar",type: 0)
+             }
+        })
+    }
 }
