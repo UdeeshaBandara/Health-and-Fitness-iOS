@@ -238,6 +238,7 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
             cell.title.text = pages[indexPath.row].headerText
             cell.measurementUnit.text = pages[indexPath.row].measurement
             cell.delegate = self
+            cell.configureCellContent(row: indexPath.row)
             return cell
         }
     }
