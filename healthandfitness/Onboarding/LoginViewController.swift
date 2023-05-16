@@ -81,8 +81,7 @@ class LoginViewController: UIViewController {
         lbl.numberOfLines = 0
         lbl.sizeToFit()
         lbl.text = "Don't have an account? Sign Up"
-        lbl.font = UIFont(name:"Roboto-Light",size:100)
-        lbl.font = lbl.font.withSize(14)
+        lbl.font = UIFont(name:"Roboto-Light",size:12)
         lbl.isUserInteractionEnabled = true
         lbl.textAlignment = .center
         
@@ -109,6 +108,21 @@ class LoginViewController: UIViewController {
         register.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openRegistration(sender:))))
         
         submitButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openWizard(sender:))))
+        
+        let attributedText = NSMutableAttributedString(string: "Don't have an account? Sign Up")
+        
+        print(register.text!.count)
+        
+        let firstColorRange = NSRange(location: 0, length: 21)
+        attributedText.addAttribute(.foregroundColor, value: UIColor.black, range: firstColorRange)
+
+     
+        let secondColorRange = NSRange(location: 22, length: 8)
+        attributedText.addAttribute(.foregroundColor, value: #colorLiteral(red: 0.9386845231, green: 0.352627635, blue: 0.1541865468, alpha: 1) , range: secondColorRange)
+        attributedText.addAttribute(.font, value: UIFont(name:"Roboto-Bold",size:14)!, range: secondColorRange)
+
+        
+        register.attributedText = attributedText
         
     }
     func setupConstraint(){
