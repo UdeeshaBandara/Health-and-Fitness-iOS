@@ -19,13 +19,33 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     let password  = UITextField()
     let phone  = UITextField()
     
+    
+    let logo : UIImageView = {
+        let imgView = UIImageView(image: #imageLiteral(resourceName: "icon"))
+        imgView.contentMode = .scaleAspectFit
+        imgView.clipsToBounds = true
+        return imgView
+    }()
+    
     let signUpLabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
         lbl.numberOfLines = 0
         lbl.sizeToFit()
         lbl.text = "Sign Up"
-        lbl.font = UIFont(name:"Roboto-Bold",size:30)
+        lbl.font = UIFont(name:"Roboto-MediumItalic",size:30)
+        lbl.textAlignment = .center
+        
+        return lbl
+    }()
+    
+    let subLabel : UILabel = {
+        let lbl = UILabel()
+        lbl.textColor = #colorLiteral(red: 0.9386845231, green: 0.352627635, blue: 0.1541865468, alpha: 1)
+        lbl.numberOfLines = 0
+        lbl.sizeToFit()
+        lbl.text = "Go ahead and fill your details"
+        lbl.font = UIFont(name:"Roboto-Regular",size:18)
         lbl.textAlignment = .center
         
         return lbl
@@ -62,9 +82,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         lbl.textColor = .black
         lbl.numberOfLines = 0
         lbl.sizeToFit()
-        lbl.text = "Already have an account? Sign in"
-        lbl.font = UIFont(name:"Roboto-Light",size:100)
-        lbl.font = lbl.font.withSize(14)
+        lbl.font = UIFont(name:"Roboto-Light",size:12)
         lbl.textAlignment = .center
         lbl.isUserInteractionEnabled = true
         return lbl
@@ -77,6 +95,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(scrollView)
         
         
+        view.addSubview(logo)
+        view.addSubview(subLabel)
         view.addSubview(signUpLabel)
         view.addSubview(loginLabel)
         vStack.addArrangedSubview(name)
@@ -90,6 +110,20 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         loginLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openLogin(sender:))))
         
         submitButton.addTarget(self, action: #selector(performRegistration), for: .touchUpInside)
+        
+        let attributedText = NSMutableAttributedString(string: "Already have an account? Sign in")
+        
+        
+        let firstColorRange = NSRange(location: 0, length: 24)
+        attributedText.addAttribute(.foregroundColor, value: UIColor.black, range: firstColorRange)
+        attributedText.addAttribute(.font, value: UIFont(name:"Roboto-Medium",size:12)!, range: firstColorRange)
+     
+        let secondColorRange = NSRange(location: 24, length: 8)
+        attributedText.addAttribute(.foregroundColor, value: #colorLiteral(red: 0.9386845231, green: 0.352627635, blue: 0.1541865468, alpha: 1) , range: secondColorRange)
+        attributedText.addAttribute(.font, value: UIFont(name:"Roboto-Bold",size:14)!, range: secondColorRange)
+
+        
+        loginLabel.attributedText = attributedText
         
         
     }
@@ -114,29 +148,45 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         phone.attributedPlaceholder = NSAttributedString(string: "Phone", attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2313431799, green: 0.2313894629, blue: 0.2313401997, alpha: 1)])
         password.isSecureTextEntry = true
         
+        logo.snp.makeConstraints { const in
+            
+            
+            const.top.equalTo(view.safeAreaLayoutGuide)
+            const.leading.equalTo(view).inset(20)
+            const.width.height.equalTo(140)
+            
+            
+        }
         signUpLabel.snp.makeConstraints { const in
             
-            
-            const.top.equalTo(view.safeAreaLayoutGuide).inset(40)
-            const.centerX.equalTo(view.snp.centerX)
+            const.top.equalTo(logo.snp.bottom).offset(20)
+            const.leading.equalTo(view).inset(20)
             
         }
+        subLabel.snp.makeConstraints { const in
+            
+            
+            const.top.equalTo(signUpLabel.snp.bottom).offset(20)
+            const.leading.equalTo(view).inset(20)
+            
+        }
+        
         
         scrollView.snp.makeConstraints { const in
-            const.center.equalTo(view)
-            const.width.equalTo(view.snp.width).inset(20)
-            const.top.equalTo(signUpLabel.snp.bottom)
+           
+            const.width.equalTo(view.snp.width)
+            const.top.equalTo(subLabel.snp.bottom).offset(10)
+            const.bottom.equalTo(loginLabel.snp.top)
+
         }
-        
+
         vStack.snp.makeConstraints { const in
-            
-            
-            const.centerY.equalTo(scrollView.snp.centerY)
-            const.width.equalTo(scrollView.snp.width)
-            
+            const.top.bottom.equalTo(scrollView)
+            const.centerX.equalTo(scrollView)
+            const.width.equalTo(scrollView).inset(20)
         }
-        
-        
+
+ 
         email.snp.makeConstraints { const in
             
             const.height.equalTo(45)
@@ -166,7 +216,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             
             const.height.equalTo(45)
             const.centerX.equalTo(view.snp.centerX)
-            const.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(20)
+            const.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
         
@@ -181,7 +231,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @objc func openLogin(sender : UIButton){
         
        
-        navigationController?.popViewController(animated: false)
+        navigationController?.popViewController(animated: true)
         
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

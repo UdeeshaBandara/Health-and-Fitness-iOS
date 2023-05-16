@@ -79,8 +79,7 @@ class LoginViewController: UIViewController {
         let lbl = UILabel()
         lbl.textColor = .black
         lbl.numberOfLines = 0
-        lbl.sizeToFit()
-        lbl.text = "Don't have an account? Sign Up"
+        lbl.sizeToFit() 
         lbl.font = UIFont(name:"Roboto-Light",size:12)
         lbl.isUserInteractionEnabled = true
         lbl.textAlignment = .center
@@ -111,11 +110,9 @@ class LoginViewController: UIViewController {
         
         let attributedText = NSMutableAttributedString(string: "Don't have an account? Sign Up")
         
-        print(register.text!.count)
-        
-        let firstColorRange = NSRange(location: 0, length: 21)
+         let firstColorRange = NSRange(location: 0, length: 21)
         attributedText.addAttribute(.foregroundColor, value: UIColor.black, range: firstColorRange)
-
+        attributedText.addAttribute(.font, value: UIFont(name:"Roboto-Medium",size:12)!, range: firstColorRange)
      
         let secondColorRange = NSRange(location: 22, length: 8)
         attributedText.addAttribute(.foregroundColor, value: #colorLiteral(red: 0.9386845231, green: 0.352627635, blue: 0.1541865468, alpha: 1) , range: secondColorRange)
@@ -123,6 +120,7 @@ class LoginViewController: UIViewController {
 
         
         register.attributedText = attributedText
+        
         
     }
     func setupConstraint(){
@@ -168,9 +166,10 @@ class LoginViewController: UIViewController {
         }
 
         vStack.snp.makeConstraints { const in
+            const.top.bottom.equalTo(scrollView)
             const.centerX.equalTo(scrollView)
-            const.width.equalTo(view.snp.width).inset(20)
-            const.top.equalTo(scrollView).inset(10)
+            const.width.equalTo(scrollView).inset(20)
+            
         }
 
         email.snp.makeConstraints { const in
@@ -202,7 +201,7 @@ class LoginViewController: UIViewController {
     }
     @objc func openRegistration(sender : UIButton){
         
-        navigationController?.pushViewController(RegisterViewController(), animated: false)
+        navigationController?.pushViewController(RegisterViewController(), animated: true)
         
     }
     @objc func openWizard(sender : UIButton){
