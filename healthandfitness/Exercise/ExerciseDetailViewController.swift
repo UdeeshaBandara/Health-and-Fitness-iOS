@@ -189,7 +189,7 @@ class ExerciseDetailViewController: UIViewController {
             
             const.centerX.equalTo(view)
             const.width.equalTo(view).inset(20)
-            const.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            const.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
             
             
         } 

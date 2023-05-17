@@ -27,9 +27,9 @@ class HomeViewController: UIViewController {
     
     let greeting: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: "Roboto-Regular", size: 14)
+        lbl.font = UIFont(name: "Roboto-Regular", size: 16)
         lbl.textAlignment = .left
-        lbl.textColor = .black
+        lbl.textColor = #colorLiteral(red: 0.9386845231, green: 0.352627635, blue: 0.1541865468, alpha: 1)
         
         return lbl
     }()

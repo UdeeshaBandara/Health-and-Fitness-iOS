@@ -46,32 +46,7 @@ class SideMenuViewController: UIViewController {
         return lbl
     }()
 
-    let aboutUsLabel : UILabel = {
-        let lbl = UILabel()
-        lbl.textColor = .white
-        lbl.numberOfLines = 0
-        lbl.sizeToFit()
-        lbl.isUserInteractionEnabled = true
-        lbl.text = "About Us"
-        lbl.font = UIFont(name:"Roboto-Bold",size:18)
-        lbl.textAlignment = .center
-       
-        return lbl
-    }()
-    
-    let contactUsLabel : UILabel = {
-        let lbl = UILabel()
-        lbl.textColor = .white
-        lbl.numberOfLines = 0
-        lbl.sizeToFit()
-        lbl.isUserInteractionEnabled = true
-        lbl.text = "Contact Us"
-        lbl.font = UIFont(name:"Roboto-Bold",size:18)
-        lbl.textAlignment = .center
-       
-        return lbl
-    }()
-    
+   
     let logoutLabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .white
@@ -103,13 +78,7 @@ class SideMenuViewController: UIViewController {
         return view
         
     }()
-    let deviderSecond : UIView = {
-        
-        let view = UIView()
-        view.backgroundColor = #colorLiteral(red: 0.9611677527, green: 0.525033772, blue: 0.3648735881, alpha: 0.7)
-        return view
-        
-    }()
+  
     let deviderBottom : UIView = {
         
         let view = UIView()
@@ -141,9 +110,7 @@ class SideMenuViewController: UIViewController {
         
         vStack.addArrangedSubview(scheduleLabel)
         vStack.addArrangedSubview(devider)
-        vStack.addArrangedSubview(aboutUsLabel)
-        vStack.addArrangedSubview(deviderSecond)
-        vStack.addArrangedSubview(contactUsLabel)
+       
         
         scrollView.addSubview(vStack)
         
@@ -157,9 +124,7 @@ class SideMenuViewController: UIViewController {
         menuClose.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeMenu(sender:))))
         
         scheduleLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openSchedule(sender:))))
-        aboutUsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openAboutUs(sender:))))
-        
-        contactUsLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openContactUs(sender:))))
+ 
         logoutLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(logout(sender:))))
     
     }
@@ -229,17 +194,7 @@ class SideMenuViewController: UIViewController {
         }
         devider.snp.makeConstraints { const in
 
-            const.height.equalTo(1)
-
-
-
-        }
-        deviderSecond.snp.makeConstraints { const in
-
-            const.height.equalTo(1)
-
-
-
+            const.height.equalTo(1) 
         }
        
         
@@ -253,14 +208,6 @@ class SideMenuViewController: UIViewController {
         self.sideMenuController?.hideRightView(animated: true)
         navigationController?.pushViewController(CustomScheduleViewController(), animated: false)
         
-    }
-    @objc func openContactUs(sender : UIButton){
-       
-        
-    }
-    @objc func openAboutUs(sender : UIButton){
-        
-      
     }
     @objc func logout(sender : UIButton){
         KeychainWrapper.standard.removeAllKeys()

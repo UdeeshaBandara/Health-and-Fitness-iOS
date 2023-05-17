@@ -86,8 +86,8 @@ class PlanCell : UITableViewCell {
         let progressView = UIProgressView(progressViewStyle: .bar)
         
         progressView.setProgress(28/100, animated: true)
-        progressView.trackTintColor = .lightGray
-        progressView.tintColor =  #colorLiteral(red: 0.1739547849, green: 0.1889386177, blue: 0.209122628, alpha: 1)
+        progressView.trackTintColor = #colorLiteral(red: 0.9386845231, green: 0.352627635, blue: 0.1541865468, alpha: 0.5)
+        progressView.tintColor =  #colorLiteral(red: 0.9386845231, green: 0.352627635, blue: 0.1541865468, alpha: 0.8871326573)
         progressView.layer.cornerRadius = 10
         progressView.clipsToBounds = true
         return progressView

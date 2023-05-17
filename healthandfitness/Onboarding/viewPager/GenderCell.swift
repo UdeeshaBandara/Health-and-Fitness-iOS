@@ -175,7 +175,7 @@ class GenderCell: UICollectionViewCell, UITextFieldDelegate {
     @objc private func selectMale(sender : UITapGestureRecognizer) {
         
      
-        vStackMale.layer.borderColor =   #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        vStackMale.layer.borderColor =    #colorLiteral(red: 0.9386845231, green: 0.352627635, blue: 0.1541865468, alpha: 0.8871326573)
         vStackMale.layer.borderWidth = 2
         maleLablel .font = UIFont(name: "Roboto-Bold", size: 22)
         femaleLablel.font = UIFont(name: "Roboto-Regular", size: 20)
@@ -190,7 +190,7 @@ class GenderCell: UICollectionViewCell, UITextFieldDelegate {
     @objc private func selectFemale(sender : UITapGestureRecognizer) {
         
      
-        vStackFemale.layer.borderColor =   #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        vStackFemale.layer.borderColor =    #colorLiteral(red: 0.9386845231, green: 0.352627635, blue: 0.1541865468, alpha: 0.8871326573)
         vStackFemale.layer.borderWidth = 2
         femaleLablel .font = UIFont(name: "Roboto-Bold", size: 22)
         maleLablel.font = UIFont(name: "Roboto-Regular", size: 20)

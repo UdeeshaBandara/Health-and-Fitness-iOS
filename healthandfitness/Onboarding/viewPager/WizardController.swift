@@ -67,8 +67,8 @@ class WizardController : UICollectionViewController, UICollectionViewDelegateFlo
         let pc = UIPageControl()
         pc.currentPage = 0
         pc.numberOfPages = pages.count
-        pc.currentPageIndicatorTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        pc.pageIndicatorTintColor =  #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.3662820778)
+        pc.currentPageIndicatorTintColor = #colorLiteral(red: 0.9386845231, green: 0.352627635, blue: 0.1541865468, alpha: 0.8871326573)
+        pc.pageIndicatorTintColor =  #colorLiteral(red: 0.9386845231, green: 0.352627635, blue: 0.1541865468, alpha: 0.5)
         return pc
     }()
     

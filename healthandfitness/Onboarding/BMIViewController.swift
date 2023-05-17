@@ -17,15 +17,7 @@ import SwiftKeychainWrapper
 class BMIViewController: UIViewController {
     
     var values = [Page]()
-    
-    let mainTitle: UILabel = {
-        let lbl = UILabel()
-        lbl.font = UIFont(name: "Roboto-Bold", size: 24)
-        lbl.textAlignment = .center
-        lbl.textColor = .black
-        lbl.text = "Your BMI value"
-        return lbl
-    }()
+
     
     let gaugeSliderView: GaugeSliderView = {
         let width = UIScreen.main.bounds.width
@@ -43,6 +35,7 @@ class BMIViewController: UIViewController {
         gaugeSliderView.maxValue = 45
         gaugeSliderView.minValue = 14
         gaugeSliderView.placeholderFont = UIFont(name: "Roboto-Regular", size: 16)!
+        gaugeSliderView.placeholderColor =  #colorLiteral(red: 0.9386845231, green: 0.352627635, blue: 0.1541865468, alpha: 0.8871326573)
         gaugeSliderView.unitIndicatorFont = UIFont(name: "Roboto-Regular", size: 16)!
         gaugeSliderView.unitFont = UIFont.systemFont(ofSize: 40)
         gaugeSliderView.placeholder = "BMI"
@@ -69,7 +62,6 @@ class BMIViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        view.addSubview(mainTitle)
         view.addSubview(gaugeSliderView)
         view.addSubview(continueButton)
         
@@ -79,16 +71,12 @@ class BMIViewController: UIViewController {
         
         calculateBMI()
         
+        navigationItem.title = "Your BMI value"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
     }
     
     func setupConstraint(){
-        mainTitle.snp.makeConstraints { const in
-            
-            const.width.equalTo(view).inset(20)
-            const.centerX.equalTo(view)
-            const.top.equalTo(view.safeAreaLayoutGuide).inset(15)
-            
-        }
         continueButton.snp.makeConstraints { const in
             
             const.width.equalTo(view).inset(20)
@@ -119,7 +107,7 @@ class BMIViewController: UIViewController {
         }
         
         gaugeSliderView.customControlButtonTitle = interpretation
-        gaugeSliderView.progress = CGFloat(bmi)
+        gaugeSliderView.value = CGFloat(bmi)
         
     }
     

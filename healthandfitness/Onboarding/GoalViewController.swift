@@ -22,15 +22,6 @@ class GoalViewController: UIViewController {
     
     var values = [Page]()
     
-    let goalName: UILabel = {
-        let lbl = UILabel()
-        lbl.text = "Select your Goal"
-        lbl.font = UIFont(name: "Roboto-Bold", size: 18)
-        lbl.textAlignment = .center
-        lbl.textColor = .black
-        
-        return lbl
-    }()
     
     let tableView : UITableView = {
         
@@ -58,33 +49,29 @@ class GoalViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        view.addSubview(tableView)
-        view.addSubview(goalName)
+        view.addSubview(tableView) 
         view.addSubview(letsStarteButton)
         setupConstraint()
         setupTableView()
         goalListNetworkRequest()
         
         letsStarteButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
+        
+        
+        navigationItem.title = "Select your Goal"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
     }
     
     func setupConstraint(){
         
         
-        
-        goalName.snp.makeConstraints { const in
-            
-            const.centerX.equalTo(view)
-            const.width.equalTo(view)
-            const.top.equalTo(view.safeAreaLayoutGuide)
-            
-        }
         tableView.snp.makeConstraints { const in
             
             const.centerX.equalTo(view)
             const.width.equalTo(view).inset(10)
             const.bottom.equalTo(view).offset(10)
-            const.top.equalTo(goalName.snp.bottom).offset(10)
+            const.top.equalTo(view.safeAreaLayoutGuide).offset(10)
             
         }
         
@@ -201,7 +188,7 @@ extension GoalViewController: UITableViewDelegate, UITableViewDataSource{
         cell.goalName.text = goalList[indexPath.row]["name"].stringValue
         cell.goalImage.kf.setImage(with: URL(string:   goalList[indexPath.row]["iconUrl"].stringValue))
         if(selectedIndex == goalList[indexPath.row]["id"].intValue){
-            cell.mainView.layer.borderColor =  #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            cell.mainView.layer.borderColor =   #colorLiteral(red: 0.9386845231, green: 0.352627635, blue: 0.1541865468, alpha: 0.8871326573)
         }else{
             cell.mainView.layer.borderColor =  #colorLiteral(red: 0.8944590688, green: 0.9143784642, blue: 0.9355253577, alpha: 1)
         }

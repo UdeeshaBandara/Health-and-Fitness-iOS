@@ -172,6 +172,9 @@ class WizardCell: UICollectionViewCell, UITextFieldDelegate {
             alignment: .start,
             metrics: heightMetrics,
             isHapticsEnabled: true)
+        heightPicker.highlightTextColor =   #colorLiteral(red: 0.9386845231, green: 0.352627635, blue: 0.1541865468, alpha: 0.8871326573)
+        heightPicker.highlightFont =   UIFont(name: "Roboto-Bold", size: 18)!
+        heightPicker.font = UIFont(name: "Roboto-Medium", size: 18)!
         heightPicker.dataSource = self
         heightPicker.delegate = self
     }
@@ -198,8 +201,9 @@ class WizardCell: UICollectionViewCell, UITextFieldDelegate {
             midLineSize: 32,
             smallLineSize: 22)
         weightPicker.configuration = LKRulerPickerConfiguration(scrollDirection: .horizontal, alignment: .end, metrics: weightMetrics)
-        weightPicker.font = UIFont(name: "AmericanTypewriter-Bold", size: 12)!
-        weightPicker.highlightFont = UIFont(name: "AmericanTypewriter-Bold", size: 18)!
+        weightPicker.font = UIFont(name: "Roboto-Medium", size: 18)!
+        weightPicker.highlightTextColor =   #colorLiteral(red: 0.9386845231, green: 0.352627635, blue: 0.1541865468, alpha: 0.8871326573)
+        weightPicker.highlightFont = UIFont(name: "Roboto-Bold", size: 18)!
         weightPicker.dataSource = self
         weightPicker.delegate = self
     }
