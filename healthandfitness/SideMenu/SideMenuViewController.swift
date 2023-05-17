@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftKeychainWrapper
 
 class SideMenuViewController: UIViewController {
     
@@ -199,6 +198,18 @@ class SideMenuViewController: UIViewController {
        
         
     }
+    func presentPopup() {
+        let popupViewController = LogoutViewController()
+        
+        // Customize the presentation style of the popup (optional)
+        popupViewController.modalPresentationStyle = .overCurrentContext
+        popupViewController.modalTransitionStyle = .crossDissolve
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+            let window = windowScene.windows.first {
+             window.rootViewController?.present(popupViewController, animated: true, completion: nil)
+         }
+    }
     @objc func closeMenu(sender : UIButton){
      
         self.sideMenuController?.hideRightView(animated: true)
@@ -210,8 +221,7 @@ class SideMenuViewController: UIViewController {
         
     }
     @objc func logout(sender : UIButton){
-        KeychainWrapper.standard.removeAllKeys()
-        navigationController?.setViewControllers([LoginViewController()], animated: true)
+        presentPopup()
     }
    
     

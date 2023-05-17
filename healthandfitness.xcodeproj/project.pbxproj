@@ -45,6 +45,7 @@
 		49A4A8952A04D964005A4DC2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 49A4A8942A04D964005A4DC2 /* SnapKit */; };
 		49A4A8972A04D9F1005A4DC2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A4A8962A04D9F1005A4DC2 /* LoginViewController.swift */; };
 		49A4A89B2A04DADD005A4DC2 /* HealthAndFitnessBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A4A89A2A04DADD005A4DC2 /* HealthAndFitnessBase.swift */; };
+		49B5F1CB2A15333300BA2CEB /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B5F1CA2A15333300BA2CEB /* LogoutViewController.swift */; };
 		49CBACC42A0C058F00053342 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 49CBACC32A0C058F00053342 /* JGProgressHUD */; };
 		49CBACC72A0C086A00053342 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 49CBACC62A0C086A00053342 /* Alamofire */; };
 		49CBACCA2A0C08C200053342 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 49CBACC92A0C08C200053342 /* SwiftyJSON */; };
@@ -88,6 +89,7 @@
 		498BB5562A087503008EEA5B /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		49A4A8962A04D9F1005A4DC2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		49A4A89A2A04DADD005A4DC2 /* HealthAndFitnessBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAndFitnessBase.swift; sourceTree = "<group>"; };
+		49B5F1CA2A15333300BA2CEB /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
 		49CBACCB2A0C090F00053342 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +171,7 @@
 		493F6EF62A04C61E00A721DA /* healthandfitness */ = {
 			isa = PBXGroup;
 			children = (
+				49B5F1C92A1532FD00BA2CEB /* Popup */,
 				4954C6622A0D8B29009576B4 /* CustomSchedule */,
 				493251C32A0B49EF00A3BA28 /* Exercise */,
 				498BB5552A0874C6008EEA5B /* SideMenu */,
@@ -256,6 +259,14 @@
 				49CBACCB2A0C090F00053342 /* NetworkManager.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		49B5F1C92A1532FD00BA2CEB /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				49B5F1CA2A15333300BA2CEB /* LogoutViewController.swift */,
+			);
+			path = Popup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,6 +393,7 @@
 				493F7AB32A0803D5008C0E40 /* WizardController.swift in Sources */,
 				491756C22A0D924900117589 /* ExerciseListViewController.swift in Sources */,
 				498BB5572A087503008EEA5B /* SideMenuViewController.swift in Sources */,
+				49B5F1CB2A15333300BA2CEB /* LogoutViewController.swift in Sources */,
 				498374D92A10F3EE00E9554F /* GoalViewController.swift in Sources */,
 				493251C62A0B4A2900A3BA28 /* ExerciseCell.swift in Sources */,
 				493F6EFA2A04C61E00A721DA /* SceneDelegate.swift in Sources */,

@@ -35,7 +35,7 @@ class HomeViewController: UIViewController {
     }()
     let userName: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: "Roboto-Medium", size: 20)
+        lbl.font = UIFont(name: "Roboto-Bold", size: 20)
         lbl.textAlignment = .left
         lbl.textColor = .black
         

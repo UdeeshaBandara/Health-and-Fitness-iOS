@@ -156,3 +156,17 @@ extension UIView {
     }
 
 }
+extension UIViewController {
+    func findNearestNavigationController() -> UINavigationController? {
+        var viewController: UIViewController? = self
+
+        while viewController != nil {
+            if let navigationController = viewController as? UINavigationController {
+                return navigationController
+            }
+            viewController = viewController?.parent
+        }
+
+        return nil
+    }
+}
