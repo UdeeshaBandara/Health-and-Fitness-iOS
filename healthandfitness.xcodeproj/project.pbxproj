@@ -52,6 +52,7 @@
 		49CBACCC2A0C090F00053342 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CBACCB2A0C090F00053342 /* NetworkManager.swift */; };
 		49CBACCF2A0C0AE200053342 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 49CBACCE2A0C0AE200053342 /* SwiftMessages */; };
 		49CBACD52A0C0EB800053342 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 49CBACD42A0C0EB800053342 /* SwiftKeychainWrapper */; };
+		49DA19C72A162CB70095884D /* ExerciseTrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DA19C62A162CB70095884D /* ExerciseTrackCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -91,6 +92,7 @@
 		49A4A89A2A04DADD005A4DC2 /* HealthAndFitnessBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAndFitnessBase.swift; sourceTree = "<group>"; };
 		49B5F1CA2A15333300BA2CEB /* LogoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
 		49CBACCB2A0C090F00053342 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		49DA19C62A162CB70095884D /* ExerciseTrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTrackCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				493251C52A0B4A2900A3BA28 /* ExerciseCell.swift */,
+				49DA19C62A162CB70095884D /* ExerciseTrackCell.swift */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 			files = (
 				492521DF2A0822BF00C93682 /* PlanCell.swift in Sources */,
 				49A4A89B2A04DADD005A4DC2 /* HealthAndFitnessBase.swift in Sources */,
+				49DA19C72A162CB70095884D /* ExerciseTrackCell.swift in Sources */,
 				492521E22A0829C800C93682 /* PopularSubCell.swift in Sources */,
 				49CBACCC2A0C090F00053342 /* NetworkManager.swift in Sources */,
 				49A4A8972A04D9F1005A4DC2 /* LoginViewController.swift in Sources */,

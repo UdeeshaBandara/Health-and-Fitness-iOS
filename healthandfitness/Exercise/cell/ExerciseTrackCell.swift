@@ -1,15 +1,15 @@
 //
-//  ExerciseCell.swift
+//  ExerciseTrackCell.swift
 //  healthandfitness
 //
-//  Created by Udeesha Induras on 2023-05-10.
+//  Created by Udeesha Induras on 2023-05-18.
 //
 
 import Foundation
 import UIKit
 import SnapKit
 
-class ExerciseCell : UITableViewCell {
+class ExerciseTrackCell : UITableViewCell {
     
 
     let mainView : UIView = {
@@ -28,6 +28,18 @@ class ExerciseCell : UITableViewCell {
         
         stackView.alignment = .leading
         stackView.distribution = .fillEqually
+        stackView.spacing  = 10
+        stackView.axis = .vertical
+        return stackView
+        
+    }()
+    let vStackMain : UIStackView = {
+        
+        let stackView = UIStackView()
+        
+        stackView.alignment = .leading
+        stackView.distribution = .fill
+ 
         stackView.spacing  = 10
         stackView.axis = .vertical
         return stackView
@@ -54,7 +66,7 @@ class ExerciseCell : UITableViewCell {
     }()
     
     let exerciseName: UILabel = {
-        let lbl = UILabel() 
+        let lbl = UILabel()
         lbl.font = UIFont(name: "Roboto-MediumItalic", size: 14)
         lbl.textAlignment = .left
         lbl.textColor = .black
@@ -93,6 +105,19 @@ class ExerciseCell : UITableViewCell {
         return outerView
         
     }()
+    let markAsCompleteButton : UIButton = {
+        
+        let button = UIButton()
+        button.setTitle("Mark as completed", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font =  UIFont(name: "Roboto-Bold", size: 12)
+        button.backgroundColor = .black
+        button.layer.cornerRadius = 5
+        button.isHidden = true
+        
+        return button
+        
+    }()
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -110,12 +135,13 @@ class ExerciseCell : UITableViewCell {
         subView.addSubview(outerShade)
         
         hStack.addArrangedSubview(subView)
-        hStack.addArrangedSubview(vStack) 
+        hStack.addArrangedSubview(vStack)
 
-        mainView.addSubview(hStack)
+        vStackMain.addArrangedSubview(hStack)
+        vStackMain.addArrangedSubview(markAsCompleteButton)
+        
+        mainView.addSubview(vStackMain)
         contentView.addSubview(mainView)
-        
-        
         
         setupConstraint()
         
@@ -124,24 +150,21 @@ class ExerciseCell : UITableViewCell {
     func setupConstraint(){
         mainView.snp.makeConstraints { const in
  
-            const.height.equalTo(110)
+            const.height.equalTo(160)
             const.width.equalTo(contentView).inset(20)
             const.centerX.equalTo(contentView)
         }
         subView.snp.makeConstraints { const in
 
             const.height.width.equalTo(90)
-            const.centerY.equalTo(mainView)
+            const.top.equalTo(mainView).offset(10)
             const.leading.equalTo(mainView).inset(10)
 
         }
         exerciseImage.snp.makeConstraints { const in
 
             const.edges.equalTo(subView)
-            
-
         }
-        
         
         outerShade.snp.makeConstraints { const in
 
@@ -149,20 +172,20 @@ class ExerciseCell : UITableViewCell {
 
         }
         
-        hStack.snp.makeConstraints { const in
+        vStackMain.snp.makeConstraints { const in
             
             const.width.equalTo(mainView)
             const.centerY.equalTo(mainView)
 
            
         }
-        vStack.snp.makeConstraints { const in
-            
-            const.centerY.equalTo(mainView)
+        markAsCompleteButton.snp.makeConstraints { const in
+             
+            const.width.equalTo(vStackMain).inset(10)
            
         }
         
-       
     }
 }
+
 

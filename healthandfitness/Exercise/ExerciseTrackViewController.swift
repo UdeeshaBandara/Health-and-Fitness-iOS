@@ -23,6 +23,7 @@ class ExerciseTrackViewController: UIViewController {
     
     var isDefaultCategory : Bool = true
     
+    var currentExerciseIndex : Int = -1
     
     let secondsLabel: UILabel = {
         let lbl = UILabel()
@@ -89,7 +90,7 @@ class ExerciseTrackViewController: UIViewController {
     let tableView : UITableView = {
         
         let myTableView = UITableView(frame: CGRect(x: 100, y: 101, width: 202, height: 2 - 1))
-        myTableView.register(ExerciseCell.self, forCellReuseIdentifier: "exerciseCell")
+        myTableView.register(ExerciseTrackCell.self, forCellReuseIdentifier: "exerciseTrackCell")
         myTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         return myTableView
         
@@ -180,8 +181,9 @@ class ExerciseTrackViewController: UIViewController {
         super.viewWillDisappear(animated)
 
         if self.isMovingFromParent {
-            // Your code...
-            print("woww")
+            if displayLink == nil {
+                HealthAndFitnessBase.shared.showToastMessage(title: "Tracker", message: "Successfully added a new reminder to your calendar",type: 0)
+            }
         }
     }
     
@@ -247,10 +249,30 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =   tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! ExerciseCell
+        let cell =   tableView.dequeueReusableCell(withIdentifier: "exerciseTrackCell", for: indexPath) as! ExerciseTrackCell
+//        
+//        if(currentExerciseIndex > indexPath.row){
+//            
+//            cell.markAsCompleteButton.isOn = true
+//        }else{
+//            cell.markAsCompleteButton.isOn = false
+//            
+//        }
+        
+        if (currentExerciseIndex == indexPath.row){
+            
+            cell.mainView.layer.borderColor =   #colorLiteral(red: 0.9386845231, green: 0.352627635, blue: 0.1541865468, alpha: 0.8871326573)
+            cell.mainView.layer.borderWidth = 2
+            
+        }else{
+            cell.mainView.layer.borderColor =  #colorLiteral(red: 0.8944590688, green: 0.9143784642, blue: 0.9355253577, alpha: 1)
+            cell.mainView.layer.borderWidth = 0
+        }
+        cell.markAsCompleteButton.isHidden = false
         cell.exerciseName.text =  selectedExerciseList[indexPath.row]["name"].stringValue
         if(isDefaultCategory){
             cell.repSetCount.text =  "3 Reps X 4 Sets"
+           
         }else{
             
             cell.repSetCount.text =  "\(selectedExerciseList[indexPath.row]["customScheduleExercises"]["repCount"].stringValue) Reps X \(selectedExerciseList[indexPath.row]["customScheduleExercises"]["setCount"].stringValue) Sets"
@@ -261,7 +283,23 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 170
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        currentExerciseIndex = indexPath.row
+        tableView.reloadData()
+    }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action: UIContextualAction = UIContextualAction(style: .normal, title: nil) { (_, _, completionHandler) in
+            
+            
+            completionHandler(true)
+        }
+        
+        action.image = UIImage(systemName: "info.circle", withConfiguration: UIImage.SymbolConfiguration(weight: .bold))?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        action.backgroundColor = UIColor.systemBlue
+        return UISwipeActionsConfiguration(actions: [action])
     }
     
 }
