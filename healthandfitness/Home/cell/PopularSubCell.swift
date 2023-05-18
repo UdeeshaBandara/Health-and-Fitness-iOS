@@ -41,30 +41,7 @@ class PopularSubCell : UICollectionViewCell {
         
         return lbl
     }()
-    let duration : PaddingLabel = {
-        let lbl = PaddingLabel(withInsets: 5,5,8,8)
-        lbl.textColor = .black
-        lbl.numberOfLines = 2
-        lbl.sizeToFit()
-        lbl.font = lbl.font.withSize(14)
-        lbl.textAlignment = .left
-        lbl.layer.cornerRadius = 5
-        lbl.clipsToBounds = true
-        lbl.backgroundColor =   #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.8)
-        return lbl
-    }()
-    let cal : PaddingLabel = {
-        let lbl = PaddingLabel(withInsets: 5,5,8,8)
-        lbl.textColor = .black
-        lbl.numberOfLines = 2
-        lbl.sizeToFit()
-        lbl.font = lbl.font.withSize(14)
-        lbl.textAlignment = .left
-        lbl.clipsToBounds = true
-        lbl.layer.cornerRadius = 5
-        lbl.backgroundColor =   #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.8)
-        return lbl
-    }()
+    
     
     let vStack : UIStackView = {
         
@@ -83,19 +60,10 @@ class PopularSubCell : UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
-        
-        cal.text = " 600 Kcal"
-        duration.text = " 40 Min"
-        cal.addImage(imageName: "cal")
-        duration.addImage(imageName: "timer")
-        
-//        outerView.applyGradient(isVertical: false, colorArray: [.green, .blue])
+         
         contentView.addSubview(backgroundImage)
         contentView.addSubview(outerView)
-        vStack.addArrangedSubview(title)
-        vStack.addArrangedSubview(cal)
-        vStack.addArrangedSubview(duration)
+        vStack.addArrangedSubview(title) 
         
         contentView.addSubview(vStack)
         setupConstraint()

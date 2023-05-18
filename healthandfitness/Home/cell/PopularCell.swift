@@ -13,7 +13,14 @@ import SwiftyJSON
 import SwiftKeychainWrapper
 import Kingfisher
 
+protocol NavigationDelegate: AnyObject {
+    func onCellClick(category selectedPopularCategory : JSON)
+}
+
+
 class PopularCell : UITableViewCell {
+    
+    weak var delegate: NavigationDelegate?
     
     let popluarCollection = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
     
@@ -111,7 +118,7 @@ extension PopularCell : UICollectionViewDataSource, UICollectionViewDelegate, UI
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        
+        self.delegate?.onCellClick(category: popularExerciseArray[indexPath.row])
         
     }
     

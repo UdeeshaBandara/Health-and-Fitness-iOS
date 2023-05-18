@@ -31,7 +31,7 @@ class PlanCell : UITableViewCell {
         
         let stackView = UIStackView()
         stackView.alignment = .leading
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fill
         stackView.spacing  = 10
         stackView.axis = .vertical
  
@@ -62,7 +62,6 @@ class PlanCell : UITableViewCell {
     
     let exerciseName: UILabel = {
         let lbl = UILabel()
-        lbl.text = "Push Up"
         lbl.font = UIFont(name: "Roboto-Bold", size: 14)
         lbl.textAlignment = .left
         lbl.textColor = .black
@@ -72,12 +71,9 @@ class PlanCell : UITableViewCell {
         
     let repCount: UILabel = {
         let lbl = UILabel()
-        lbl.text = "100 Push up a day"
         lbl.font = UIFont(name: "Roboto-Regular", size: 14)
         lbl.textAlignment = .left
         lbl.textColor = .black
-        lbl.isUserInteractionEnabled = true
-        
         return lbl
     }()
     
@@ -183,16 +179,10 @@ class PlanCell : UITableViewCell {
         progressView.snp.makeConstraints { const in
             
             const.width.equalTo(vStack).inset(10)
+            const.height.equalTo(15)
            
         }
        
-    }
-    
-    
-    @objc func closeMenu(sender : UIButton){
-     
-
-        
-    }
+    } 
 }
 

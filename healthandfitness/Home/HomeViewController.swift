@@ -219,7 +219,7 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
             
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "popularCell", for: indexPath) as! PopularCell
-            
+            cell.delegate = self
             return cell
             
         default:
@@ -256,10 +256,8 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(indexPath.section == 1){
-            let exerciseDetailViewController = ExerciseDetailViewController()
-            exerciseDetailViewController.selectedExercise = exerciseArray[indexPath.row]
-            exerciseDetailViewController.isDefaultCategory = true
-            navigationController?.pushViewController(exerciseDetailViewController, animated: false)
+            navigateToExerciseDetails(category: exerciseArray[indexPath.row])
+          
         }
     }
     
@@ -267,6 +265,17 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
         
         self.sideMenuController?.showRightView(animated: true)
     }
-    
+    func navigateToExerciseDetails(category selectedPopularCategory: JSON){
+        let exerciseDetailViewController = ExerciseDetailViewController()
+        exerciseDetailViewController.selectedExercise = selectedPopularCategory
+        exerciseDetailViewController.isDefaultCategory = true
+        self.navigationController?.pushViewController(exerciseDetailViewController, animated: false)
+    }
 }
 
+extension HomeViewController: NavigationDelegate {
+    func onCellClick(category selectedPopularCategory: JSON) {
+        navigateToExerciseDetails(category: selectedPopularCategory)
+    }
+    
+}

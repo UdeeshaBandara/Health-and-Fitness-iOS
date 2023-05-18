@@ -54,8 +54,7 @@ class ExerciseCell : UITableViewCell {
     }()
     
     let exerciseName: UILabel = {
-        let lbl = UILabel()
-        lbl.text = "Push Up"
+        let lbl = UILabel() 
         lbl.font = UIFont(name: "Roboto-MediumItalic", size: 14)
         lbl.textAlignment = .left
         lbl.textColor = .black
