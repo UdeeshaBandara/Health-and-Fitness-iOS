@@ -185,12 +185,12 @@ extension CustomScheduleViewController: UITableViewDelegate, UITableViewDataSour
         
     }
     func readStoredData(){
-        let completedExercises = KeychainWrapper.standard.string(forKey: "completedCustomExercises") ?? "{}"
+        let completedExercises = KeychainWrapper.standard.string(forKey: "completedCustomExercises") ?? "[]"
       
         if let jsonData = completedExercises.data(using: .utf8) {
             let json = try? JSON(data: jsonData)
             
-            completedExerciseList = json ?? "{}"
+            completedExerciseList = json ?? "[]"
             
             
         } else {
