@@ -12,6 +12,7 @@ import SwiftKeychainWrapper
 protocol LogoutViewControllerDelegate: AnyObject {
     func onLogout()
     func onClearLogs()
+    func onChangeGoal()
 }
 
 class PopupViewController: UIViewController {
@@ -136,6 +137,8 @@ class PopupViewController: UIViewController {
                 self.delegate?.onLogout()
             }else if(self.type == 2){
                 self.delegate?.onClearLogs()
+            }else if(self.type == 3){
+                self.delegate?.onChangeGoal()
             }
         })
     }

@@ -59,7 +59,8 @@ class GoalViewController: UIViewController {
         letsStarteButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
         
         
-        navigationItem.title = isFromOnboarding ? "Select your Goal" : "Change your Goal" 
+        navigationItem.title = isFromOnboarding ? "Select your Goal" : "Change your Goal"
+        letsStarteButton.setTitle(isFromOnboarding ? "Let's start" : "Change my Goal", for: .normal)
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         
         if(!isFromOnboarding){
@@ -115,7 +116,12 @@ class GoalViewController: UIViewController {
             updateProfileNetworkRequest()
         }else{
             
-            updatePersonalGoalNetworkRequest()
+            let popupViewController = PopupViewController()
+            popupViewController.type = 3
+            popupViewController.messageText = "Are you sure you want to change your goal?"
+            presentPopup(viewControllerInstance: popupViewController)
+            
+            
         }
         
     }
@@ -199,6 +205,7 @@ class GoalViewController: UIViewController {
                
                 self.dismiss(animated: true,completion: {
                     
+                    KeychainWrapper.standard.set( self.selectedIndex, forKey: "personalGoalsId")
                     HealthAndFitnessBase.shared.showToastMessage(title: "Personal Info", message: response["data"].stringValue, type: 0)
                 })
                 
@@ -219,6 +226,18 @@ class GoalViewController: UIViewController {
         }
         
         
+    }
+    func presentPopup(viewControllerInstance popupViewController : PopupViewController) {
+        
+        
+        popupViewController.modalPresentationStyle = .overCurrentContext
+        popupViewController.modalTransitionStyle = .crossDissolve
+        popupViewController.delegate = self
+        
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first {
+            window.rootViewController?.present(popupViewController, animated: true, completion: nil)
+        }
     }
     
 }
@@ -250,5 +269,20 @@ extension GoalViewController: UITableViewDelegate, UITableViewDataSource{
         selectedIndex = goalList[indexPath.row]["id"].intValue
         tableView.reloadData()
     }
+    
+}
+extension GoalViewController : LogoutViewControllerDelegate{
+    func onChangeGoal() {
+        updatePersonalGoalNetworkRequest()
+    }
+    
+    func onLogout() {
+         
+    }
+    
+    func onClearLogs() {
+         
+    }
+    
     
 }

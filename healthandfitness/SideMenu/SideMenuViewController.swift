@@ -299,6 +299,10 @@ class SideMenuViewController: UIViewController {
     
 }
 extension SideMenuViewController : LogoutViewControllerDelegate{
+    func onChangeGoal() {
+        
+    }
+    
     func onLogout() {
         KeychainWrapper.standard.removeAllKeys()
         navigationController?.setViewControllers([LoginViewController()], animated: true)
