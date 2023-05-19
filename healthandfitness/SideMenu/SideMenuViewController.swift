@@ -170,6 +170,7 @@ class SideMenuViewController: UIViewController {
         
         scheduleLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openSchedule(sender:))))
         clearLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(clearLogs(sender:))))
+        changeGoalLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openChangeGoal(sender:))))
         
         logoutLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(logout(sender:))))
         
@@ -288,6 +289,10 @@ class SideMenuViewController: UIViewController {
         presentPopup(viewControllerInstance: popupViewController)
     }
     
+    @objc func openChangeGoal(sender : UIButton){
+      
+    }
+    
     
 }
 extension SideMenuViewController : LogoutViewControllerDelegate{
@@ -302,6 +307,7 @@ extension SideMenuViewController : LogoutViewControllerDelegate{
         KeychainWrapper.standard.set("[]", forKey: "completedExercises")
         
         KeychainWrapper.standard.set("[]", forKey: "completedCustomExercises")
+        HealthAndFitnessBase.shared.showToastMessage(title: "Home", message: "All records are reseted", type: 0)
     }
     
     

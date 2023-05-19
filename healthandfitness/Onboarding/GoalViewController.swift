@@ -22,6 +22,7 @@ class GoalViewController: UIViewController {
     
     var values = [Page]()
     
+    var isFromOnboarding : Bool = true
     
     let tableView : UITableView = {
         
@@ -104,8 +105,12 @@ class GoalViewController: UIViewController {
             HealthAndFitnessBase.shared.showToastMessage(title: "Personal Goal", message: "Please select your goal")
             
             
-        }else{
+        }else if(isFromOnboarding){
+            
             updateProfileNetworkRequest()
+        }else{
+            
+            updatePersonalGoalNetworkRequest()
         }
         
     }
@@ -157,6 +162,40 @@ class GoalViewController: UIViewController {
                 sideMenuController.rightViewWidth = (UIScreen.main.bounds.width / 3) * 2
                 self.navigationController?.setViewControllers([sideMenuController], animated: true)
                 
+                
+                
+            }else{
+                
+                HealthAndFitnessBase.shared.showToastMessage(title: "Personal Info", message: response["data"].stringValue)
+                
+            }
+            
+            
+            
+        }){errorString in
+            
+            
+            HealthAndFitnessBase.shared.showToastMessage(title: "Personal Info", message: "Something went wrong. Please try again")
+            
+        }
+        
+        
+    }
+    func updatePersonalGoalNetworkRequest () {
+        
+        let param = [
+            "personalGoalsId" : selectedIndex,
+        ] as [String : Any]
+        
+       
+        NetworkManager.shared.defaultNetworkRequest(url: HealthAndFitnessBase.BaseURL + "user/goals", header: ["Authorization":(KeychainWrapper.standard.string(forKey: "accessToken") ?? "")],param: param, requestMethod: .post, showIndicator: true, indicatorParent: self.view, encoder: JSONEncoding.default, success: { response in
+     
+            if response["status"].boolValue {
+               
+                self.dismiss(animated: true,completion: {
+                    
+                    HealthAndFitnessBase.shared.showToastMessage(title: "Personal Info", message: response["data"].stringValue, type: 0)
+                })
                 
                 
             }else{
