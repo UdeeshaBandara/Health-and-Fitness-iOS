@@ -69,9 +69,10 @@ class PlanCell : UITableViewCell {
         return lbl
     }()
         
-    let repCount: UILabel = {
+    let progressValue: UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: "Roboto-Regular", size: 14)
+        lbl.text = "Progress"
+        lbl.font = UIFont(name: "Roboto-Thin", size: 10)
         lbl.textAlignment = .left
         lbl.textColor = .black
         return lbl
@@ -120,7 +121,7 @@ class PlanCell : UITableViewCell {
         contentView.isUserInteractionEnabled = true
         
         vStack.addArrangedSubview(exerciseName)
-        vStack.addArrangedSubview(repCount)
+        vStack.addArrangedSubview(progressValue)
         vStack.addArrangedSubview(progressView)
         
         subView.addSubview(exerciseImage)
@@ -155,7 +156,6 @@ class PlanCell : UITableViewCell {
 
             const.edges.equalTo(subView)
             
-
         }
         
         outerShade.snp.makeConstraints { const in
