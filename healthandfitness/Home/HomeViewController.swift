@@ -22,8 +22,9 @@ class HomeViewController: UIViewController {
     
     var exerciseArray : JSON = ""
     
+    var completedExerciseList : JSON = ""
     
-    var headerTitles : [String] = ["Popular Workouts","Today Plan"]
+    var headerTitles : [String] = ["Popular Workouts","This week Plan"]
     
     let greeting: UILabel = {
         let lbl = UILabel()
@@ -71,6 +72,7 @@ class HomeViewController: UIViewController {
         greetingLogic()
         homeNetworkRequest()
         profileNetworkRequest()
+        readStoredData()
     }
     func setupConstraint(){
         
@@ -223,9 +225,33 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
             return cell
             
         default:
+            
+            let valueExists = completedExerciseList.contains { (_, json) -> Bool in
+           
+                return json["categoryId"].intValue == exerciseArray[indexPath.row]["id"].intValue
+            }
+   
             let cell = tableView.dequeueReusableCell(withIdentifier: "planCell", for: indexPath) as! PlanCell
             cell.exerciseName.text =  exerciseArray[indexPath.row]["name"].stringValue
             cell.exerciseImage.kf.setImage(with: URL(string:   exerciseArray[indexPath.row]["coverImageUrl"].stringValue))
+           
+            if(valueExists){
+            
+                if let index = completedExerciseList.array!.firstIndex(where: { $0["categoryId"].intValue == exerciseArray[indexPath.row]["id"].intValue }) {
+                   
+                    if let numbers = completedExerciseList[index]["selectedExercises"].arrayObject as? [Int] {
+                      
+                        cell.progressView.setProgress(Float((
+                            (Double(numbers.count) / Double(exerciseArray[indexPath.row]["exercises"].count)
+                        ))), animated: true)
+                 
+                    }
+                  
+                }
+                
+            }else{
+                cell.progressView.progress = 0
+            }
             return cell
             
         }
@@ -270,6 +296,20 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
         exerciseDetailViewController.selectedExercise = selectedPopularCategory
         exerciseDetailViewController.isDefaultCategory = true
         self.navigationController?.pushViewController(exerciseDetailViewController, animated: false)
+    }
+    func readStoredData(){
+        let completedExercises = KeychainWrapper.standard.string(forKey: "completedExercises") ?? "{}"
+      
+        if let jsonData = completedExercises.data(using: .utf8) {
+            let json = try? JSON(data: jsonData)
+            
+            completedExerciseList = json ?? "{}"
+            
+            
+        } else {
+            print("Invalid JSON string")
+        }
+        
     }
 }
 
