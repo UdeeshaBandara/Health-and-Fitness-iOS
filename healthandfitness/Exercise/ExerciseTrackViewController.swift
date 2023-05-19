@@ -185,7 +185,7 @@ class ExerciseTrackViewController: UIViewController {
     }
     func readStoredData(){
         let completedExercises = KeychainWrapper.standard.string(forKey: "completedExercises") ?? "{}"
-      
+        
         if let jsonData = completedExercises.data(using: .utf8) {
             let json = try? JSON(data: jsonData)
             
@@ -289,8 +289,19 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
             cell.mainView.layer.borderColor =  #colorLiteral(red: 0.8944590688, green: 0.9143784642, blue: 0.9355253577, alpha: 1)
             cell.mainView.layer.borderWidth = 0
         }
-        cell.markAsCompleteButton.isHidden = false
+        
+        if(isCompleteButtonEnabled(cellIndex: indexPath.row)){
+            
+            cell.markAsCompleteButton.isEnabled = true
+            cell.markAsCompleteButton.alpha = 1
+        }else{
+            cell.markAsCompleteButton.isEnabled = false
+            cell.markAsCompleteButton.alpha = 0.5
+        }
+        
+      
         cell.exerciseName.text =  selectedExerciseList[indexPath.row]["name"].stringValue
+        
         if(isDefaultCategory){
             cell.repSetCount.text =  "3 Reps X 4 Sets"
             
@@ -301,60 +312,8 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
         cell.exerciseImage.kf.setImage(with: URL(string:   selectedExerciseList[indexPath.row]["coverImageUrl"].stringValue))
         
         cell.onCompleteClick = {
+            self.manageLocalStorage(cellIndex: indexPath.row)
             
-            let valueExists = self.completedExerciseList.contains { (_, json) -> Bool in
-                
-                return json["categoryId"].intValue == self.selectedExerciseList[indexPath.row]["ExerciseCategory"]["categoryId"].intValue
-            }
-            if(valueExists){
-                
-                if let index = self.completedExerciseList.array!.firstIndex(where: { $0["categoryId"].intValue == self.selectedExerciseList[indexPath.row]["ExerciseCategory"]["categoryId"].intValue }) {
-                  
-                    
-                    if let numbers = self.completedExerciseList[index]["selectedExercises"].arrayObject as? [Int] {
-                        if numbers.contains(self.selectedExerciseList[indexPath.row]["id"].intValue) {
-                            print("Value  exists in the JSON array.")
-                        } else {
-                            self.completedExerciseList[index]["selectedExercises"].arrayObject?.append(self.selectedExerciseList[indexPath.row]["id"].intValue)
-                            
-                            print("Value  does not exist in the JSON array.")
-                        }
-                    }else{
-                        print("invalid json")
-                    }
-                    
-                    if let jsonString = self.completedExerciseList.rawString() {
-                         
-                        KeychainWrapper.standard.set(jsonString, forKey: "completedExercises")
-                    }
-                    
-                    
-                } else {
-                    
-                }
-                
-                
-            }else{
-                
-                let markedExercise: [String: Any]  = [
-                    
-                    "categoryId": self.selectedExerciseList[indexPath.row]["ExerciseCategory"]["categoryId"].intValue,
-                    "selectedExercises": [self.selectedExerciseList[indexPath.row]["id"].intValue]
-                    
-                    
-                ]
-                
-                let jsonObj = JSON([markedExercise])
-                if let jsonString = jsonObj.rawString() {
-                    print(jsonString)
-                    KeychainWrapper.standard.set(jsonString, forKey: "completedExercises")
-                }
-                
-                
-            }
-            
-            
-            self.readStoredData()
         }
         
         return cell
@@ -379,5 +338,90 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
         action.backgroundColor = UIColor.systemBlue
         return UISwipeActionsConfiguration(actions: [action])
     }
-    
+    func manageLocalStorage(cellIndex row : Int){
+        let valueExists = self.completedExerciseList.contains { (_, json) -> Bool in
+            
+            return json["categoryId"].intValue == self.selectedExerciseList[row]["ExerciseCategory"]["categoryId"].intValue
+        }
+        if(valueExists){
+            
+            if let index = self.completedExerciseList.array!.firstIndex(where: { $0["categoryId"].intValue == self.selectedExerciseList[row]["ExerciseCategory"]["categoryId"].intValue }) {
+                
+                
+                if let numbers = self.completedExerciseList[index]["selectedExercises"].arrayObject as? [Int] {
+                    if numbers.contains(self.selectedExerciseList[row]["id"].intValue) {
+                        print("Value  exists in the JSON array.")
+                    } else {
+                        self.completedExerciseList[index]["selectedExercises"].arrayObject?.append(self.selectedExerciseList[row]["id"].intValue)
+                        
+                        print("Value  does not exist in the JSON array.")
+                    }
+                }else{
+                    print("invalid json")
+                }
+                
+                if let jsonString = self.completedExerciseList.rawString() {
+                    
+                    KeychainWrapper.standard.set(jsonString, forKey: "completedExercises")
+                }
+                
+                
+            } else {
+                
+            }
+            
+            
+        }else{
+            
+            let markedExercise: [String: Any]  = [
+                
+                "categoryId": self.selectedExerciseList[row]["ExerciseCategory"]["categoryId"].intValue,
+                "selectedExercises": [self.selectedExerciseList[row]["id"].intValue]
+                
+                
+            ]
+            
+            let jsonObj = JSON([markedExercise])
+            if let jsonString = jsonObj.rawString() {
+                print(jsonString)
+                KeychainWrapper.standard.set(jsonString, forKey: "completedExercises")
+            }
+            
+            
+        }
+        
+        
+        self.readStoredData()
+        tableView.reloadData()
+    }
+    func isCompleteButtonEnabled(cellIndex row : Int) -> Bool{
+        
+        let valueExists = self.completedExerciseList.contains { (_, json) -> Bool in
+            
+            return json["categoryId"].intValue == self.selectedExerciseList[row]["ExerciseCategory"]["categoryId"].intValue
+        }
+        
+        if(valueExists){
+            if let index = self.completedExerciseList.array!.firstIndex(where: { $0["categoryId"].intValue == self.selectedExerciseList[row]["ExerciseCategory"]["categoryId"].intValue }) {
+                
+                
+                if let numbers = self.completedExerciseList[index]["selectedExercises"].arrayObject as? [Int] {
+                    if numbers.contains(self.selectedExerciseList[row]["id"].intValue) {
+                        return false
+                    } else {
+                        return true
+                         
+                    }
+                }else{
+                    return true
+                }
+                
+            } else {
+                return true
+            }
+            
+        }else{
+            return true
+        }
+    }
 }

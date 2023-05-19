@@ -115,7 +115,7 @@ class ExerciseTrackCell : UITableViewCell {
         button.titleLabel?.font =  UIFont(name: "Roboto-Bold", size: 12)
         button.backgroundColor = .black
         button.layer.cornerRadius = 5
-        button.isHidden = true
+      
         
         return button
         
