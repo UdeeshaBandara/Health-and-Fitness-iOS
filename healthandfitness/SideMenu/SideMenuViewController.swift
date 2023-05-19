@@ -59,6 +59,19 @@ class SideMenuViewController: UIViewController {
         return lbl
     }()
     
+    let changeGoalLabel : UILabel = {
+        let lbl = UILabel()
+        lbl.textColor = .white
+        lbl.numberOfLines = 0
+        lbl.sizeToFit()
+        lbl.isUserInteractionEnabled = true
+        lbl.text = "Change my goal"
+        lbl.font = UIFont(name:"Roboto-Bold",size:18)
+        lbl.textAlignment = .center
+        
+        return lbl
+    }()
+    
     
     let logoutLabel : UILabel = {
         let lbl = UILabel()
@@ -99,6 +112,14 @@ class SideMenuViewController: UIViewController {
         
     }()
     
+    let deviderThird: UIView = {
+        
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0.9611677527, green: 0.525033772, blue: 0.3648735881, alpha: 0.7)
+        return view
+        
+    }()
+    
     let deviderBottom : UIView = {
         
         let view = UIView()
@@ -132,6 +153,8 @@ class SideMenuViewController: UIViewController {
         vStack.addArrangedSubview(devider)
         vStack.addArrangedSubview(clearLabel)
         vStack.addArrangedSubview(deviderSecond)
+        vStack.addArrangedSubview(changeGoalLabel)
+        vStack.addArrangedSubview(deviderThird)
         
         
         scrollView.addSubview(vStack)
@@ -220,6 +243,10 @@ class SideMenuViewController: UIViewController {
             const.height.equalTo(1)
         }
         deviderSecond.snp.makeConstraints { const in
+            
+            const.height.equalTo(1)
+        }
+        deviderThird.snp.makeConstraints { const in
             
             const.height.equalTo(1)
         }
