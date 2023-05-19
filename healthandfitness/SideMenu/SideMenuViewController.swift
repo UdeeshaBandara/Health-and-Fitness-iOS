@@ -41,11 +41,24 @@ class SideMenuViewController: UIViewController {
         lbl.text = "Custom Schedule"
         lbl.font = UIFont(name:"Roboto-Bold",size:18)
         lbl.textAlignment = .center
-       
+        
         return lbl
     }()
-
-   
+    
+    let clearLabel : UILabel = {
+        let lbl = UILabel()
+        lbl.textColor = .white
+        lbl.numberOfLines = 0
+        lbl.sizeToFit()
+        lbl.isUserInteractionEnabled = true
+        lbl.text = "Clear Logs"
+        lbl.font = UIFont(name:"Roboto-Bold",size:18)
+        lbl.textAlignment = .center
+        
+        return lbl
+    }()
+    
+    
     let logoutLabel : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .white
@@ -67,7 +80,7 @@ class SideMenuViewController: UIViewController {
         lbl.text = "©2023 Health and Fitness. All rights reserved"
         lbl.font = UIFont(name:"Roboto-MediumItalic",size:10)
         lbl.textAlignment = .center
-       
+        
         return lbl
     }()
     let devider : UIView = {
@@ -77,7 +90,14 @@ class SideMenuViewController: UIViewController {
         return view
         
     }()
-  
+    let deviderSecond : UIView = {
+        
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0.9611677527, green: 0.525033772, blue: 0.3648735881, alpha: 0.7)
+        return view
+        
+    }()
+    
     let deviderBottom : UIView = {
         
         let view = UIView()
@@ -85,7 +105,7 @@ class SideMenuViewController: UIViewController {
         return view
         
     }()
-   
+    
     
     let vStack : UIStackView = {
         
@@ -109,7 +129,9 @@ class SideMenuViewController: UIViewController {
         
         vStack.addArrangedSubview(scheduleLabel)
         vStack.addArrangedSubview(devider)
-       
+        vStack.addArrangedSubview(clearLabel)
+        vStack.addArrangedSubview(deviderSecond)
+        
         
         scrollView.addSubview(vStack)
         
@@ -123,9 +145,9 @@ class SideMenuViewController: UIViewController {
         menuClose.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeMenu(sender:))))
         
         scheduleLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openSchedule(sender:))))
- 
+        
         logoutLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(logout(sender:))))
-    
+        
     }
     func setupConstraints(){
         
@@ -148,7 +170,7 @@ class SideMenuViewController: UIViewController {
             const.height.width.equalTo(20)
             const.trailing.equalTo(view).offset(-10)
             
-       }
+        }
         mainLogo.snp.makeConstraints { const in
             
             const.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -170,48 +192,52 @@ class SideMenuViewController: UIViewController {
         }
         logoutLabel.snp.makeConstraints { const in
             
-             
+            
             const.bottom.equalTo(deviderBottom.snp.top).offset(-25)
             const.width.equalTo(menuSubBackgroundView.snp.width).inset(40)
             const.centerX.equalTo(menuSubBackgroundView.snp.centerX)
         }
-      
+        
         scrollView.snp.makeConstraints { const in
             const.top.equalTo(menuSubBackgroundView).inset(150)
             const.center.equalTo(menuSubBackgroundView)
             const.width.equalTo(menuSubBackgroundView.snp.width).inset(40)
-
+            
         }
         vStack.snp.makeConstraints { const in
-
+            
             const.top.equalTo(scrollView.snp.top)
             const.centerX.equalTo(scrollView.snp.centerX)
             const.bottom.equalTo(scrollView.snp.bottom)
             const.width.equalTo(scrollView.snp.width)
-
-
+            
+            
         }
         devider.snp.makeConstraints { const in
-
-            const.height.equalTo(1) 
+            
+            const.height.equalTo(1)
         }
-       
+        deviderSecond.snp.makeConstraints { const in
+            
+            const.height.equalTo(1)
+        }
+        
         
     }
     func presentPopup() {
         let popupViewController = LogoutViewController()
         
-        // Customize the presentation style of the popup (optional)
+  
         popupViewController.modalPresentationStyle = .overCurrentContext
         popupViewController.modalTransitionStyle = .crossDissolve
         
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-            let window = windowScene.windows.first {
-             window.rootViewController?.present(popupViewController, animated: true, completion: nil)
-         }
+           let window = windowScene.windows.first {
+            window.rootViewController?.present(popupViewController, animated: true, completion: nil)
+        }
     }
     @objc func closeMenu(sender : UIButton){
-     
+        
         self.sideMenuController?.hideRightView(animated: true)
     }
     @objc func openSchedule(sender : UIButton){
@@ -220,9 +246,12 @@ class SideMenuViewController: UIViewController {
         navigationController?.pushViewController(CustomScheduleViewController(), animated: false)
         
     }
+    @objc func clearLogs(sender : UIButton){
+        presentPopup()
+    }
     @objc func logout(sender : UIButton){
         presentPopup()
     }
-   
+    
     
 }
