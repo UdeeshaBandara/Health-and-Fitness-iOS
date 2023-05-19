@@ -14,7 +14,7 @@ protocol LogoutViewControllerDelegate: AnyObject {
     func onClearLogs()
 }
 
-class LogoutViewController: UIViewController {
+class PopupViewController: UIViewController {
 
     weak var delegate: LogoutViewControllerDelegate?
     

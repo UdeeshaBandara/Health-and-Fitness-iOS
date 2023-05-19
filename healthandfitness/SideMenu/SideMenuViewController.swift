@@ -226,7 +226,7 @@ class SideMenuViewController: UIViewController {
         
         
     }
-    func presentPopup(viewControllerInstance popupViewController : LogoutViewController) {
+    func presentPopup(viewControllerInstance popupViewController : PopupViewController) {
         
         
         popupViewController.modalPresentationStyle = .overCurrentContext
@@ -249,13 +249,13 @@ class SideMenuViewController: UIViewController {
         
     }
     @objc func clearLogs(sender : UIButton){
-        let popupViewController = LogoutViewController()
+        let popupViewController = PopupViewController()
         popupViewController.type = 2
         popupViewController.messageText = "Are you sure you want to clear all log records?"
         presentPopup(viewControllerInstance: popupViewController)
     }
     @objc func logout(sender : UIButton){
-        let popupViewController = LogoutViewController()
+        let popupViewController = PopupViewController()
         popupViewController.type = 1
         popupViewController.messageText = "Are you sure you want to logout?"
         presentPopup(viewControllerInstance: popupViewController)
