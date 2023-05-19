@@ -97,14 +97,14 @@ class SideMenuViewController: UIViewController {
         
         return lbl
     }()
-    let devider : UIView = {
+    let divider : UIView = {
         
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.9611677527, green: 0.525033772, blue: 0.3648735881, alpha: 0.7)
         return view
         
     }()
-    let deviderSecond : UIView = {
+    let dividerSecond : UIView = {
         
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.9611677527, green: 0.525033772, blue: 0.3648735881, alpha: 0.7)
@@ -112,7 +112,7 @@ class SideMenuViewController: UIViewController {
         
     }()
     
-    let deviderThird: UIView = {
+    let dividerThird: UIView = {
         
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.9611677527, green: 0.525033772, blue: 0.3648735881, alpha: 0.7)
@@ -150,11 +150,11 @@ class SideMenuViewController: UIViewController {
         menuSubBackgroundView.addSubview(scrollView)
         
         vStack.addArrangedSubview(scheduleLabel)
-        vStack.addArrangedSubview(devider)
+        vStack.addArrangedSubview(divider)
         vStack.addArrangedSubview(clearLabel)
-        vStack.addArrangedSubview(deviderSecond)
+        vStack.addArrangedSubview(dividerSecond)
         vStack.addArrangedSubview(changeGoalLabel)
-        vStack.addArrangedSubview(deviderThird)
+        vStack.addArrangedSubview(dividerThird)
         
         
         scrollView.addSubview(vStack)
@@ -238,15 +238,15 @@ class SideMenuViewController: UIViewController {
             
             
         }
-        devider.snp.makeConstraints { const in
+        divider.snp.makeConstraints { const in
             
             const.height.equalTo(1)
         }
-        deviderSecond.snp.makeConstraints { const in
+        dividerSecond.snp.makeConstraints { const in
             
             const.height.equalTo(1)
         }
-        deviderThird.snp.makeConstraints { const in
+        dividerThird.snp.makeConstraints { const in
             
             const.height.equalTo(1)
         }
