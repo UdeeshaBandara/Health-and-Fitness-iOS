@@ -131,17 +131,13 @@ class PopupViewController: UIViewController {
     
     @objc private func handleConfirm() {
 
-        if(type == 1){
-            delegate?.onLogout()
-        }else if(type == 2){
-            delegate?.onClearLogs()
-        }
-        
-       
-        self.dismiss(animated: true,completion: nil)
-        
-       
-        
+        self.dismiss(animated: true,completion: {
+            if(self.type == 1){
+                self.delegate?.onLogout()
+            }else if(self.type == 2){
+                self.delegate?.onClearLogs()
+            }
+        })
     }
    
 }
