@@ -307,12 +307,12 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.pushViewController(exerciseDetailViewController, animated: false)
     }
     func readStoredData(){
-        let completedExercises = KeychainWrapper.standard.string(forKey: "completedExercises") ?? "{}"
+        let completedExercises = KeychainWrapper.standard.string(forKey: "completedExercises") ?? "[]"
       
         if let jsonData = completedExercises.data(using: .utf8) {
             let json = try? JSON(data: jsonData)
             
-            completedExerciseList = json ?? "{}"
+            completedExerciseList = json ?? "[]"
             
             
         } else {
