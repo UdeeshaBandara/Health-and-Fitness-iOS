@@ -266,7 +266,7 @@ extension ExerciseTrackViewController{
 }
 extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selectedExerciseList.count
+        return selectedExerciseList["exercises"].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -300,16 +300,16 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
         }
         
       
-        cell.exerciseName.text =  selectedExerciseList[indexPath.row]["name"].stringValue
+        cell.exerciseName.text =  selectedExerciseList["exercises"][indexPath.row]["name"].stringValue
         
         if(isDefaultCategory){
             cell.repSetCount.text =  "3 Reps X 4 Sets"
             
         }else{
             
-            cell.repSetCount.text =  "\(selectedExerciseList[indexPath.row]["customScheduleExercises"]["repCount"].stringValue) Reps X \(selectedExerciseList[indexPath.row]["customScheduleExercises"]["setCount"].stringValue) Sets"
+            cell.repSetCount.text =  "\(selectedExerciseList["exercises"][indexPath.row]["customScheduleExercises"]["repCount"].stringValue) Reps X \(selectedExerciseList["exercises"][indexPath.row]["customScheduleExercises"]["setCount"].stringValue) Sets"
         }
-        cell.exerciseImage.kf.setImage(with: URL(string:   selectedExerciseList[indexPath.row]["coverImageUrl"].stringValue))
+        cell.exerciseImage.kf.setImage(with: URL(string:   selectedExerciseList["exercises"][indexPath.row]["coverImageUrl"].stringValue))
         
         cell.onCompleteClick = {
             self.manageLocalStorage(cellIndex: indexPath.row)
@@ -341,18 +341,18 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
     func manageLocalStorage(cellIndex row : Int){
         let valueExists = self.completedExerciseList.contains { (_, json) -> Bool in
             
-            return json["categoryId"].intValue == self.selectedExerciseList[row]["ExerciseCategory"]["categoryId"].intValue
+            return json["categoryId"].intValue == self.selectedExerciseList["id"].intValue
         }
         if(valueExists){
             
-            if let index = self.completedExerciseList.array!.firstIndex(where: { $0["categoryId"].intValue == self.selectedExerciseList[row]["ExerciseCategory"]["categoryId"].intValue }) {
+            if let index = self.completedExerciseList.array!.firstIndex(where: { $0["categoryId"].intValue == self.selectedExerciseList["id"].intValue }) {
                 
                 
                 if let numbers = self.completedExerciseList[index]["selectedExercises"].arrayObject as? [Int] {
                     if numbers.contains(self.selectedExerciseList[row]["id"].intValue) {
                         print("Value  exists in the JSON array.")
                     } else {
-                        self.completedExerciseList[index]["selectedExercises"].arrayObject?.append(self.selectedExerciseList[row]["id"].intValue)
+                        self.completedExerciseList[index]["selectedExercises"].arrayObject?.append(self.selectedExerciseList["exercises"][row]["id"].intValue)
                         
                         print("Value  does not exist in the JSON array.")
                     }
@@ -375,8 +375,8 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
             
             let markedExercise: [String: Any]  = [
                 
-                "categoryId": self.selectedExerciseList[row]["ExerciseCategory"]["categoryId"].intValue,
-                "selectedExercises": [self.selectedExerciseList[row]["id"].intValue]
+                "categoryId": self.selectedExerciseList["exercises"][row]["ExerciseCategory"]["categoryId"].intValue,
+                "selectedExercises": [self.selectedExerciseList["exercises"][row]["id"].intValue]
                 
                 
             ]
@@ -398,15 +398,15 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
         
         let valueExists = self.completedExerciseList.contains { (_, json) -> Bool in
             
-            return json["categoryId"].intValue == self.selectedExerciseList[row]["ExerciseCategory"]["categoryId"].intValue
+            return json["categoryId"].intValue == self.selectedExerciseList["id"].intValue
         }
         
         if(valueExists){
-            if let index = self.completedExerciseList.array!.firstIndex(where: { $0["categoryId"].intValue == self.selectedExerciseList[row]["ExerciseCategory"]["categoryId"].intValue }) {
+            if let index = self.completedExerciseList.array!.firstIndex(where: { $0["categoryId"].intValue == self.selectedExerciseList["id"].intValue }) {
                 
                 
                 if let numbers = self.completedExerciseList[index]["selectedExercises"].arrayObject as? [Int] {
-                    if numbers.contains(self.selectedExerciseList[row]["id"].intValue) {
+                    if numbers.contains(self.selectedExerciseList["exercises"][row]["id"].intValue) {
                         return false
                     } else {
                         return true

@@ -233,7 +233,7 @@ class ExerciseDetailViewController: UIViewController {
     }
     @objc func startAction(sender : UIButton){
         let exerciseTrackViewController = ExerciseTrackViewController()
-        exerciseTrackViewController.selectedExerciseList = selectedExercise["exercises"]
+        exerciseTrackViewController.selectedExerciseList = selectedExercise
         exerciseTrackViewController.isDefaultCategory = isDefaultCategory
         navigationController?.pushViewController(exerciseTrackViewController, animated: false)
     }
