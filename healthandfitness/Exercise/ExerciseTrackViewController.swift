@@ -21,6 +21,8 @@ class ExerciseTrackViewController: UIViewController {
     
     var selectedExerciseList : JSON = ""
     
+    var completedExerciseList : JSON = ""
+    
     var isDefaultCategory : Bool = true
     
     var currentExerciseIndex : Int = -1
@@ -115,8 +117,12 @@ class ExerciseTrackViewController: UIViewController {
         resetButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(resetTimer(sender:))))
         
         
+        
         navigationItem.title = "Track Workout"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
+        
+        readStoredData()
         
     }
     
@@ -177,13 +183,28 @@ class ExerciseTrackViewController: UIViewController {
         }
         
     }
+    func readStoredData(){
+        let completedExercises = KeychainWrapper.standard.string(forKey: "completedExercises") ?? "{}"
+      
+        if let jsonData = completedExercises.data(using: .utf8) {
+            let json = try? JSON(data: jsonData)
+            
+            completedExerciseList = json ?? "{}"
+            
+            
+        } else {
+            print("Invalid JSON string")
+        }
+        
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
+        
         if self.isMovingFromParent {
-            if displayLink == nil {
-                HealthAndFitnessBase.shared.showToastMessage(title: "Tracker", message: "Successfully added a new reminder to your calendar",type: 0)
-            }
+            //            if displayLink == nil {
+            //                HealthAndFitnessBase.shared.showToastMessage(title: "Tracker", message: "Successfully added a new reminder to your calendar",type: 0)
+            //            }
         }
     }
     
@@ -250,14 +271,14 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =   tableView.dequeueReusableCell(withIdentifier: "exerciseTrackCell", for: indexPath) as! ExerciseTrackCell
-//        
-//        if(currentExerciseIndex > indexPath.row){
-//            
-//            cell.markAsCompleteButton.isOn = true
-//        }else{
-//            cell.markAsCompleteButton.isOn = false
-//            
-//        }
+        //
+        //        if(currentExerciseIndex > indexPath.row){
+        //
+        //            cell.markAsCompleteButton.isOn = true
+        //        }else{
+        //            cell.markAsCompleteButton.isOn = false
+        //
+        //        }
         
         if (currentExerciseIndex == indexPath.row){
             
@@ -272,12 +293,69 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
         cell.exerciseName.text =  selectedExerciseList[indexPath.row]["name"].stringValue
         if(isDefaultCategory){
             cell.repSetCount.text =  "3 Reps X 4 Sets"
-           
+            
         }else{
             
             cell.repSetCount.text =  "\(selectedExerciseList[indexPath.row]["customScheduleExercises"]["repCount"].stringValue) Reps X \(selectedExerciseList[indexPath.row]["customScheduleExercises"]["setCount"].stringValue) Sets"
         }
         cell.exerciseImage.kf.setImage(with: URL(string:   selectedExerciseList[indexPath.row]["coverImageUrl"].stringValue))
+        
+        cell.onCompleteClick = {
+            
+            let valueExists = self.completedExerciseList.contains { (_, json) -> Bool in
+                
+                return json["categoryId"].intValue == self.selectedExerciseList[indexPath.row]["ExerciseCategory"]["categoryId"].intValue
+            }
+            if(valueExists){
+                
+                if let index = self.completedExerciseList.array!.firstIndex(where: { $0["categoryId"].intValue == self.selectedExerciseList[indexPath.row]["ExerciseCategory"]["categoryId"].intValue }) {
+                  
+                    
+                    if let numbers = self.completedExerciseList[index]["selectedExercises"].arrayObject as? [Int] {
+                        if numbers.contains(self.selectedExerciseList[indexPath.row]["id"].intValue) {
+                            print("Value  exists in the JSON array.")
+                        } else {
+                            self.completedExerciseList[index]["selectedExercises"].arrayObject?.append(self.selectedExerciseList[indexPath.row]["id"].intValue)
+                            
+                            print("Value  does not exist in the JSON array.")
+                        }
+                    }else{
+                        print("invalid json")
+                    }
+                    
+                    if let jsonString = self.completedExerciseList.rawString() {
+                         
+                        KeychainWrapper.standard.set(jsonString, forKey: "completedExercises")
+                    }
+                    
+                    
+                } else {
+                    
+                }
+                
+                
+            }else{
+                
+                let markedExercise: [String: Any]  = [
+                    
+                    "categoryId": self.selectedExerciseList[indexPath.row]["ExerciseCategory"]["categoryId"].intValue,
+                    "selectedExercises": [self.selectedExerciseList[indexPath.row]["id"].intValue]
+                    
+                    
+                ]
+                
+                let jsonObj = JSON([markedExercise])
+                if let jsonString = jsonObj.rawString() {
+                    print(jsonString)
+                    KeychainWrapper.standard.set(jsonString, forKey: "completedExercises")
+                }
+                
+                
+            }
+            
+            
+            self.readStoredData()
+        }
         
         return cell
         

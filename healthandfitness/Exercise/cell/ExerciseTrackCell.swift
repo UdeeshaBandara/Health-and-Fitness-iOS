@@ -8,10 +8,12 @@
 import Foundation
 import UIKit
 import SnapKit
+import SwiftyJSON
 
 class ExerciseTrackCell : UITableViewCell {
     
-
+    var onCompleteClick: (() -> Void)? = nil
+    
     let mainView : UIView = {
         
         let outerView = UIView()
@@ -145,6 +147,9 @@ class ExerciseTrackCell : UITableViewCell {
         
         setupConstraint()
         
+        markAsCompleteButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onComplete(sender:))))
+        
+        
     }
     
     func setupConstraint(){
@@ -184,6 +189,10 @@ class ExerciseTrackCell : UITableViewCell {
             const.width.equalTo(vStackMain).inset(10)
            
         }
+        
+    }
+    @objc func onComplete(sender : UIButton){
+        onCompleteClick?()
         
     }
 }
