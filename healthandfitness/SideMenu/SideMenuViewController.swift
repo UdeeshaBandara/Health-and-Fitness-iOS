@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 class SideMenuViewController: UIViewController {
     
@@ -145,6 +146,7 @@ class SideMenuViewController: UIViewController {
         menuClose.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeMenu(sender:))))
         
         scheduleLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openSchedule(sender:))))
+        clearLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(clearLogs(sender:))))
         
         logoutLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(logout(sender:))))
         
@@ -224,12 +226,12 @@ class SideMenuViewController: UIViewController {
         
         
     }
-    func presentPopup() {
-        let popupViewController = LogoutViewController()
+    func presentPopup(viewControllerInstance popupViewController : LogoutViewController) {
         
-  
+        
         popupViewController.modalPresentationStyle = .overCurrentContext
         popupViewController.modalTransitionStyle = .crossDissolve
+        popupViewController.delegate = self
         
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
            let window = windowScene.windows.first {
@@ -247,11 +249,34 @@ class SideMenuViewController: UIViewController {
         
     }
     @objc func clearLogs(sender : UIButton){
-        presentPopup()
+        let popupViewController = LogoutViewController()
+        popupViewController.type = 2
+        popupViewController.messageText = "Are you sure you want to clear all log records?"
+        presentPopup(viewControllerInstance: popupViewController)
     }
     @objc func logout(sender : UIButton){
-        presentPopup()
+        let popupViewController = LogoutViewController()
+        popupViewController.type = 1
+        popupViewController.messageText = "Are you sure you want to logout?"
+        presentPopup(viewControllerInstance: popupViewController)
     }
+    
+    
+}
+extension SideMenuViewController : LogoutViewControllerDelegate{
+    func onLogout() {
+        KeychainWrapper.standard.removeAllKeys()
+        navigationController?.setViewControllers([LoginViewController()], animated: true)
+        
+    }
+    
+    func onClearLogs() {
+        
+        KeychainWrapper.standard.set("[]", forKey: "completedExercises")
+        
+        KeychainWrapper.standard.set("[]", forKey: "completedCustomExercises")
+    }
+    
     
     
 }
