@@ -10,6 +10,7 @@ import SnapKit
 import Alamofire
 import SwiftyJSON
 import SwiftKeychainWrapper
+import LGSideMenuController
 
 class LoginViewController: UIViewController {
     
@@ -224,16 +225,34 @@ class LoginViewController: UIViewController {
             
             if response["status"].boolValue {
                 
-                let layout = UICollectionViewFlowLayout()
-                layout.scrollDirection = .horizontal
-                let wizardController =    WizardController(collectionViewLayout: layout)
-                
-                self.navigationController?.setViewControllers([wizardController], animated: false)
-                
                 HealthAndFitnessBase.shared.showToastMessage(title: "Login", message: "Login successful", type: 0)
                 KeychainWrapper.standard.set( "Bearer \(response["accessToken"].stringValue)", forKey: "accessToken")
                 KeychainWrapper.standard.set( true, forKey: "isLoggedIn")
-                KeychainWrapper.standard.set( false, forKey: "isWizardCompleted")
+                
+                
+                if( response["isOnboardingCompleted"].boolValue){
+                    let sideMenuController = LGSideMenuController()
+                    sideMenuController.rootViewController = HomeViewController()
+                    sideMenuController.rightViewController = SideMenuViewController()
+                    sideMenuController.rightViewPresentationStyle = .slideBelowShifted
+                    sideMenuController.rightViewWidth = (UIScreen.main.bounds.width / 3) * 2
+                    self.navigationController?.setViewControllers([sideMenuController], animated: true)
+                    
+                    
+                    KeychainWrapper.standard.set( true, forKey: "isWizardCompleted")
+                }else{
+                    KeychainWrapper.standard.set( false, forKey: "isWizardCompleted")
+                    let layout = UICollectionViewFlowLayout()
+                    layout.scrollDirection = .horizontal
+                    let wizardController =    WizardController(collectionViewLayout: layout)
+                    
+                    self.navigationController?.setViewControllers([wizardController], animated: false)
+                    
+                }
+                
+               
+                
+               
                 
             }else{
                 
