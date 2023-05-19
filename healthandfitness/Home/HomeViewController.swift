@@ -194,6 +194,7 @@ class HomeViewController: UIViewController {
                 KeychainWrapper.standard.set( response["data"]["name"].stringValue, forKey: "userName")
                 KeychainWrapper.standard.set( response["data"]["email"].stringValue, forKey: "email")
                 KeychainWrapper.standard.set( response["data"]["telephone"].stringValue, forKey: "telephone")
+                KeychainWrapper.standard.set( response["data"]["personalGoalsId"].intValue, forKey: "personalGoalsId")
                 self.userName.text = response["data"]["name"].stringValue
                 
             }else{
