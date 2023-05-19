@@ -115,6 +115,7 @@ class BMIViewController: UIViewController {
         let goalViewController = GoalViewController()
         goalViewController.values = values
         goalViewController.bmiValue =  gaugeSliderView.value
+        goalViewController.isFromOnboarding =  true
         navigationController?.pushViewController(goalViewController, animated: false)
         
     }

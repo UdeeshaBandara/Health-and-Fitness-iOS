@@ -273,7 +273,7 @@ class SideMenuViewController: UIViewController {
     @objc func openSchedule(sender : UIButton){
         
         self.sideMenuController?.hideRightView(animated: true)
-        navigationController?.pushViewController(CustomScheduleViewController(), animated: false)
+        navigationController?.pushViewController(CustomScheduleViewController(), animated: true)
         
     }
     @objc func clearLogs(sender : UIButton){
@@ -291,6 +291,9 @@ class SideMenuViewController: UIViewController {
     
     @objc func openChangeGoal(sender : UIButton){
       
+        let goalViewController = GoalViewController()
+        goalViewController.isFromOnboarding = false
+        navigationController?.pushViewController(goalViewController, animated: true)
     }
     
     

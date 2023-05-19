@@ -59,8 +59,13 @@ class GoalViewController: UIViewController {
         letsStarteButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
         
         
-        navigationItem.title = "Select your Goal"
+        navigationItem.title = isFromOnboarding ? "Select your Goal" : "Change your Goal" 
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
+        if(!isFromOnboarding){
+            selectedIndex = KeychainWrapper.standard.integer(forKey: "personalGoalsId") ?? -1
+            tableView.reloadData()
+        }
         
     }
     
