@@ -3,9 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>NSAppTransportSecurity</key>
-	<dict/>
-	<key>NSAllowsArbitraryLoads</key>
-	<true/>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSRemindersUsageDescription</key>
 	<string>Allow access to reminder in order to save reminders</string>
 	<key>NSCalendarsUsageDescription</key>

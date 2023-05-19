@@ -13,6 +13,7 @@ import SwiftKeychainWrapper
 import Kingfisher
 import EventKit
 import EventKitUI
+import AVKit
 
 class ExerciseDetailViewController: UIViewController {
     
@@ -285,6 +286,27 @@ extension ExerciseDetailViewController: UITableViewDelegate, UITableViewDataSour
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
+    }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action: UIContextualAction = UIContextualAction(style: .normal, title: nil) { (_, _, completionHandler) in
+            
+            guard let videoURL = URL(string: self.selectedExercise["exercises"][indexPath.row]["demoUrl"].stringValue) else {
+             
+                return
+            }
+            let player = AVPlayer(url: videoURL)
+            let playerViewController = AVPlayerViewController()
+            playerViewController.player = player
+            self.present(playerViewController, animated: true) {
+                playerViewController.player?.play()
+            }
+            
+            completionHandler(true)
+        }
+        
+        action.image = UIImage(systemName: "video.bubble.left", withConfiguration: UIImage.SymbolConfiguration(weight: .bold))?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        action.backgroundColor = UIColor.systemBlue
+        return UISwipeActionsConfiguration(actions: [action])
     }
  
 }
