@@ -53,9 +53,15 @@ class CustomScheduleViewController: UIViewController {
         
         navigationItem.title = "My Schedules"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+ 
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    
+        readStoredData()
+        tableView.reloadData()
         
     }
-    
     func setupConstraint(){
         
         tableView.showsVerticalScrollIndicator = false

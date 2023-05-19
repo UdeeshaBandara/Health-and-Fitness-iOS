@@ -72,7 +72,15 @@ class HomeViewController: UIViewController {
         greetingLogic()
         homeNetworkRequest()
         profileNetworkRequest()
+        
+       
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+ 
         readStoredData()
+        tableView.reloadData()
+        
     }
     func setupConstraint(){
         
@@ -226,12 +234,13 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
             
         default:
             
+            let cell = tableView.dequeueReusableCell(withIdentifier: "planCell", for: indexPath) as! PlanCell
+            
             let valueExists = completedExerciseList.contains { (_, json) -> Bool in
            
                 return json["categoryId"].intValue == exerciseArray[indexPath.row]["id"].intValue
             }
-   
-            let cell = tableView.dequeueReusableCell(withIdentifier: "planCell", for: indexPath) as! PlanCell
+          
             cell.exerciseName.text =  exerciseArray[indexPath.row]["name"].stringValue
             cell.exerciseImage.kf.setImage(with: URL(string:   exerciseArray[indexPath.row]["coverImageUrl"].stringValue))
            

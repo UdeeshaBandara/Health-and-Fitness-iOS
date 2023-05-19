@@ -184,12 +184,12 @@ class ExerciseTrackViewController: UIViewController {
         
     }
     func readStoredData(storeKey key : String){
-        let completedExercises = KeychainWrapper.standard.string(forKey: key) ?? "{}"
+        let completedExercises = KeychainWrapper.standard.string(forKey: key) ?? "[]"
         
         if let jsonData = completedExercises.data(using: .utf8) {
             let json = try? JSON(data: jsonData)
             
-            completedExerciseList = json ?? "{}"
+            completedExerciseList = json ?? "[]"
             
             
         } else {
@@ -382,8 +382,15 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
             ]
             
             let jsonObj = JSON([markedExercise])
-            if let jsonString = jsonObj.rawString() {
-                
+           
+            if let jsonArray1 = jsonObj.array, let jsonArray2 =  self.completedExerciseList.array {
+             
+                self.completedExerciseList.arrayObject = jsonArray1 + jsonArray2
+            }
+          
+
+            if let jsonString = self.completedExerciseList.rawString() {
+                 
                 KeychainWrapper.standard.set(jsonString, forKey: isDefaultCategory ? "completedExercises" : "completedCustomExercises")
             }
             
