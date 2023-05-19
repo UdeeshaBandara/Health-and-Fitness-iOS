@@ -9,12 +9,21 @@ import UIKit
 import SnapKit
 import SwiftKeychainWrapper
 
+protocol LogoutViewControllerDelegate: AnyObject {
+    func onLogout()
+    func onClearLogs()
+}
+
 class LogoutViewController: UIViewController {
 
+    weak var delegate: LogoutViewControllerDelegate?
+    
+    var type : Int = 1
+    
+    var messageText : String = ""
     
     let logoutMessage: UILabel = {
         let lbl = UILabel()
-        lbl.text = "Are you sure you want to logout?"
         lbl.font = UIFont(name: "Roboto-Medium", size: 18)
         lbl.textAlignment = .center
         lbl.numberOfLines = 2
@@ -80,6 +89,8 @@ class LogoutViewController: UIViewController {
         hStack.addArrangedSubview(confirmButton)
         view.addSubview(hStack)
         
+        logoutMessage.text = messageText
+        
         cancelButton.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
         confirmButton.addTarget(self, action: #selector(handleConfirm), for: .touchUpInside)
         
@@ -95,6 +106,7 @@ class LogoutViewController: UIViewController {
             
        
             const.top.equalTo(popupBox).inset(75)
+            const.width.equalTo(popupBox).inset(10)
             const.centerX.equalTo(view)
             
             
@@ -119,13 +131,16 @@ class LogoutViewController: UIViewController {
     
     @objc private func handleConfirm() {
 
-        KeychainWrapper.standard.removeAllKeys()
+        if(type == 1){
+            delegate?.onLogout()
+        }else if(type == 2){
+            delegate?.onClearLogs()
+        }
+        
+       
         self.dismiss(animated: true,completion: nil)
         
-        if let presentingViewController = presentingViewController,
-           let navigationController = presentingViewController.findNearestNavigationController() {
-            navigationController.setViewControllers([LoginViewController()], animated: true)
-        }
+       
         
     }
    
