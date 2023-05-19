@@ -122,7 +122,7 @@ class ExerciseTrackViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         
         
-        readStoredData()
+        readStoredData(storeKey: isDefaultCategory ? "completedExercises" : "completedCustomExercises")
         
     }
     
@@ -183,8 +183,8 @@ class ExerciseTrackViewController: UIViewController {
         }
         
     }
-    func readStoredData(){
-        let completedExercises = KeychainWrapper.standard.string(forKey: "completedExercises") ?? "{}"
+    func readStoredData(storeKey key : String){
+        let completedExercises = KeychainWrapper.standard.string(forKey: key) ?? "{}"
         
         if let jsonData = completedExercises.data(using: .utf8) {
             let json = try? JSON(data: jsonData)
@@ -362,7 +362,7 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
                 
                 if let jsonString = self.completedExerciseList.rawString() {
                     
-                    KeychainWrapper.standard.set(jsonString, forKey: "completedExercises")
+                    KeychainWrapper.standard.set(jsonString, forKey: isDefaultCategory ? "completedExercises" : "completedCustomExercises")
                 }
                 
                 
@@ -375,7 +375,7 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
             
             let markedExercise: [String: Any]  = [
                 
-                "categoryId": self.selectedExerciseList["exercises"][row]["ExerciseCategory"]["categoryId"].intValue,
+                "categoryId": self.selectedExerciseList["id"].intValue,
                 "selectedExercises": [self.selectedExerciseList["exercises"][row]["id"].intValue]
                 
                 
@@ -384,14 +384,14 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
             let jsonObj = JSON([markedExercise])
             if let jsonString = jsonObj.rawString() {
                 print(jsonString)
-                KeychainWrapper.standard.set(jsonString, forKey: "completedExercises")
+                KeychainWrapper.standard.set(jsonString, forKey: isDefaultCategory ? "completedExercises" : "completedCustomExercises")
             }
             
             
         }
         
         
-        self.readStoredData()
+        self.readStoredData(storeKey: isDefaultCategory ? "completedExercises" : "completedCustomExercises")
         tableView.reloadData()
     }
     func isCompleteButtonEnabled(cellIndex row : Int) -> Bool{
