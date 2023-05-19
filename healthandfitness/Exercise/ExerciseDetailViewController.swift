@@ -23,7 +23,7 @@ class ExerciseDetailViewController: UIViewController {
     
     let store = EKEventStore()
     
-  
+    
     
     let vStack : UIStackView = {
         
@@ -129,7 +129,7 @@ class ExerciseDetailViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-         
+        
         
         subView.addSubview(exerciseImage)
         subView.addSubview(outerShade)
@@ -171,7 +171,7 @@ class ExerciseDetailViewController: UIViewController {
             
             
             const.centerX.equalTo(view)
-            const.width.equalTo(view) 
+            const.width.equalTo(view)
             const.top.equalTo(vStack.snp.bottom).offset(10)
             const.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(10)
             
@@ -184,7 +184,7 @@ class ExerciseDetailViewController: UIViewController {
         
         
         
-    
+        
         vStack.snp.makeConstraints { const in
             
             
@@ -193,7 +193,7 @@ class ExerciseDetailViewController: UIViewController {
             const.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
             
             
-        } 
+        }
         startButton.snp.makeConstraints { const in
             
             
@@ -207,21 +207,21 @@ class ExerciseDetailViewController: UIViewController {
             
             
             const.height.equalTo(200)
-           
+            
             
         }
         exerciseImage.snp.makeConstraints { const in
             
             
             const.edges.equalTo(subView)
-           
+            
             
         }
         outerShade.snp.makeConstraints { const in
             
             
             const.edges.equalTo(subView)
-           
+            
             
         }
     }
@@ -274,13 +274,13 @@ extension ExerciseDetailViewController: UITableViewDelegate, UITableViewDataSour
         let cell =   tableView.dequeueReusableCell(withIdentifier: "exerciseCell", for: indexPath) as! ExerciseCell
         cell.exerciseName.text =  selectedExercise["exercises"][indexPath.row]["name"].stringValue
         if(isDefaultCategory){
-            cell.repSetCount.text =  "3 Reps X 4 Sets"
+            cell.repSetCount.text =  "\(selectedExercise["exercises"][indexPath.row]["repCount"].stringValue) Reps X \(selectedExercise["exercises"][indexPath.row]["setCount"].stringValue) Sets"
         }else{
             
             cell.repSetCount.text =  "\(selectedExercise["exercises"][indexPath.row]["customScheduleExercises"]["repCount"].stringValue) Reps X \(selectedExercise["exercises"][indexPath.row]["customScheduleExercises"]["setCount"].stringValue) Sets"
         }
         cell.exerciseImage.kf.setImage(with: URL(string:   selectedExercise["exercises"][indexPath.row]["coverImageUrl"].stringValue))
-   
+        
         return cell
         
     }
@@ -291,7 +291,7 @@ extension ExerciseDetailViewController: UITableViewDelegate, UITableViewDataSour
         let action: UIContextualAction = UIContextualAction(style: .normal, title: nil) { (_, _, completionHandler) in
             
             guard let videoURL = URL(string: self.selectedExercise["exercises"][indexPath.row]["demoUrl"].stringValue) else {
-             
+                
                 return
             }
             let player = AVPlayer(url: videoURL)
@@ -308,18 +308,18 @@ extension ExerciseDetailViewController: UITableViewDelegate, UITableViewDataSour
         action.backgroundColor = UIColor.systemBlue
         return UISwipeActionsConfiguration(actions: [action])
     }
- 
+    
 }
 extension ExerciseDetailViewController: EKEventEditViewDelegate {
     
     func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
         
-       
+        
         controller.dismiss(animated: true, completion: {
             
-             if(action == EKEventEditViewAction.saved){
-                 HealthAndFitnessBase.shared.showToastMessage(title: "Reminder", message: "Successfully added a new reminder to your calendar",type: 0)
-             }
+            if(action == EKEventEditViewAction.saved){
+                HealthAndFitnessBase.shared.showToastMessage(title: "Reminder", message: "Successfully added a new reminder to your calendar",type: 0)
+            }
         })
     }
 }
