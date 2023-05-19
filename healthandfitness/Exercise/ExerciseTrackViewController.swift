@@ -350,11 +350,11 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
                 
                 if let numbers = self.completedExerciseList[index]["selectedExercises"].arrayObject as? [Int] {
                     if numbers.contains(self.selectedExerciseList[row]["id"].intValue) {
-                        print("Value  exists in the JSON array.")
+                        
                     } else {
                         self.completedExerciseList[index]["selectedExercises"].arrayObject?.append(self.selectedExerciseList["exercises"][row]["id"].intValue)
                         
-                        print("Value  does not exist in the JSON array.")
+                        
                     }
                 }else{
                     print("invalid json")
@@ -383,7 +383,7 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
             
             let jsonObj = JSON([markedExercise])
             if let jsonString = jsonObj.rawString() {
-                print(jsonString)
+                
                 KeychainWrapper.standard.set(jsonString, forKey: isDefaultCategory ? "completedExercises" : "completedCustomExercises")
             }
             

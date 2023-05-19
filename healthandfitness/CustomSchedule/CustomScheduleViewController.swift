@@ -15,7 +15,7 @@ class CustomScheduleViewController: UIViewController {
     
     var exerciseArray : JSON = ""
     
-   
+    var completedExerciseList : JSON = ""
     
     let emptyMsg: UILabel = {
         let lbl = UILabel()
@@ -48,6 +48,7 @@ class CustomScheduleViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addNewSchedule))
         
         setupConstraint()
+        readStoredData()
         customeScheduleNetworkRequest()
         
         navigationItem.title = "My Schedules"
@@ -138,8 +139,31 @@ extension CustomScheduleViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "planCell", for: indexPath) as! PlanCell
         
+        let valueExists = completedExerciseList.contains { (_, json) -> Bool in
+       
+            return json["categoryId"].intValue == exerciseArray[indexPath.row]["id"].intValue
+        }
+        
         cell.exerciseName.text =  exerciseArray[indexPath.row]["name"].stringValue
         cell.exerciseImage.kf.setImage(with: URL(string:   "https://post.healthline.com/wp-content/uploads/2020/02/man-exercising-plank-push-up-732x549-thumbnail.jpg"))
+        
+        if(valueExists){
+        
+            if let index = completedExerciseList.array!.firstIndex(where: { $0["categoryId"].intValue == exerciseArray[indexPath.row]["id"].intValue }) {
+               
+                if let numbers = completedExerciseList[index]["selectedExercises"].arrayObject as? [Int] {
+                  
+                    cell.progressView.setProgress(Float((
+                        (Double(numbers.count) / Double(exerciseArray[indexPath.row]["exercises"].count)
+                    ))), animated: true)
+             
+                }
+              
+            }
+            
+        }else{
+            cell.progressView.progress = 0
+        }
         
         return cell
     }
@@ -154,5 +178,18 @@ extension CustomScheduleViewController: UITableViewDelegate, UITableViewDataSour
             navigationController?.pushViewController(exerciseDetailViewController, animated: false)
         
     }
-    
+    func readStoredData(){
+        let completedExercises = KeychainWrapper.standard.string(forKey: "completedCustomExercises") ?? "{}"
+      
+        if let jsonData = completedExercises.data(using: .utf8) {
+            let json = try? JSON(data: jsonData)
+            
+            completedExerciseList = json ?? "{}"
+            
+            
+        } else {
+            print("Invalid JSON string")
+        }
+        
+    }
 }
