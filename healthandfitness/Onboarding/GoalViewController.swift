@@ -24,6 +24,8 @@ class GoalViewController: UIViewController {
     
     var isFromOnboarding : Bool = true
     
+    var onGoalChangeDismiss: (() -> Void)?
+    
     let tableView : UITableView = {
         
         let myTableView = UITableView(frame: CGRect(x: 100, y: 101, width: 202, height: 2 - 1))
@@ -59,7 +61,7 @@ class GoalViewController: UIViewController {
         letsStarteButton.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
         
         
-        navigationItem.title = isFromOnboarding ? "Select your Goal" : "Change your Goal"
+        navigationItem.title = isFromOnboarding ? "Select your Goal" : "Change my Goal"
         letsStarteButton.setTitle(isFromOnboarding ? "Let's start" : "Change my Goal", for: .normal)
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         
@@ -203,12 +205,12 @@ class GoalViewController: UIViewController {
      
             if response["status"].boolValue {
                
-                self.dismiss(animated: true,completion: {
-                    
-                    KeychainWrapper.standard.set( self.selectedIndex, forKey: "personalGoalsId")
-                    HealthAndFitnessBase.shared.showToastMessage(title: "Personal Info", message: response["data"].stringValue, type: 0)
-                })
-                
+                self.onGoalChangeDismiss?()
+                KeychainWrapper.standard.set("[]", forKey: "completedExercises")
+                KeychainWrapper.standard.set("[]", forKey: "completedCustomExercises")
+                KeychainWrapper.standard.set( self.selectedIndex, forKey: "personalGoalsId")
+                HealthAndFitnessBase.shared.showToastMessage(title: "Personal Info", message: response["data"].stringValue, type: 0)
+                self.navigationController?.popViewController(animated: true) 
                 
             }else{
                 

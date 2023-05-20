@@ -293,6 +293,15 @@ class SideMenuViewController: UIViewController {
       
         let goalViewController = GoalViewController()
         goalViewController.isFromOnboarding = false
+        goalViewController.onGoalChangeDismiss = {
+      
+            if let sideMenuController = self.sideMenuController {
+                if let rootViewController = sideMenuController.rootViewController {
+
+                    (rootViewController as? HomeViewController)?.homeNetworkRequest()
+                }
+            }
+        }
         navigationController?.pushViewController(goalViewController, animated: true)
     }
     
@@ -315,6 +324,13 @@ extension SideMenuViewController : LogoutViewControllerDelegate{
         
         KeychainWrapper.standard.set("[]", forKey: "completedCustomExercises")
         HealthAndFitnessBase.shared.showToastMessage(title: "Home", message: "All records are reseted", type: 0)
+        if let sideMenuController = self.sideMenuController {
+            if let rootViewController = sideMenuController.rootViewController {
+
+                (rootViewController as? HomeViewController)?.homeNetworkRequest()
+                (rootViewController as? HomeViewController)?.readStoredData()
+            }
+        }
     }
     
     

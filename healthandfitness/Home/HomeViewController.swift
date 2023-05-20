@@ -161,8 +161,7 @@ class HomeViewController: UIViewController {
         
     }
     func homeNetworkRequest () {
-        
-        
+      
         NetworkManager.shared.defaultNetworkRequest(url: HealthAndFitnessBase.BaseURL + "exercise/home", header: ["Authorization":(KeychainWrapper.standard.string(forKey: "accessToken") ?? "")], requestMethod: .get, showIndicator: true, indicatorParent: self.view, success: { response in
             
             
