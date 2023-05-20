@@ -81,7 +81,7 @@ class ExerciseTrackCell : UITableViewCell {
         lbl.text = "10 Reps X 3 Sets"
         lbl.font = UIFont(name: "Roboto-MediumItalic", size: 14)
         lbl.textAlignment = .left
-        lbl.textColor = .black
+        lbl.textColor = #colorLiteral(red: 0.9386845231, green: 0.352627635, blue: 0.1541865468, alpha: 1)
         
         return lbl
     }()
