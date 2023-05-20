@@ -135,6 +135,29 @@ class CustomScheduleViewController: UIViewController {
         }
     }
     
+    func deleteCustomeScheduleNetworkRequest (customScheduleId id : String) {
+        
+        
+        NetworkManager.shared.defaultNetworkRequest(url: HealthAndFitnessBase.BaseURL + "custom/exercise/"+id, header: ["Authorization":(KeychainWrapper.standard.string(forKey: "accessToken") ?? "")], requestMethod: .delete, showIndicator: true, indicatorParent: self.view, success: { response in
+            
+            
+            if response["status"].boolValue {
+                
+                HealthAndFitnessBase.shared.showToastMessage(title: "Custom schedule", message: response["data"].stringValue, type: 0)
+                self.customeScheduleNetworkRequest()
+            }else{
+                
+                HealthAndFitnessBase.shared.showToastMessage(title: "Custom schedule", message: response["data"].stringValue)
+                
+            }
+        }){errorString in
+            print(errorString)
+            
+            HealthAndFitnessBase.shared.showToastMessage(title: "Custom schedule", message: "Something went wrong. Please try again")
+            
+        }
+    }
+    
     
 }
 extension CustomScheduleViewController: UITableViewDelegate, UITableViewDataSource{
@@ -183,6 +206,20 @@ extension CustomScheduleViewController: UITableViewDelegate, UITableViewDataSour
             exerciseDetailViewController.isDefaultCategory = false
             navigationController?.pushViewController(exerciseDetailViewController, animated: false)
         
+    }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action: UIContextualAction = UIContextualAction(style: .normal, title: nil) { (_, _, completionHandler) in
+            
+          
+            self.deleteCustomeScheduleNetworkRequest(customScheduleId: self.exerciseArray[indexPath.row]["id"].stringValue)
+         
+            
+            completionHandler(true)
+        }
+        
+        action.image = UIImage(systemName: "minus.circle.fill", withConfiguration: UIImage.SymbolConfiguration(weight: .bold))?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        action.backgroundColor = UIColor.systemRed
+        return UISwipeActionsConfiguration(actions: [action])
     }
     func readStoredData(){
         let completedExercises = KeychainWrapper.standard.string(forKey: "completedCustomExercises") ?? "[]"
