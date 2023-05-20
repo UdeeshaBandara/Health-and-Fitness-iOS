@@ -214,7 +214,7 @@ class ExerciseDetailViewController: UIViewController {
     func populateData(){
         exerciseTitle.text = selectedExercise["name"].stringValue
         exerciseDescription.text = selectedExercise["description"].stringValue
-        exerciseImage.kf.setImage(with: URL(string:   selectedExercise["coverImageUrl"].stringValue))
+        exerciseImage.kf.setImage(with: URL(string: isDefaultCategory ?  selectedExercise["coverImageUrl"].stringValue : "https://post.healthline.com/wp-content/uploads/2020/02/man-exercising-plank-push-up-732x549-thumbnail.jpg"))
         
         
     }
