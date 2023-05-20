@@ -265,7 +265,12 @@ extension ExerciseTrackViewController{
         startPauseButton.image =   #imageLiteral(resourceName: "play")
     }
     
-    
+    func convertSecondsToMinutesAndSeconds(seconds: Int) -> (minutes: Int, remainingSeconds: Int) {
+        let minutes = seconds / 60
+        let remainingSeconds = seconds % 60
+        
+        return (minutes, remainingSeconds)
+    }
 }
 extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -285,14 +290,19 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
             cell.mainView.layer.borderColor =  #colorLiteral(red: 0.8944590688, green: 0.9143784642, blue: 0.9355253577, alpha: 1)
             cell.mainView.layer.borderWidth = 0
         }
+        let (isCompleteButtonEnabled, timeConsumption) = isCompleteButtonEnabled(cellIndex: indexPath.row)
         
-        if(isCompleteButtonEnabled(cellIndex: indexPath.row)){
+        if(isCompleteButtonEnabled){
             
             cell.markAsCompleteButton.isEnabled = true
             cell.markAsCompleteButton.alpha = 1
+            cell.timeConsumption.isHidden = true
         }else{
             cell.markAsCompleteButton.isEnabled = false
             cell.markAsCompleteButton.alpha = 0.5
+            let (convertedMinutes, convertedSeconds) = convertSecondsToMinutesAndSeconds(seconds: timeConsumption)
+            cell.timeConsumption.text = "\(convertedMinutes) Minutes \(convertedSeconds) Seconds"
+            cell.timeConsumption.isHidden = false
         }
         
         
@@ -426,7 +436,7 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
         self.readStoredData(storeKey: isDefaultCategory ? "completedExercises" : "completedCustomExercises")
         tableView.reloadData()
     }
-    func isCompleteButtonEnabled(cellIndex row : Int) -> Bool{
+    func isCompleteButtonEnabled(cellIndex row : Int) -> (Bool, Int){
         
         let valueExists = self.completedExerciseList.contains { (_, json) -> Bool in
             
@@ -436,24 +446,24 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
         if(valueExists){
             if let index = self.completedExerciseList.array!.firstIndex(where: { $0["categoryId"].intValue == self.selectedExerciseList["id"].intValue }) {
                 
-                
-                if let numbers = self.completedExerciseList[index]["selectedExercises"].arrayObject as? [Int] {
-                    if numbers.contains(self.selectedExerciseList["exercises"][row]["id"].intValue) {
-                        return false
-                    } else {
-                        return true
-                        
-                    }
+                if let numbers = self.completedExerciseList[index]["selectedExercises"].array!.firstIndex(where: {$0["id"].intValue == self.selectedExerciseList["exercises"][row]["id"].intValue}){
+                    
+                     
+                    return (false, self.completedExerciseList[index]["selectedExercises"][numbers]["time"].intValue)
+                    
                 }else{
-                    return true
+                    return (true, 0)
                 }
                 
-            } else {
-                return true
+                
+            }else{
+                return (true, 0)
             }
             
-        }else{
-            return true
+        } else {
+            return (true, 0)
         }
+        
+        
     }
 }

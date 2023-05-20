@@ -80,7 +80,7 @@ class ExerciseDetailViewController: UIViewController {
     let startButton : UIButton = {
         
         let button = UIButton()
-        button.setTitle("Let's Start", for: .normal)
+        button.setTitle("Track Exercises", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font =  UIFont(name: "Roboto-Bold", size: 18)
         button.backgroundColor = .black
@@ -111,19 +111,6 @@ class ExerciseDetailViewController: UIViewController {
         
     }()
     
-    let remindMeLaterButton : UIButton = {
-        
-        let button = UIButton()
-        button.setTitle("Remind me later", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font =  UIFont(name: "Roboto-Bold", size: 18)
-        button.backgroundColor = .black
-        button.layer.cornerRadius = 5
-        
-        return button
-        
-    }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,7 +135,6 @@ class ExerciseDetailViewController: UIViewController {
         populateData()
         
         startButton.addTarget(self, action: #selector(startAction), for: .touchUpInside)
-        remindMeLaterButton.addTarget(self, action: #selector(remindLater), for: .touchUpInside)
         
         let saveButton = UIBarButtonItem(title: "Add reminder", style: .plain, target: self, action: #selector(remindLater))
         
@@ -261,9 +247,8 @@ class ExerciseDetailViewController: UIViewController {
             }
             
         }
-        
-        
     }
+
 }
 extension ExerciseDetailViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

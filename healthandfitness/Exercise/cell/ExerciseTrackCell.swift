@@ -91,6 +91,7 @@ class ExerciseTrackCell : UITableViewCell {
         lbl.textAlignment = .left
         lbl.textColor = .black 
         lbl.numberOfLines = 2
+        lbl.isHidden = true
         return lbl
     }()
     
