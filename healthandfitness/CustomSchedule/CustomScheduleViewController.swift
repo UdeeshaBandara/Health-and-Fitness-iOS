@@ -180,14 +180,9 @@ extension CustomScheduleViewController: UITableViewDelegate, UITableViewDataSour
         
             if let index = completedExerciseList.array!.firstIndex(where: { $0["categoryId"].intValue == exerciseArray[indexPath.row]["id"].intValue }) {
                
-                if let numbers = completedExerciseList[index]["selectedExercises"].arrayObject as? [Int] {
-                  
-                    cell.progressView.setProgress(Float((
-                        (Double(numbers.count) / Double(exerciseArray[indexPath.row]["exercises"].count)
+                cell.progressView.setProgress(Float((
+                    (Double(completedExerciseList[index]["selectedExercises"].count) / Double(exerciseArray[indexPath.row]["exercises"].count)
                     ))), animated: true)
-             
-                }
-              
             }
             
         }else{

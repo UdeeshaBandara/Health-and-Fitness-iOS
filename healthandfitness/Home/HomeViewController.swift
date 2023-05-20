@@ -73,11 +73,11 @@ class HomeViewController: UIViewController {
         homeNetworkRequest()
         profileNetworkRequest()
         
-       
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
- 
+        
         readStoredData()
         tableView.reloadData()
         
@@ -161,7 +161,7 @@ class HomeViewController: UIViewController {
         
     }
     func homeNetworkRequest () {
-      
+        
         NetworkManager.shared.defaultNetworkRequest(url: HealthAndFitnessBase.BaseURL + "exercise/home", header: ["Authorization":(KeychainWrapper.standard.string(forKey: "accessToken") ?? "")], requestMethod: .get, showIndicator: true, indicatorParent: self.view, success: { response in
             
             
@@ -237,25 +237,22 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "planCell", for: indexPath) as! PlanCell
             
             let valueExists = completedExerciseList.contains { (_, json) -> Bool in
-           
+                
                 return json["categoryId"].intValue == exerciseArray[indexPath.row]["id"].intValue
             }
-          
+            
             cell.exerciseName.text =  exerciseArray[indexPath.row]["name"].stringValue
             cell.exerciseImage.kf.setImage(with: URL(string:   exerciseArray[indexPath.row]["coverImageUrl"].stringValue))
-           
-            if(valueExists){
             
+            if(valueExists){
+                
                 if let index = completedExerciseList.array!.firstIndex(where: { $0["categoryId"].intValue == exerciseArray[indexPath.row]["id"].intValue }) {
-                   
-                    if let numbers = completedExerciseList[index]["selectedExercises"].arrayObject as? [Int] {
-                      
-                        cell.progressView.setProgress(Float((
-                            (Double(numbers.count) / Double(exerciseArray[indexPath.row]["exercises"].count)
+                    
+                    
+                    cell.progressView.setProgress(Float((
+                        (Double(completedExerciseList[index]["selectedExercises"].count) / Double(exerciseArray[indexPath.row]["exercises"].count)
                         ))), animated: true)
-                 
-                    }
-                  
+                    
                 }
                 
             }else{
@@ -292,7 +289,7 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(indexPath.section == 1){
             navigateToExerciseDetails(category: exerciseArray[indexPath.row])
-          
+            
         }
     }
     
@@ -308,13 +305,12 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
     }
     func readStoredData(){
         let completedExercises = KeychainWrapper.standard.string(forKey: "completedExercises") ?? "[]"
-      
+        
         if let jsonData = completedExercises.data(using: .utf8) {
             let json = try? JSON(data: jsonData)
             
             completedExerciseList = json ?? "[]"
             
-            print("completedExerciseList \(completedExerciseList)")
         } else {
             print("Invalid JSON string")
         }

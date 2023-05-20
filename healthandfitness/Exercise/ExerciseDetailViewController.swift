@@ -80,7 +80,7 @@ class ExerciseDetailViewController: UIViewController {
     let startButton : UIButton = {
         
         let button = UIButton()
-        button.setTitle("Track Exercises", for: .normal)
+        button.setTitle("Track Workout", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font =  UIFont(name: "Roboto-Bold", size: 18)
         button.backgroundColor = .black
