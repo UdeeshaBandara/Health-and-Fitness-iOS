@@ -19,7 +19,6 @@ class ExerciseTrackCell : UITableViewCell {
         let outerView = UIView()
         outerView.clipsToBounds = false
         outerView.layer.cornerRadius = 20
-        outerView.backgroundColor =   #colorLiteral(red: 0.9695064425, green: 0.9645406604, blue: 0.9818398356, alpha: 1)
         return outerView
         
     }()
@@ -39,9 +38,8 @@ class ExerciseTrackCell : UITableViewCell {
         
         let stackView = UIStackView()
         
-        stackView.alignment = .leading
+        stackView.alignment = .fill
         stackView.distribution = .fill
- 
         stackView.spacing  = 10
         stackView.axis = .vertical
         return stackView
@@ -52,9 +50,9 @@ class ExerciseTrackCell : UITableViewCell {
         let stackView = UIStackView()
         
         stackView.alignment = .center
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .fill
         stackView.spacing  = 10
-        stackView.axis = .horizontal
+        stackView.axis = .horizontal 
         return stackView
         
     }()
@@ -189,14 +187,14 @@ class ExerciseTrackCell : UITableViewCell {
         
         vStackMain.snp.makeConstraints { const in
             
-            const.width.equalTo(mainView)
+            const.width.equalTo(mainView).inset(10)
             const.centerY.equalTo(mainView)
 
            
         }
         markAsCompleteButton.snp.makeConstraints { const in
              
-            const.width.equalTo(vStackMain).inset(10)
+            const.width.equalTo(vStackMain)
            
         }
         
