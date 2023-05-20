@@ -19,6 +19,8 @@ class ExerciseTrackViewController: UIViewController {
     private var startTime: CFTimeInterval?
     private var elapsed: CFTimeInterval = 0
     private var priorElapsed: CFTimeInterval = 0
+    private var lastLapTime: Int = 0
+    private var currentExerciseTime: Int = 0
     
     var selectedExerciseList : JSON = ""
     
@@ -272,14 +274,7 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =   tableView.dequeueReusableCell(withIdentifier: "exerciseTrackCell", for: indexPath) as! ExerciseTrackCell
-        //
-        //        if(currentExerciseIndex > indexPath.row){
-        //
-        //            cell.markAsCompleteButton.isOn = true
-        //        }else{
-        //            cell.markAsCompleteButton.isOn = false
-        //
-        //        }
+        
         
         if (currentExerciseIndex == indexPath.row){
             
@@ -300,7 +295,7 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
             cell.markAsCompleteButton.alpha = 0.5
         }
         
-      
+        
         cell.exerciseName.text =  selectedExerciseList["exercises"][indexPath.row]["name"].stringValue
         
         if(isDefaultCategory){
@@ -313,7 +308,17 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
         cell.exerciseImage.kf.setImage(with: URL(string:   selectedExerciseList["exercises"][indexPath.row]["coverImageUrl"].stringValue))
         
         cell.onCompleteClick = {
-            self.manageLocalStorage(cellIndex: indexPath.row)
+            if self.displayLink == nil {
+                
+                HealthAndFitnessBase.shared.showToastMessage(title: "Exercise Tracker", message: "Please start the timer first")
+                
+            }else{
+                
+                let currentTime = Int((self.elapsed + self.priorElapsed * 100).rounded())
+                self.currentExerciseTime = currentTime - Int(self.lastLapTime)
+                self.lastLapTime = currentTime
+                self.manageLocalStorage(cellIndex: indexPath.row)
+            }
             
         }
         
@@ -332,7 +337,7 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
         let action: UIContextualAction = UIContextualAction(style: .normal, title: nil) { (_, _, completionHandler) in
             
             guard let videoURL = URL(string: self.selectedExerciseList["exercises"][indexPath.row]["demoUrl"].stringValue) else {
-             
+                
                 return
             }
             let player = AVPlayer(url: videoURL)
@@ -358,17 +363,21 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
             
             if let index = self.completedExerciseList.array!.firstIndex(where: { $0["categoryId"].intValue == self.selectedExerciseList["id"].intValue }) {
                 
-                
-                if let numbers = self.completedExerciseList[index]["selectedExercises"].arrayObject as? [Int] {
-                    if numbers.contains(self.selectedExerciseList[row]["id"].intValue) {
+                if(((self.completedExerciseList[index]["selectedExercises"].array!.firstIndex(where: {$0["id"].intValue == self.selectedExerciseList["exercises"][row]["id"].intValue})) == nil)){
+                    
+                    let newArray =
+                    [
+                        "id" : self.selectedExerciseList["exercises"][row]["id"].intValue,
+                        "time" : currentExerciseTime
+                    ]
+                    
+                    
+                    if let jsonArray1 =  self.completedExerciseList[index]["selectedExercises"].array, let jsonArray2 =   JSON([newArray]).array {
                         
-                    } else {
-                        self.completedExerciseList[index]["selectedExercises"].arrayObject?.append(self.selectedExerciseList["exercises"][row]["id"].intValue)
-                        
-                        
+                        self.completedExerciseList[index]["selectedExercises"].arrayObject = jsonArray1 + jsonArray2
                     }
-                }else{
-                    print("invalid json")
+                    
+                    
                 }
                 
                 if let jsonString = self.completedExerciseList.rawString() {
@@ -387,21 +396,26 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
             let markedExercise: [String: Any]  = [
                 
                 "categoryId": self.selectedExerciseList["id"].intValue,
-                "selectedExercises": [self.selectedExerciseList["exercises"][row]["id"].intValue]
+                "selectedExercises": [
+                    [
+                        "id" : self.selectedExerciseList["exercises"][row]["id"].intValue,
+                        "time" : currentExerciseTime
+                    ]
+                ]
                 
                 
             ]
             
             let jsonObj = JSON([markedExercise])
-           
+            
             if let jsonArray1 = jsonObj.array, let jsonArray2 =  self.completedExerciseList.array {
-             
+                
                 self.completedExerciseList.arrayObject = jsonArray1 + jsonArray2
             }
-          
-
+            
+            
             if let jsonString = self.completedExerciseList.rawString() {
-                 
+                
                 KeychainWrapper.standard.set(jsonString, forKey: isDefaultCategory ? "completedExercises" : "completedCustomExercises")
             }
             
@@ -428,7 +442,7 @@ extension ExerciseTrackViewController: UITableViewDelegate, UITableViewDataSourc
                         return false
                     } else {
                         return true
-                         
+                        
                     }
                 }else{
                     return true

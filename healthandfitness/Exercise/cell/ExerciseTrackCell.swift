@@ -29,7 +29,7 @@ class ExerciseTrackCell : UITableViewCell {
         let stackView = UIStackView()
         
         stackView.alignment = .leading
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fill
         stackView.spacing  = 10
         stackView.axis = .vertical
         return stackView
@@ -85,6 +85,14 @@ class ExerciseTrackCell : UITableViewCell {
         
         return lbl
     }()
+    let timeConsumption: UILabel = {
+        let lbl = UILabel()
+        lbl.font = UIFont(name: "Roboto-MediumItalic", size: 14)
+        lbl.textAlignment = .left
+        lbl.textColor = .black 
+        lbl.numberOfLines = 2
+        return lbl
+    }()
     
     let outerShade : UIView = {
         
@@ -132,6 +140,7 @@ class ExerciseTrackCell : UITableViewCell {
         
         vStack.addArrangedSubview(exerciseName)
         vStack.addArrangedSubview(repSetCount)
+        vStack.addArrangedSubview(timeConsumption)
         
         subView.addSubview(exerciseImage)
         subView.addSubview(outerShade)

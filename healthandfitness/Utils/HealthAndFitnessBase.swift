@@ -15,8 +15,8 @@ class HealthAndFitnessBase{
 
     private init(){}
 
-    public static let BaseURL : String = "http://localhost:3600/"
-//    public static let BaseURL : String = "https://gym-api-ixep.onrender.com/"
+//    public static let BaseURL : String = "http://localhost:3600/"
+    public static let BaseURL : String = "https://gym-api-ixep.onrender.com/"
 
 
 

@@ -314,7 +314,7 @@ extension HomeViewController : UITableViewDelegate, UITableViewDataSource {
             
             completedExerciseList = json ?? "[]"
             
-            
+            print("completedExerciseList \(completedExerciseList)")
         } else {
             print("Invalid JSON string")
         }
