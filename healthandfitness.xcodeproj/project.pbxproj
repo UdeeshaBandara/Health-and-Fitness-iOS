@@ -7,21 +7,92 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		491756C02A0D8C6E00117589 /* CustomScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491756BF2A0D8C6E00117589 /* CustomScheduleViewController.swift */; };
+		491756C22A0D924900117589 /* ExerciseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491756C12A0D924900117589 /* ExerciseListViewController.swift */; };
+		491756C52A0D92E000117589 /* ExerciseSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491756C42A0D92E000117589 /* ExerciseSelectCell.swift */; };
+		492521DD2A0822A800C93682 /* PopularCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492521DC2A0822A800C93682 /* PopularCell.swift */; };
+		492521DF2A0822BF00C93682 /* PlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492521DE2A0822BF00C93682 /* PlanCell.swift */; };
+		492521E22A0829C800C93682 /* PopularSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492521E12A0829C800C93682 /* PopularSubCell.swift */; };
+		492521E42A084F3C00C93682 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492521E32A084F3C00C93682 /* HeaderCell.swift */; };
+		493251BB2A0A3EDE00A3BA28 /* BMIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493251BA2A0A3EDE00A3BA28 /* BMIViewController.swift */; };
+		493251BD2A0A434F00A3BA28 /* GenderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493251BC2A0A434F00A3BA28 /* GenderCell.swift */; };
+		493251C02A0A9EF700A3BA28 /* GaugeSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 493251BF2A0A9EF700A3BA28 /* GaugeSlider */; };
+		493251C22A0B029C00A3BA28 /* ExerciseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493251C12A0B029C00A3BA28 /* ExerciseDetailViewController.swift */; };
+		493251C62A0B4A2900A3BA28 /* ExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493251C52A0B4A2900A3BA28 /* ExerciseCell.swift */; };
+		493251C82A0B4FF100A3BA28 /* ExerciseTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493251C72A0B4FF100A3BA28 /* ExerciseTrackViewController.swift */; };
+		493B42442A04DE1C00808493 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 493B42432A04DE1C00808493 /* IQKeyboardManagerSwift */; };
+		493B42462A04ECD000808493 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493B42452A04ECD000808493 /* RegisterViewController.swift */; };
 		493F6EF82A04C61E00A721DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F6EF72A04C61E00A721DA /* AppDelegate.swift */; };
 		493F6EFA2A04C61E00A721DA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F6EF92A04C61E00A721DA /* SceneDelegate.swift */; };
-		493F6EFC2A04C61E00A721DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F6EFB2A04C61E00A721DA /* ViewController.swift */; };
 		493F6F012A04C61F00A721DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 493F6F002A04C61F00A721DA /* Assets.xcassets */; };
 		493F6F042A04C61F00A721DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 493F6F022A04C61F00A721DA /* LaunchScreen.storyboard */; };
+		493F7A972A078CC2008C0E40 /* WizardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F7A962A078CC2008C0E40 /* WizardCell.swift */; };
+		493F7A9B2A0793B5008C0E40 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F7A9A2A0793B5008C0E40 /* Page.swift */; };
+		493F7AA82A07DB70008C0E40 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 493F7AA22A07DB70008C0E40 /* Roboto-MediumItalic.ttf */; };
+		493F7AA92A07DB70008C0E40 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 493F7AA32A07DB70008C0E40 /* Roboto-Light.ttf */; };
+		493F7AAA2A07DB70008C0E40 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 493F7AA42A07DB70008C0E40 /* Roboto-Bold.ttf */; };
+		493F7AAB2A07DB70008C0E40 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 493F7AA52A07DB70008C0E40 /* Roboto-Medium.ttf */; };
+		493F7AAC2A07DB70008C0E40 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 493F7AA62A07DB70008C0E40 /* Roboto-Thin.ttf */; };
+		493F7AAD2A07DB70008C0E40 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 493F7AA72A07DB70008C0E40 /* Roboto-Regular.ttf */; };
+		493F7AB12A07FD8B008C0E40 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F7AB02A07FD8B008C0E40 /* HomeViewController.swift */; };
+		493F7AB32A0803D5008C0E40 /* WizardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F7AB22A0803D5008C0E40 /* WizardController.swift */; };
+		4954C6612A0D83E2009576B4 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4954C6602A0D83E2009576B4 /* Kingfisher */; };
+		496EA0F82A11FE6600A08FF3 /* LKRulerPicker in Frameworks */ = {isa = PBXBuildFile; productRef = 496EA0F72A11FE6600A08FF3 /* LKRulerPicker */; };
+		498374D92A10F3EE00E9554F /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498374D82A10F3EE00E9554F /* GoalViewController.swift */; };
+		498374DB2A10F59000E9554F /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498374DA2A10F59000E9554F /* GoalCell.swift */; };
+		498BB5542A0874BA008EEA5B /* LGSideMenuController in Frameworks */ = {isa = PBXBuildFile; productRef = 498BB5532A0874BA008EEA5B /* LGSideMenuController */; };
+		498BB5572A087503008EEA5B /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498BB5562A087503008EEA5B /* SideMenuViewController.swift */; };
+		49A4A8952A04D964005A4DC2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 49A4A8942A04D964005A4DC2 /* SnapKit */; };
+		49A4A8972A04D9F1005A4DC2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A4A8962A04D9F1005A4DC2 /* LoginViewController.swift */; };
+		49A4A89B2A04DADD005A4DC2 /* HealthAndFitnessBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A4A89A2A04DADD005A4DC2 /* HealthAndFitnessBase.swift */; };
+		49B5F1CB2A15333300BA2CEB /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B5F1CA2A15333300BA2CEB /* PopupViewController.swift */; };
+		49CBACC42A0C058F00053342 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 49CBACC32A0C058F00053342 /* JGProgressHUD */; };
+		49CBACC72A0C086A00053342 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 49CBACC62A0C086A00053342 /* Alamofire */; };
+		49CBACCA2A0C08C200053342 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 49CBACC92A0C08C200053342 /* SwiftyJSON */; };
+		49CBACCC2A0C090F00053342 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CBACCB2A0C090F00053342 /* NetworkManager.swift */; };
+		49CBACCF2A0C0AE200053342 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = 49CBACCE2A0C0AE200053342 /* SwiftMessages */; };
+		49CBACD52A0C0EB800053342 /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 49CBACD42A0C0EB800053342 /* SwiftKeychainWrapper */; };
+		49DA19C72A162CB70095884D /* ExerciseTrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DA19C62A162CB70095884D /* ExerciseTrackCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		491756BF2A0D8C6E00117589 /* CustomScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomScheduleViewController.swift; sourceTree = "<group>"; };
+		491756C12A0D924900117589 /* ExerciseListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseListViewController.swift; sourceTree = "<group>"; };
+		491756C42A0D92E000117589 /* ExerciseSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSelectCell.swift; sourceTree = "<group>"; };
+		492521DC2A0822A800C93682 /* PopularCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCell.swift; sourceTree = "<group>"; };
+		492521DE2A0822BF00C93682 /* PlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanCell.swift; sourceTree = "<group>"; };
+		492521E12A0829C800C93682 /* PopularSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularSubCell.swift; sourceTree = "<group>"; };
+		492521E32A084F3C00C93682 /* HeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
+		493251BA2A0A3EDE00A3BA28 /* BMIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIViewController.swift; sourceTree = "<group>"; };
+		493251BC2A0A434F00A3BA28 /* GenderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderCell.swift; sourceTree = "<group>"; };
+		493251C12A0B029C00A3BA28 /* ExerciseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailViewController.swift; sourceTree = "<group>"; };
+		493251C52A0B4A2900A3BA28 /* ExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCell.swift; sourceTree = "<group>"; };
+		493251C72A0B4FF100A3BA28 /* ExerciseTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTrackViewController.swift; sourceTree = "<group>"; };
+		493B42452A04ECD000808493 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		493F6EF42A04C61E00A721DA /* healthandfitness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = healthandfitness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		493F6EF72A04C61E00A721DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		493F6EF92A04C61E00A721DA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		493F6EFB2A04C61E00A721DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		493F6F002A04C61F00A721DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		493F6F032A04C61F00A721DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		493F6F052A04C61F00A721DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		493F7A962A078CC2008C0E40 /* WizardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WizardCell.swift; sourceTree = "<group>"; };
+		493F7A9A2A0793B5008C0E40 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		493F7AA22A07DB70008C0E40 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		493F7AA32A07DB70008C0E40 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		493F7AA42A07DB70008C0E40 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		493F7AA52A07DB70008C0E40 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		493F7AA62A07DB70008C0E40 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		493F7AA72A07DB70008C0E40 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		493F7AB02A07FD8B008C0E40 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		493F7AB22A0803D5008C0E40 /* WizardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WizardController.swift; sourceTree = "<group>"; };
+		498374D82A10F3EE00E9554F /* GoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
+		498374DA2A10F59000E9554F /* GoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
+		498BB5562A087503008EEA5B /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		49A4A8962A04D9F1005A4DC2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		49A4A89A2A04DADD005A4DC2 /* HealthAndFitnessBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthAndFitnessBase.swift; sourceTree = "<group>"; };
+		49B5F1CA2A15333300BA2CEB /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
+		49CBACCB2A0C090F00053342 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		49DA19C62A162CB70095884D /* ExerciseTrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTrackCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,12 +100,61 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				498BB5542A0874BA008EEA5B /* LGSideMenuController in Frameworks */,
+				496EA0F82A11FE6600A08FF3 /* LKRulerPicker in Frameworks */,
+				49CBACCA2A0C08C200053342 /* SwiftyJSON in Frameworks */,
+				49CBACCF2A0C0AE200053342 /* SwiftMessages in Frameworks */,
+				49A4A8952A04D964005A4DC2 /* SnapKit in Frameworks */,
+				4954C6612A0D83E2009576B4 /* Kingfisher in Frameworks */,
+				493B42442A04DE1C00808493 /* IQKeyboardManagerSwift in Frameworks */,
+				49CBACC72A0C086A00053342 /* Alamofire in Frameworks */,
+				493251C02A0A9EF700A3BA28 /* GaugeSlider in Frameworks */,
+				49CBACC42A0C058F00053342 /* JGProgressHUD in Frameworks */,
+				49CBACD52A0C0EB800053342 /* SwiftKeychainWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		491756C32A0D92B900117589 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				491756C42A0D92E000117589 /* ExerciseSelectCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		492521DB2A08229700C93682 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				492521DC2A0822A800C93682 /* PopularCell.swift */,
+				492521DE2A0822BF00C93682 /* PlanCell.swift */,
+				492521E12A0829C800C93682 /* PopularSubCell.swift */,
+				492521E32A084F3C00C93682 /* HeaderCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		493251C32A0B49EF00A3BA28 /* Exercise */ = {
+			isa = PBXGroup;
+			children = (
+				493251C42A0B4A1200A3BA28 /* cell */,
+				493251C12A0B029C00A3BA28 /* ExerciseDetailViewController.swift */,
+				493251C72A0B4FF100A3BA28 /* ExerciseTrackViewController.swift */,
+			);
+			path = Exercise;
+			sourceTree = "<group>";
+		};
+		493251C42A0B4A1200A3BA28 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				493251C52A0B4A2900A3BA28 /* ExerciseCell.swift */,
+				49DA19C62A162CB70095884D /* ExerciseTrackCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		493F6EEB2A04C61E00A721DA = {
 			isa = PBXGroup;
 			children = (
@@ -54,14 +174,102 @@
 		493F6EF62A04C61E00A721DA /* healthandfitness */ = {
 			isa = PBXGroup;
 			children = (
+				49B5F1C92A1532FD00BA2CEB /* Popup */,
+				4954C6622A0D8B29009576B4 /* CustomSchedule */,
+				493251C32A0B49EF00A3BA28 /* Exercise */,
+				498BB5552A0874C6008EEA5B /* SideMenu */,
+				493F7AAF2A07FD71008C0E40 /* Home */,
+				49A4A8992A04DABD005A4DC2 /* Utils */,
+				49A4A8982A04D9FF005A4DC2 /* Onboarding */,
+				49A4A8862A04D06C005A4DC2 /* font */,
 				493F6EF72A04C61E00A721DA /* AppDelegate.swift */,
 				493F6EF92A04C61E00A721DA /* SceneDelegate.swift */,
-				493F6EFB2A04C61E00A721DA /* ViewController.swift */,
 				493F6F002A04C61F00A721DA /* Assets.xcassets */,
 				493F6F022A04C61F00A721DA /* LaunchScreen.storyboard */,
 				493F6F052A04C61F00A721DA /* Info.plist */,
 			);
 			path = healthandfitness;
+			sourceTree = "<group>";
+		};
+		493F7A922A078C11008C0E40 /* viewPager */ = {
+			isa = PBXGroup;
+			children = (
+				493F7A962A078CC2008C0E40 /* WizardCell.swift */,
+				493F7A9A2A0793B5008C0E40 /* Page.swift */,
+				493F7AB22A0803D5008C0E40 /* WizardController.swift */,
+				493251BC2A0A434F00A3BA28 /* GenderCell.swift */,
+				498374DA2A10F59000E9554F /* GoalCell.swift */,
+			);
+			path = viewPager;
+			sourceTree = "<group>";
+		};
+		493F7AAF2A07FD71008C0E40 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				492521DB2A08229700C93682 /* cell */,
+				493F7AB02A07FD8B008C0E40 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		4954C6622A0D8B29009576B4 /* CustomSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				491756C32A0D92B900117589 /* cell */,
+				491756BF2A0D8C6E00117589 /* CustomScheduleViewController.swift */,
+				491756C12A0D924900117589 /* ExerciseListViewController.swift */,
+			);
+			path = CustomSchedule;
+			sourceTree = "<group>";
+		};
+		498BB5552A0874C6008EEA5B /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				498BB5562A087503008EEA5B /* SideMenuViewController.swift */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		49A4A8862A04D06C005A4DC2 /* font */ = {
+			isa = PBXGroup;
+			children = (
+				493F7AA42A07DB70008C0E40 /* Roboto-Bold.ttf */,
+				493F7AA32A07DB70008C0E40 /* Roboto-Light.ttf */,
+				493F7AA52A07DB70008C0E40 /* Roboto-Medium.ttf */,
+				493F7AA22A07DB70008C0E40 /* Roboto-MediumItalic.ttf */,
+				493F7AA72A07DB70008C0E40 /* Roboto-Regular.ttf */,
+				493F7AA62A07DB70008C0E40 /* Roboto-Thin.ttf */,
+			);
+			path = font;
+			sourceTree = "<group>";
+		};
+		49A4A8982A04D9FF005A4DC2 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				493F7A922A078C11008C0E40 /* viewPager */,
+				49A4A8962A04D9F1005A4DC2 /* LoginViewController.swift */,
+				493B42452A04ECD000808493 /* RegisterViewController.swift */,
+				493251BA2A0A3EDE00A3BA28 /* BMIViewController.swift */,
+				498374D82A10F3EE00E9554F /* GoalViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		49A4A8992A04DABD005A4DC2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				49A4A89A2A04DADD005A4DC2 /* HealthAndFitnessBase.swift */,
+				49CBACCB2A0C090F00053342 /* NetworkManager.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		49B5F1C92A1532FD00BA2CEB /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				49B5F1CA2A15333300BA2CEB /* PopupViewController.swift */,
+			);
+			path = Popup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,6 +288,19 @@
 			dependencies = (
 			);
 			name = healthandfitness;
+			packageProductDependencies = (
+				49A4A8942A04D964005A4DC2 /* SnapKit */,
+				493B42432A04DE1C00808493 /* IQKeyboardManagerSwift */,
+				498BB5532A0874BA008EEA5B /* LGSideMenuController */,
+				493251BF2A0A9EF700A3BA28 /* GaugeSlider */,
+				49CBACC32A0C058F00053342 /* JGProgressHUD */,
+				49CBACC62A0C086A00053342 /* Alamofire */,
+				49CBACC92A0C08C200053342 /* SwiftyJSON */,
+				49CBACCE2A0C0AE200053342 /* SwiftMessages */,
+				49CBACD42A0C0EB800053342 /* SwiftKeychainWrapper */,
+				4954C6602A0D83E2009576B4 /* Kingfisher */,
+				496EA0F72A11FE6600A08FF3 /* LKRulerPicker */,
+			);
 			productName = healthandfitness;
 			productReference = 493F6EF42A04C61E00A721DA /* healthandfitness.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +329,19 @@
 				Base,
 			);
 			mainGroup = 493F6EEB2A04C61E00A721DA;
+			packageReferences = (
+				49A4A8932A04D964005A4DC2 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				493B42422A04DE1C00808493 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				498BB5522A0874BA008EEA5B /* XCRemoteSwiftPackageReference "LGSideMenuController" */,
+				493251BE2A0A9EF700A3BA28 /* XCRemoteSwiftPackageReference "GaugeSlider" */,
+				49CBACC22A0C058F00053342 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				49CBACC52A0C086900053342 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				49CBACC82A0C08C200053342 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				49CBACCD2A0C0AE200053342 /* XCRemoteSwiftPackageReference "SwiftMessages" */,
+				49CBACD32A0C0EB800053342 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */,
+				4954C65F2A0D83E2009576B4 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				496EA0F62A11FE6600A08FF3 /* XCRemoteSwiftPackageReference "LKRulerPicker" */,
+			);
 			productRefGroup = 493F6EF52A04C61E00A721DA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -122,7 +356,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				493F7AAC2A07DB70008C0E40 /* Roboto-Thin.ttf in Resources */,
 				493F6F042A04C61F00A721DA /* LaunchScreen.storyboard in Resources */,
+				493F7AAD2A07DB70008C0E40 /* Roboto-Regular.ttf in Resources */,
+				493F7AA82A07DB70008C0E40 /* Roboto-MediumItalic.ttf in Resources */,
+				493F7AAB2A07DB70008C0E40 /* Roboto-Medium.ttf in Resources */,
+				493F7AAA2A07DB70008C0E40 /* Roboto-Bold.ttf in Resources */,
+				493F7AA92A07DB70008C0E40 /* Roboto-Light.ttf in Resources */,
 				493F6F012A04C61F00A721DA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,8 +374,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				493F6EFC2A04C61E00A721DA /* ViewController.swift in Sources */,
+				492521DF2A0822BF00C93682 /* PlanCell.swift in Sources */,
+				49A4A89B2A04DADD005A4DC2 /* HealthAndFitnessBase.swift in Sources */,
+				49DA19C72A162CB70095884D /* ExerciseTrackCell.swift in Sources */,
+				492521E22A0829C800C93682 /* PopularSubCell.swift in Sources */,
+				49CBACCC2A0C090F00053342 /* NetworkManager.swift in Sources */,
+				49A4A8972A04D9F1005A4DC2 /* LoginViewController.swift in Sources */,
+				493251C82A0B4FF100A3BA28 /* ExerciseTrackViewController.swift in Sources */,
+				491756C02A0D8C6E00117589 /* CustomScheduleViewController.swift in Sources */,
+				493F7A9B2A0793B5008C0E40 /* Page.swift in Sources */,
+				493251C22A0B029C00A3BA28 /* ExerciseDetailViewController.swift in Sources */,
+				492521DD2A0822A800C93682 /* PopularCell.swift in Sources */,
+				492521E42A084F3C00C93682 /* HeaderCell.swift in Sources */,
+				493F7AB12A07FD8B008C0E40 /* HomeViewController.swift in Sources */,
+				493251BD2A0A434F00A3BA28 /* GenderCell.swift in Sources */,
+				498374DB2A10F59000E9554F /* GoalCell.swift in Sources */,
+				493251BB2A0A3EDE00A3BA28 /* BMIViewController.swift in Sources */,
+				493B42462A04ECD000808493 /* RegisterViewController.swift in Sources */,
 				493F6EF82A04C61E00A721DA /* AppDelegate.swift in Sources */,
+				491756C52A0D92E000117589 /* ExerciseSelectCell.swift in Sources */,
+				493F7A972A078CC2008C0E40 /* WizardCell.swift in Sources */,
+				493F7AB32A0803D5008C0E40 /* WizardController.swift in Sources */,
+				491756C22A0D924900117589 /* ExerciseListViewController.swift in Sources */,
+				498BB5572A087503008EEA5B /* SideMenuViewController.swift in Sources */,
+				49B5F1CB2A15333300BA2CEB /* PopupViewController.swift in Sources */,
+				498374D92A10F3EE00E9554F /* GoalViewController.swift in Sources */,
+				493251C62A0B4A2900A3BA28 /* ExerciseCell.swift in Sources */,
 				493F6EFA2A04C61E00A721DA /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,8 +546,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -311,8 +577,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -348,6 +616,155 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		493251BE2A0A9EF700A3BA28 /* XCRemoteSwiftPackageReference "GaugeSlider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/edgar-zigis/GaugeSlider.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.1;
+			};
+		};
+		493B42422A04DE1C00808493 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
+		4954C65F2A0D83E2009576B4 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.6.2;
+			};
+		};
+		496EA0F62A11FE6600A08FF3 /* XCRemoteSwiftPackageReference "LKRulerPicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lalkrishna/LKRulerPicker";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+		498BB5522A0874BA008EEA5B /* XCRemoteSwiftPackageReference "LGSideMenuController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Friend-LGA/LGSideMenuController.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.2;
+			};
+		};
+		49A4A8932A04D964005A4DC2 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		49CBACC22A0C058F00053342 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
+		49CBACC52A0C086900053342 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.4;
+			};
+		};
+		49CBACC82A0C08C200053342 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		49CBACCD2A0C0AE200053342 /* XCRemoteSwiftPackageReference "SwiftMessages" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftKickMobile/SwiftMessages";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.6;
+			};
+		};
+		49CBACD32A0C0EB800053342 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrendel/SwiftKeychainWrapper";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		493251BF2A0A9EF700A3BA28 /* GaugeSlider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 493251BE2A0A9EF700A3BA28 /* XCRemoteSwiftPackageReference "GaugeSlider" */;
+			productName = GaugeSlider;
+		};
+		493B42432A04DE1C00808493 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 493B42422A04DE1C00808493 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+		4954C6602A0D83E2009576B4 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4954C65F2A0D83E2009576B4 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		496EA0F72A11FE6600A08FF3 /* LKRulerPicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 496EA0F62A11FE6600A08FF3 /* XCRemoteSwiftPackageReference "LKRulerPicker" */;
+			productName = LKRulerPicker;
+		};
+		498BB5532A0874BA008EEA5B /* LGSideMenuController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 498BB5522A0874BA008EEA5B /* XCRemoteSwiftPackageReference "LGSideMenuController" */;
+			productName = LGSideMenuController;
+		};
+		49A4A8942A04D964005A4DC2 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49A4A8932A04D964005A4DC2 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		49CBACC32A0C058F00053342 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49CBACC22A0C058F00053342 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
+		49CBACC62A0C086A00053342 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49CBACC52A0C086900053342 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		49CBACC92A0C08C200053342 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49CBACC82A0C08C200053342 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		49CBACCE2A0C0AE200053342 /* SwiftMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49CBACCD2A0C0AE200053342 /* XCRemoteSwiftPackageReference "SwiftMessages" */;
+			productName = SwiftMessages;
+		};
+		49CBACD42A0C0EB800053342 /* SwiftKeychainWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49CBACD32A0C0EB800053342 /* XCRemoteSwiftPackageReference "SwiftKeychainWrapper" */;
+			productName = SwiftKeychainWrapper;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 493F6EEC2A04C61E00A721DA /* Project object */;
 }

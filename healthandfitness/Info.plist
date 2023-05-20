@@ -2,8 +2,28 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>NSRemindersUsageDescription</key>
+	<string>Allow access to reminder in order to save reminders</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Allow access to calendar in order to save events</string>
+	<key>CFBundleIdentifier</key>
+	<string></string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
+		<key>Fonts provided by application</key>
+		<array>
+			<string>Roboto-Light.ttf</string>
+			<string>Roboto-Thin.ttf</string>
+			<string>Roboto-Regular.ttf</string>
+			<string>Roboto-MediumItalic.ttf</string>
+			<string>Roboto-Medium.ttf</string>
+			<string>Roboto-Bold.ttf</string>
+		</array>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
 		<key>UISceneConfigurations</key>
@@ -19,5 +39,7 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
